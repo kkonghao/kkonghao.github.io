@@ -50,10 +50,12 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="听雨轩">
+  <meta name="description" content="智者顺时而谋，愚者逆理而动">
+<meta property="og:type" content="website">
+<meta property="og:title" content="土豆の博客">
 <meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;archives&#x2F;2019&#x2F;10&#x2F;index.html">
-<meta property="og:site_name" content="听雨轩">
+<meta property="og:site_name" content="土豆の博客">
+<meta property="og:description" content="智者顺时而谋，愚者逆理而动">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 
@@ -71,7 +73,7 @@
   };
 </script>
 
-  <title>归档 | 听雨轩</title>
+  <title>归档 | 土豆の博客</title>
   
 
 
@@ -123,10 +125,11 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">听雨轩</span>
+        <span class="site-title">土豆の博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">学习汪</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -307,7 +310,7 @@
   <img class="site-author-image" itemprop="image" alt="嘿你的土豆"
     src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">嘿你的土豆</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">智者顺时而谋，愚者逆理而动</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -476,7 +479,7 @@
 <script>
 NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
+  var guest = 'nick,mail';
   guest = guest.split(',').filter(item => {
     return GUEST.includes(item);
   });
@@ -486,14 +489,14 @@ NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     notify: false,
     appId: 'NFFFptScgpTiPhpy4cNPz8Ww-gzGzoHsz',
     appKey: '9Az9HaiBHxvseEr35PuO2KaO',
-    placeholder: "Just go go",
+    placeholder: "ヾﾉ≧∀≦)o 来呀！快活呀！~",
     avatar: 'mm',
     meta: guest,
-    pageSize: '10' || 10,
+    pageSize: '4' || 10,
     visitor: false,
     lang: '' || 'zh-cn',
     path: location.pathname,
-    recordIP: false,
+    recordIP: true,
     serverURLs: ''
   });
 }, window.Valine);
