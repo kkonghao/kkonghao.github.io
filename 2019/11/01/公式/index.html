@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="markdown怎么增加公式呢公式的写法$$ \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt,. $$">
+  <meta name="description" content="markdown怎么增加公式呢公式的写法\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.">
 <meta name="keywords" content="-导航 -分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="公式">
 <meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;01&#x2F;%E5%85%AC%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="markdown怎么增加公式呢公式的写法$$ \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt,. $$">
+<meta property="og:description" content="markdown怎么增加公式呢公式的写法\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T17:29:53.356Z">
+<meta property="og:updated_time" content="2019-11-01T04:07:19.541Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://tingyuxuan.com/2019/11/01/%E5%85%AC%E5%BC%8F/">
@@ -131,7 +131,6 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">学习汪</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -242,7 +241,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-01 01:25:45 / 修改时间：01:29:53" itemprop="dateCreated datePublished" datetime="2019-11-01T01:25:45+08:00">2019-11-01</time>
+              <time title="创建时间：2019-11-01 01:25:45 / 修改时间：12:07:19" itemprop="dateCreated datePublished" datetime="2019-11-01T01:25:45+08:00">2019-11-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +282,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>64</span>
+              <span>61</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -302,8 +301,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="markdown怎么增加公式呢"><a href="#markdown怎么增加公式呢" class="headerlink" title="markdown怎么增加公式呢"></a>markdown怎么增加公式呢</h1><h2 id="公式的写法"><a href="#公式的写法" class="headerlink" title="公式的写法"></a>公式的写法</h2><p>$$ \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt,. $$</p>
-
+        <h1 id="markdown怎么增加公式呢"><a href="#markdown怎么增加公式呢" class="headerlink" title="markdown怎么增加公式呢"></a>markdown怎么增加公式呢</h1><h2 id="公式的写法"><a href="#公式的写法" class="headerlink" title="公式的写法"></a>公式的写法</h2><script type="math/tex; mode=display">\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.</script>
     </div>
 
     
@@ -535,6 +533,58 @@
 
 
   
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 
