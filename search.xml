@@ -4,10 +4,9 @@
     <title>rust中的借用与引用</title>
     <url>/2019/11/04/rust%E4%B8%AD%E7%9A%84%E5%80%9F%E7%94%A8%E4%B8%8E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<h2 id="疑问？"><a href="#疑问？" class="headerlink" title="疑问？"></a>疑问？</h2><p>接触Rust也一段时间了，但对References（引用）、borrowing（借用） 、 &amp;关键字、ref关键字、* 关键字，这几个词非常困惑。常见的问题不在乎下面几条：</p>
-<font size="4" face="楷体">1. &关键字是代表引用还是借用？</font>
-
-
-<p>网上有很多对Rust中引用和借用部分进行翻译和解释。看得真是云里雾里，一会说借用，一会说引用，那到底是引用还是借用？</p>
+<ol>
+<li>&amp;关键字是代表引用还是借用？<br>网上有很多对Rust中引用和借用部分进行翻译和解释。看得真是云里雾里，一会说借用，一会说引用，那到底是引用还是借用？</li>
+</ol>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">ref</span> a=<span class="number">2</span>;<span class="comment">//机动车减肥茶</span></span><br><span class="line"><span class="keyword">let</span> a = &amp;<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;ra=<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  <span class="title">print</span><span class="params">(<span class="string">"hello world"</span>)</span></span></span><br></pre></td></tr></table></figure>
