@@ -159,7 +159,7 @@ body {
   color: #555;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 @media (max-width: 991px) {
   body {
@@ -1200,7 +1200,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #3b4aff;
+  background: #deffcb;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2576,7 +2576,7 @@ hr {
   background: #222;
 }
 .posts-expand .post-body img {
-  margin-left: 0;
+  margin: 0 auto;
 }
 .posts-expand .post-tags {
   text-align: left;
