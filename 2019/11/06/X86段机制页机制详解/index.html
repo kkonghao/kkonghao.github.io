@@ -51,15 +51,14 @@
   };
 </script>
 
-  <meta name="description" content="注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16  引子MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址">
+  <meta name="description" content="注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16">
 <meta name="keywords" content="计算机组成原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="X86段机制页机制详解">
 <meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16  引子MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址">
+<meta property="og:description" content="注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106053402.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106060132.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106062438.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;images&#x2F;2019&#x2F;11&#x2F;06&#x2F;bc583af0-001a-11ea-8860-b9b91b2a10f8.png">
@@ -74,7 +73,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106063456.png">
 <meta property="og:updated_time" content="2019-11-05T21:24:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106053402.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106060132.png">
 
 <link rel="canonical" href="http://tingyuxuan.com/2019/11/06/X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/">
 
@@ -173,17 +172,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">2</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -302,7 +301,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
+              <span>5.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -322,10 +321,23 @@
 
       
         <center><font face="楷体" size="4">注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16</font></center>
+<a id="more"></a>
 
-<h4 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h4><p>MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址(或叫虚拟地址)。<font face="楷体" size="4">在80386 的段机制中，逻辑地址由两部分组成，即段部分（选择符）及偏移部分。</font></p>
-<p>段是形成逻辑地址到线性地址转换的基础。如果我们把段看成一个对象的话，那么对它的描述如下。<br>• 段的基地址(Base Address):在线性地址空间中段的起始地址。<br>• 段的界限(Limit):表示在逻辑地址中，段内可以使用的最大偏移量。<br>• 段的属性(Attribute):表示段的特性。例如，该段是否可被读出或写入，或者该段是否作为一个程序来执行，以及段的特权级等。</p>
-<h4 id="逻辑地址、线性地址和物理地址"><a href="#逻辑地址、线性地址和物理地址" class="headerlink" title="逻辑地址、线性地址和物理地址"></a>逻辑地址、线性地址和物理地址</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106053402.png" alt="qq"></p>
+#### 引子
+
+MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址(或叫虚拟地址)。<font face="楷体" size="4">在80386 的段机制中，逻辑地址由两部分组成，即段部分（选择符）及偏移部分。</font>
+
+
+段是形成逻辑地址到线性地址转换的基础。如果我们把段看成一个对象的话，那么对它的描述如下。
+• 段的基地址(Base Address):在线性地址空间中段的起始地址。
+• 段的界限(Limit):表示在逻辑地址中，段内可以使用的最大偏移量。
+• 段的属性(Attribute):表示段的特性。例如，该段是否可被读出或写入，或者该段是否作为一个程序来执行，以及段的特权级等。
+
+
+#### 逻辑地址、线性地址和物理地址
+
+
+![qq](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106053402.png)
 <center><font face="楷体" size="4">图1 MMU把逻辑地址转换为物理地址过程</font></center>
 
 <h4 id="用户段描述符-User-Descriptor"><a href="#用户段描述符-User-Descriptor" class="headerlink" title="用户段描述符(User Descriptor)"></a>用户段描述符(User Descriptor)</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106060132.png" alt></p>
@@ -419,8 +431,8 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/06/c/" rel="next" title="c++">
-                  <i class="fa fa-chevron-left"></i> c++
+                <a href="/2019/10/27/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
                 </a>
             </div>
 
@@ -466,7 +478,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑地址、线性地址和物理地址"><span class="nav-number">2.</span> <span class="nav-text">逻辑地址、线性地址和物理地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户段描述符-User-Descriptor"><span class="nav-number">3.</span> <span class="nav-text">用户段描述符(User Descriptor)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统段描述符-Sys-Descriptor"><span class="nav-number">4.</span> <span class="nav-text">系统段描述符(Sys Descriptor)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择符、描述符表和描述符表寄存器"><span class="nav-number">5.</span> <span class="nav-text">选择符、描述符表和描述符表寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux中的段机制"><span class="nav-number">6.</span> <span class="nav-text">linux中的段机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页目录项、页表项、页面项"><span class="nav-number">7.</span> <span class="nav-text">页目录项、页表项、页面项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux-中的分页机制"><span class="nav-number">8.</span> <span class="nav-text">linux 中的分页机制</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户段描述符-User-Descriptor"><span class="nav-number">1.</span> <span class="nav-text">用户段描述符(User Descriptor)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统段描述符-Sys-Descriptor"><span class="nav-number">2.</span> <span class="nav-text">系统段描述符(Sys Descriptor)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择符、描述符表和描述符表寄存器"><span class="nav-number">3.</span> <span class="nav-text">选择符、描述符表和描述符表寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux中的段机制"><span class="nav-number">4.</span> <span class="nav-text">linux中的段机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页目录项、页表项、页面项"><span class="nav-number">5.</span> <span class="nav-text">页目录项、页表项、页面项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux-中的分页机制"><span class="nav-number">6.</span> <span class="nav-text">linux 中的分页机制</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -482,20 +494,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -555,7 +567,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">6 分钟</span>
 </div>
 
 <!--
