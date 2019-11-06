@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tingyuxuan.com/"/>
-  <updated>2019-11-05T21:24:29.000Z</updated>
+  <updated>2019-11-06T05:35:23.000Z</updated>
   <id>http://tingyuxuan.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>虚拟内存的作用</title>
+    <link href="http://tingyuxuan.com/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
+    <id>http://tingyuxuan.com/2019/11/06/虚拟内存的作用/</id>
+    <published>2019-11-06T05:35:23.000Z</published>
+    <updated>2019-11-06T05:35:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="虚拟地址"><a href="#虚拟地址" class="headerlink" title="虚拟地址"></a>虚拟地址</h4><p>虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。<br><a id="more"></a></p><p>例如，上面代码中变量 a 的地址是 0X402000，第一次运行时它对应的物理内存地址可能是 0X12ED90AA，第二次运行时可能又对应 0XED90，而我们的程序不需要关心这些，这些繁杂的内存管理工作交给操作系统处理即可。</p><p>让我们回到程序的运行本质上来。用户程序在运行时不希望介入到这些复杂的内存管理过程中，作为普通的程序，它需要的是一个简单的执行环境，有自己的内存，有自己的CPU，好像整个程序占有整个计算机而不用关心其他的程序。</p><p>除了在编程时可以使用固定的内存地址，给程序员带来方便外，使用虚拟地址还能够使不同程序的地址空间相互隔离，提高内存使用效率。</p><h4 id="使不同程序的地址空间相互隔离"><a href="#使不同程序的地址空间相互隔离" class="headerlink" title="使不同程序的地址空间相互隔离"></a>使不同程序的地址空间相互隔离</h4><p>如果所有程序都直接使用物理内存，那么程序所使用的地址空间不是相互隔离的。恶意程序可以很容易改写其他程序的内存数据，以达到破坏的目的；有些非恶意、但是有 Bug 的程序也可能会不小心修改其他程序的数据，导致其他程序崩溃。</p><p>这对于需要安全稳定的计算机环境的用户来说是不能容忍的，用户希望他在使用计算机的时候，其中一个任务失败了，至少不会影响其他任务。</p><p>使用了虚拟地址后，程序A和程序B虽然都可以访问同一个地址，但它们对应的物理地址是不同的，无论如何操作，都不会修改对方的内存。</p><h4 id="提高内存使用效率"><a href="#提高内存使用效率" class="headerlink" title="提高内存使用效率"></a>提高内存使用效率</h4><p>使用虚拟地址后，操作系统会更多地介入到内存管理工作中，这使得控制内存权限成为可能。例如，我们希望保存数据的内存没有执行权限，保存代码的内存没有修改权限，操作系统占用的内存普通程序没有读取权限等。</p><p>另外，当物理内存不足时，操作系统能够更加灵活地控制换入换出的粒度，磁盘 I/O 是非常耗时的工作，这能够从很大程度上提高程序性能。</p><h4 id="中间层思想"><a href="#中间层思想" class="headerlink" title="中间层思想"></a>中间层思想</h4><p>在计算机中，为了让操作更加直观、易于理解、增强用户体验，开发者经常会使用一件法宝——增加中间层，即使用一种间接的方式来屏蔽复杂的底层细节，只给用户提供简单的接口。虚拟地址是使用中间层的一个典型例子。</p><p>实际上，计算机的整个发展过程就是不断引入新的中间层：<br>•计算机的早期，程序都是直接运行在硬件之上，自己负责硬件的管理工作；程序员也使用二进制进行编程，需要处理各种边界条件和安全问题。<br>•后来人们不能忍受了，于是开发出操作系统，让它来管理各种硬件，同时发明了汇编语言，减轻程序员的负担。<br>•随着软件规模的不断增大，使用汇编语言编程开始变得捉襟见肘，不仅学习成本高，开发效率也很低，于是C语言诞生了。C语言编译器先将C代码翻译为汇编代码，再由汇编器将汇编代码翻译成机器指令。<br>•随着计算机的发展，硬件越来越强大，软件越来越复杂，人们又不满足于使用C语言了，于是 C++、Java、C#、PHP 等现代化的编程语言诞生了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;虚拟地址&quot;&gt;&lt;a href=&quot;#虚拟地址&quot; class=&quot;headerlink&quot; title=&quot;虚拟地址&quot;&gt;&lt;/a&gt;虚拟地址&lt;/h4&gt;&lt;p&gt;虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="操作系统" scheme="http://tingyuxuan.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="操作系统" scheme="http://tingyuxuan.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>X86段机制页机制详解</title>
@@ -44,29 +67,6 @@
   </entry>
   
   <entry>
-    <title>载入内存，让程序运行起来</title>
-    <link href="http://tingyuxuan.com/2019/11/05/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/"/>
-    <id>http://tingyuxuan.com/2019/11/05/载入内存，让程序运行起来/</id>
-    <published>2019-11-05T05:09:26.000Z</published>
-    <updated>2019-11-05T05:09:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？<br><a id="more"></a><br>首先，有一点你要明确，你安装的QQ软件是保存在硬盘中的。<br>双击QQ图标，操作系统就会知道你要运行这个软件，它会在硬盘中找到你安装的QQ软件，将数据（安装的软件本质上就是很多数据的集合）复制到内存。对！就是复制到内存！QQ不是在硬盘中运行的，而是在内存中运行的。</p><p>为什么呢？因为内存的读写速度比硬盘快很多。<br>对于读写速度，内存 &gt; 固态硬盘 &gt; 机械硬盘。机械硬盘是靠电机带动盘片转动来读写数据的，而内存条通过电路来读写数据，电机的转速肯定没有电的传输速度（几乎是光速）快。虽然固态硬盘也是通过电路来读写数据，但是因为与内存的控制方式不一样，速度也不及内存。<br>所以，不管是运行QQ还是编辑Word文档，都是先将硬盘上的数据复制到内存，才能让CPU来处理，这个过程就叫作载入内存（Load into Memory）。完成这个过程需要一个特殊的程序（软件），这个程序就叫做加载器（Loader）。</p><p>CPU直接与内存打交道，它会读取内存中的数据进行处理，并将结果保存到内存。如果需要保存到硬盘，才会将内存中的数据复制到硬盘。</p><p>例如，打开Word文档，输入一些文字，虽然我们看到的不一样了，但是硬盘中的文档没有改变，新增的文字暂时保存到了内存，Ctrl+S才会保存到硬盘。因为内存断电后会丢失数据，所以如果你编辑完Word文档忘记保存就关机了，那么你将永远无法找回这些内容。<br>虚拟内存<br>如果我们运行的程序较多，占用的空间就会超过内存（内存条）容量。例如计算机的内存容量为2G，却运行着10个程序，这10个程序共占用3G的空间，也就意味着需要从硬盘复制 3G 的数据到内存，这显然是不可能的。</p><p>操作系统（Operating System，简称 OS）为我们解决了这个问题：当程序运行需要的空间大于内存容量时，会将内存中暂时不用的数据再写回硬盘；需要这些数据时再从硬盘中读取，并将另外一部分不用的数据写入硬盘。这样，硬盘中就会有一部分空间用来存放内存中暂时不用的数据。这一部分空间就叫做虚拟内存（Virtual Memory）。<br>3G - 2G = 1G，上面的情况需要在硬盘上分配 1G 的虚拟内存。</p><p>硬盘的读写速度比内存慢很多，反复交换数据会消耗很多时间，所以如果你的内存太小，会严重影响计算机的运行速度，甚至会出现”卡死“现象，即使CPU强劲，也不会有大的改观。如果经济条件允许，建议将内存升级为 4G，在 win7、win8、win10 下运行软件就会比较流畅了。</p><font face="楷体" size="4">总结：CPU直接从内存中读取数据，处理完成后将结果再写入内存。</font><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106131023.png" alt></p><center><font face="楷体" size="4">CPU、内存、硬盘和主板的关系。</font></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="操作系统" scheme="http://tingyuxuan.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="操作系统" scheme="http://tingyuxuan.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>程序内存区域分配的五个段</title>
     <link href="http://tingyuxuan.com/2019/11/04/%E7%A8%8B%E5%BA%8F%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E9%85%8D%E7%9A%84%E4%BA%94%E4%B8%AA%E6%AE%B5/"/>
     <id>http://tingyuxuan.com/2019/11/04/程序内存区域分配的五个段/</id>
@@ -86,6 +86,48 @@
     
     
       <category term="计算机组成原理" scheme="http://tingyuxuan.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个程序在计算机中是如何运行的？</title>
+    <link href="http://tingyuxuan.com/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/"/>
+    <id>http://tingyuxuan.com/2019/11/03/一个程序在计算机中是如何运行的？/</id>
+    <published>2019-11-03T05:17:58.000Z</published>
+    <updated>2019-11-03T05:17:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于CPU来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到CPU内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下CPU的结构。运算单元是CPU的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。<br><a id="more"></a></p><h4 id="CPU运行示意"><a href="#CPU运行示意" class="headerlink" title="CPU运行示意"></a>CPU运行示意</h4><p><center><font face="楷体" size="4">图1 CPU是一个复杂的计算机部件，它内部又包含很多小零件，如下图所示：</font></center><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106131858.png" alt></p><p>寄存器（Register）是CPU内部非常小、非常快速的存储部件，它的容量很有限，对于32位的CPU，每个寄存器一般能存储32位（4个字节）的数据，对于64位的CPU，每个寄存器一般能存储64位（8个字节）的数据。为了完成各种复杂的功能，现代CPU都内置了几十个甚至上百个的寄存器，嵌入式系统功能单一，寄存器数量较少。</p><p>我们经常听说多少位的CPU，指的就是寄存器的的位数。现在个人电脑使用的CPU已经进入了64位时代，例如 Intel 的 Core i3、i5、i7 等。</p><p>寄存器在程序的执行过程中至关重要，不可或缺，它们可以用来完成数学运算、控制循环次数、控制程序的执行流程、标记CPU运行状态等。例如，EIP（Extern Instruction Pointer ）寄存器的值是下一条指令的地址，CPU执行完当前指令后，会根据 EIP 的值找到下一条指令，改变 EIP 的值，就会改变程序的执行流程；CR3 寄存器保存着当前进程页目录的物理地址，切换进程就会改变 CR3 的值。</p><p>那么，在CPU内部为什么又要设置缓存呢？虽然内存的读取速度已经很快了，但是和CPU比起来，还是有很大差距的，不是一个数量级的，如果每次都从内存中读取数据，会严重拖慢CPU的运行速度，CPU经常处于等待状态，无事可做。在CPU内部设置一个缓存，可以将使用频繁的数据暂时读取到缓存，需要同一地址上的数据时，就不用大老远地再去访问内存，直接从缓存中读取即可。大家在购买CPU时，也会经常关心缓存容量，例如 Intel Core i7 3770K 的三级缓存为 8MB，二级缓存为 256KB，一级缓存为 32KB。容量越大，CPU越强悍。</p><p>缓存的容量是有限的，CPU只能从缓存中读取到部分数据，对于使用不是很频繁的数据，会绕过缓存，直接到内存中读取。所以不是每次都能从缓存中得到数据，这就是缓存的命中率，能够从缓存中读取就命中，否则就没命中。关于缓存的命中率又是一门学问，哪些数据保留在缓存，哪些数据不保留，都有复杂的算法。</p><h4 id="CPU指令"><a href="#CPU指令" class="headerlink" title="CPU指令"></a>CPU指令</h4><p>要想让CPU工作，必须借助特定的指令，例如 add 用于加法运算，sub 用于除法运算，cmp 用于比较两个数的大小，这称为CPU的指令集（Instruction Set）。我们的C语言代码最终也会编译成一条一条的CPU指令。不同型号的CPU支持的指令集会有所差异，但绝大部分是相同的。</p><p>我们以C语言中的加法为例来演示CPU指令的使用。假设有下面的C语言代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0X14</span>, b = <span class="number">0XAE</span>, c;</span><br><span class="line">c = a + b;</span><br></pre></td></tr></table></figure><br>在VS2010 Debug模式下生成的CPU指令为：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov  ptr[a], <span class="number">0X14</span></span><br><span class="line">mov  ptr[b], <span class="number">0XAE</span></span><br><span class="line">mov  eax, ptr[a]</span><br><span class="line">add  eax, ptr[b]</span><br><span class="line">mov  ptr[c], eax</span><br></pre></td></tr></table></figure><br>mov 和 add 都是CPU指令：<br><strong>1.</strong>mov 用来将一个数值移动到一个存储位置。这个数值可以是一个常数，也可以在内存或者寄存器上；这个存储位置可以是寄存器或者内存。<br>第一条指令中，ptr[a]表示变量 a 的地址，0X14是一个数值，mov ptr[a], 0X14表示把数值 0X14 移动到 ptr[a] 指向的内存，也就是给变量 a 赋值。第二条指令与此类似。<br>第三条指令中，eax是寄存器的名字，该寄存器常用在加法运算中，用来保存某个加数或运算结果，mov eax, ptr[a]表示把变量 a 的值移动到寄存器 eax 中。<br>第五条指令表示把寄存器eax的值移动到变量c中，此时exa中的值为 a、b相加的和。</p><p><strong>2.</strong>add 用来将两个数值相加，这两个数值可以在寄存器或者内存中，add 会将相加的结果放在第一个数所在的位置。第四条指令add  eax, ptr[b]表示把 eax 和 ptr[a] 中的数值相加，并把结果放在 eax 中。</p><p>总起来讲：第一二条指令给变量 a、b 赋值，第三四条指令完成加法运算，第五条指令将运算结果赋值给变量c。实际上，上面的代码是汇编语言，不是CPU指令，汇编语言还要经过简单的转换才能成为CPU指令；为了更加容易地说明问题，这些语句也没有严格遵守汇编的语法。有兴趣的同学可以自行学习汇编语言，这里不再展开讲解。</p><h4 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h4><p>虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？<br>在C语言中，指针变量的值就是一个内存地址，&amp;运算符的作用也是取变量的内存地址，<br>请看下面的代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">255</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> *pa = &amp;a;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"pa = %#X, &amp;b = %#X\n"</span>, pa, &amp;b);</span><br><span class="line">  system(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在 C-Free 5.0 下运行，结果为：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pa = <span class="number">0X402000</span>, &amp;b = <span class="number">0X402004</span></span><br></pre></td></tr></table></figure><br>代码中的 a、b 是全局变量，它们的内存地址在链接时就已经决定了，以后再也不能改变，该程序无论在何时运行，结果都是一样的。</p><p>那么问题来了，如果物理内存中的这两个地址被其他程序占用了怎么办，我们的程序岂不是无法运行了？</p><p>幸运的是，这些内存地址都是假的，不是真实的物理内存地址，而是虚拟地址。虚拟地址通过CPU的转换才能对应到物理地址，而且每次程序运行时，操作系统都会重新安排虚拟地址和物理地址的对应关系，哪一段物理内存空闲就使用哪一段。如下图所示：<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106132522.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于CPU来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到CPU内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下CPU的结构。运算单元是CPU的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>载入内存，让程序运行起来</title>
+    <link href="http://tingyuxuan.com/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/"/>
+    <id>http://tingyuxuan.com/2019/11/02/载入内存，让程序运行起来/</id>
+    <published>2019-11-02T05:09:26.000Z</published>
+    <updated>2019-11-02T05:09:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？<br><a id="more"></a><br>首先，有一点你要明确，你安装的QQ软件是保存在硬盘中的。<br>双击QQ图标，操作系统就会知道你要运行这个软件，它会在硬盘中找到你安装的QQ软件，将数据（安装的软件本质上就是很多数据的集合）复制到内存。对！就是复制到内存！QQ不是在硬盘中运行的，而是在内存中运行的。</p><p>为什么呢？因为内存的读写速度比硬盘快很多。<br>对于读写速度，内存 &gt; 固态硬盘 &gt; 机械硬盘。机械硬盘是靠电机带动盘片转动来读写数据的，而内存条通过电路来读写数据，电机的转速肯定没有电的传输速度（几乎是光速）快。虽然固态硬盘也是通过电路来读写数据，但是因为与内存的控制方式不一样，速度也不及内存。<br>所以，不管是运行QQ还是编辑Word文档，都是先将硬盘上的数据复制到内存，才能让CPU来处理，这个过程就叫作载入内存（Load into Memory）。完成这个过程需要一个特殊的程序（软件），这个程序就叫做加载器（Loader）。</p><p>CPU直接与内存打交道，它会读取内存中的数据进行处理，并将结果保存到内存。如果需要保存到硬盘，才会将内存中的数据复制到硬盘。</p><p>例如，打开Word文档，输入一些文字，虽然我们看到的不一样了，但是硬盘中的文档没有改变，新增的文字暂时保存到了内存，Ctrl+S才会保存到硬盘。因为内存断电后会丢失数据，所以如果你编辑完Word文档忘记保存就关机了，那么你将永远无法找回这些内容。</p><p>如果我们运行的程序较多，占用的空间就会超过内存（内存条）容量。例如计算机的内存容量为2G，却运行着10个程序，这10个程序共占用3G的空间，也就意味着需要从硬盘复制 3G 的数据到内存，这显然是不可能的。</p><p>操作系统（Operating System，简称 OS）为我们解决了这个问题：当程序运行需要的空间大于内存容量时，会将内存中暂时不用的数据再写回硬盘；需要这些数据时再从硬盘中读取，并将另外一部分不用的数据写入硬盘。这样，硬盘中就会有一部分空间用来存放内存中暂时不用的数据。这一部分空间就叫做虚拟内存（Virtual Memory）。<br>3G - 2G = 1G，上面的情况需要在硬盘上分配 1G 的虚拟内存。</p><p>硬盘的读写速度比内存慢很多，反复交换数据会消耗很多时间，所以如果你的内存太小，会严重影响计算机的运行速度，甚至会出现”卡死“现象，即使CPU强劲，也不会有大的改观。如果经济条件允许，建议将内存升级为 4G，在 win7、win8、win10 下运行软件就会比较流畅了。</p><font face="楷体" size="4">总结：CPU直接从内存中读取数据，处理完成后将结果再写入内存。</font><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106131023.png" alt></p><center><font face="楷体" size="4">CPU、内存、硬盘和主板的关系。</font></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="操作系统" scheme="http://tingyuxuan.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="操作系统" scheme="http://tingyuxuan.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   

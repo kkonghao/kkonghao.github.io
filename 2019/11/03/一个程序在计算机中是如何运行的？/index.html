@@ -51,18 +51,21 @@
   };
 </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+  <meta name="description" content="对于CPU来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到CPU内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下CPU的结构。运算单元是CPU的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。">
 <meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="一个程序在计算机中是如何运行的？">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;03&#x2F;%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="对于CPU来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到CPU内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下CPU的结构。运算单元是CPU的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T11:03:14.085Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106131858.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106132522.png">
+<meta property="og:updated_time" content="2019-11-03T05:17:58.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106131858.png">
 
-<link rel="canonical" href="http://tingyuxuan.com/2019/10/27/hello-world/">
+<link rel="canonical" href="http://tingyuxuan.com/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/">
 
 
 <script id="page-configurations">
@@ -76,7 +79,7 @@
   };
 </script>
 
-  <title>Hello World | 土豆の博客</title>
+  <title>一个程序在计算机中是如何运行的？ | 土豆の博客</title>
   
 
 
@@ -224,7 +227,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/10/27/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -237,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          一个程序在计算机中是如何运行的？
         </h1>
 
         <div class="post-meta">
@@ -247,7 +250,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-27 19:03:14" itemprop="dateCreated datePublished" datetime="2019-10-27T19:03:14+08:00">2019-10-27</time>
+              <time title="创建时间：2019-11-03 13:17:58" itemprop="dateCreated datePublished" datetime="2019-11-03T13:17:58+08:00">2019-11-03</time>
             </span>
 
           
@@ -266,8 +269,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/10/27/hello-world/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/10/27/hello-world/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -277,14 +280,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -296,16 +299,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
- <a id="more"></a> 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>对于CPU来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到CPU内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下CPU的结构。运算单元是CPU的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。<br><a id="more"></a></p>
+<h4 id="CPU运行示意"><a href="#CPU运行示意" class="headerlink" title="CPU运行示意"></a>CPU运行示意</h4><p><center><font face="楷体" size="4">图1 CPU是一个复杂的计算机部件，它内部又包含很多小零件，如下图所示：</font></center><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106131858.png" alt></p>
+<p>寄存器（Register）是CPU内部非常小、非常快速的存储部件，它的容量很有限，对于32位的CPU，每个寄存器一般能存储32位（4个字节）的数据，对于64位的CPU，每个寄存器一般能存储64位（8个字节）的数据。为了完成各种复杂的功能，现代CPU都内置了几十个甚至上百个的寄存器，嵌入式系统功能单一，寄存器数量较少。</p>
+<p>我们经常听说多少位的CPU，指的就是寄存器的的位数。现在个人电脑使用的CPU已经进入了64位时代，例如 Intel 的 Core i3、i5、i7 等。</p>
+<p>寄存器在程序的执行过程中至关重要，不可或缺，它们可以用来完成数学运算、控制循环次数、控制程序的执行流程、标记CPU运行状态等。例如，EIP（Extern Instruction Pointer ）寄存器的值是下一条指令的地址，CPU执行完当前指令后，会根据 EIP 的值找到下一条指令，改变 EIP 的值，就会改变程序的执行流程；CR3 寄存器保存着当前进程页目录的物理地址，切换进程就会改变 CR3 的值。</p>
+<p>那么，在CPU内部为什么又要设置缓存呢？虽然内存的读取速度已经很快了，但是和CPU比起来，还是有很大差距的，不是一个数量级的，如果每次都从内存中读取数据，会严重拖慢CPU的运行速度，CPU经常处于等待状态，无事可做。在CPU内部设置一个缓存，可以将使用频繁的数据暂时读取到缓存，需要同一地址上的数据时，就不用大老远地再去访问内存，直接从缓存中读取即可。大家在购买CPU时，也会经常关心缓存容量，例如 Intel Core i7 3770K 的三级缓存为 8MB，二级缓存为 256KB，一级缓存为 32KB。容量越大，CPU越强悍。</p>
+<p>缓存的容量是有限的，CPU只能从缓存中读取到部分数据，对于使用不是很频繁的数据，会绕过缓存，直接到内存中读取。所以不是每次都能从缓存中得到数据，这就是缓存的命中率，能够从缓存中读取就命中，否则就没命中。关于缓存的命中率又是一门学问，哪些数据保留在缓存，哪些数据不保留，都有复杂的算法。</p>
+<h4 id="CPU指令"><a href="#CPU指令" class="headerlink" title="CPU指令"></a>CPU指令</h4><p>要想让CPU工作，必须借助特定的指令，例如 add 用于加法运算，sub 用于除法运算，cmp 用于比较两个数的大小，这称为CPU的指令集（Instruction Set）。我们的C语言代码最终也会编译成一条一条的CPU指令。不同型号的CPU支持的指令集会有所差异，但绝大部分是相同的。</p>
+<p>我们以C语言中的加法为例来演示CPU指令的使用。假设有下面的C语言代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0X14</span>, b = <span class="number">0XAE</span>, c;</span><br><span class="line">c = a + b;</span><br></pre></td></tr></table></figure><br>在VS2010 Debug模式下生成的CPU指令为：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov  ptr[a], <span class="number">0X14</span></span><br><span class="line">mov  ptr[b], <span class="number">0XAE</span></span><br><span class="line">mov  eax, ptr[a]</span><br><span class="line">add  eax, ptr[b]</span><br><span class="line">mov  ptr[c], eax</span><br></pre></td></tr></table></figure><br>mov 和 add 都是CPU指令：<br><strong>1.</strong>mov 用来将一个数值移动到一个存储位置。这个数值可以是一个常数，也可以在内存或者寄存器上；这个存储位置可以是寄存器或者内存。<br>第一条指令中，ptr[a]表示变量 a 的地址，0X14是一个数值，mov ptr[a], 0X14表示把数值 0X14 移动到 ptr[a] 指向的内存，也就是给变量 a 赋值。第二条指令与此类似。<br>第三条指令中，eax是寄存器的名字，该寄存器常用在加法运算中，用来保存某个加数或运算结果，mov eax, ptr[a]表示把变量 a 的值移动到寄存器 eax 中。<br>第五条指令表示把寄存器eax的值移动到变量c中，此时exa中的值为 a、b相加的和。</p>
+<p><strong>2.</strong>add 用来将两个数值相加，这两个数值可以在寄存器或者内存中，add 会将相加的结果放在第一个数所在的位置。第四条指令add  eax, ptr[b]表示把 eax 和 ptr[a] 中的数值相加，并把结果放在 eax 中。</p>
+<p>总起来讲：第一二条指令给变量 a、b 赋值，第三四条指令完成加法运算，第五条指令将运算结果赋值给变量c。实际上，上面的代码是汇编语言，不是CPU指令，汇编语言还要经过简单的转换才能成为CPU指令；为了更加容易地说明问题，这些语句也没有严格遵守汇编的语法。有兴趣的同学可以自行学习汇编语言，这里不再展开讲解。</p>
+<h4 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h4><p>虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？<br>在C语言中，指针变量的值就是一个内存地址，&amp;运算符的作用也是取变量的内存地址，<br>请看下面的代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">255</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> *pa = &amp;a;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"pa = %#X, &amp;b = %#X\n"</span>, pa, &amp;b);</span><br><span class="line">  system(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在 C-Free 5.0 下运行，结果为：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pa = <span class="number">0X402000</span>, &amp;b = <span class="number">0X402004</span></span><br></pre></td></tr></table></figure><br>代码中的 a、b 是全局变量，它们的内存地址在链接时就已经决定了，以后再也不能改变，该程序无论在何时运行，结果都是一样的。</p>
+<p>那么问题来了，如果物理内存中的这两个地址被其他程序占用了怎么办，我们的程序岂不是无法运行了？</p>
+<p>幸运的是，这些内存地址都是假的，不是真实的物理内存地址，而是虚拟地址。虚拟地址通过CPU的转换才能对应到物理地址，而且每次程序运行时，操作系统都会重新安排虚拟地址和物理地址的对应关系，哪一段物理内存空闲就使用哪一段。如下图所示：<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106132522.png" alt></p>
 
     </div>
 
@@ -319,13 +326,16 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/" rel="next" title="载入内存，让程序运行起来">
+                  <i class="fa fa-chevron-left"></i> 载入内存，让程序运行起来
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/" rel="prev" title="载入内存，让程序运行起来">
-                  载入内存，让程序运行起来 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/04/%E7%A8%8B%E5%BA%8F%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%86%E9%85%8D%E7%9A%84%E4%BA%94%E4%B8%AA%E6%AE%B5/" rel="prev" title="程序内存区域分配的五个段">
+                  程序内存区域分配的五个段 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -366,7 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU运行示意"><span class="nav-number">1.</span> <span class="nav-text">CPU运行示意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU指令"><span class="nav-number">2.</span> <span class="nav-text">CPU指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟内存"><span class="nav-number">3.</span> <span class="nav-text">虚拟内存</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -51,18 +51,18 @@
   };
 </script>
 
-  <meta name="description" content="我的征途是星辰大海">
-<meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;about&#x2F;index.html">
+  <meta name="description" content="虚拟地址虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟内存的作用">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="我的征途是星辰大海">
+<meta property="og:description" content="虚拟地址虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T08:29:24.000Z">
+<meta property="og:updated_time" content="2019-11-06T05:35:23.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://tingyuxuan.com/about/">
+<link rel="canonical" href="http://tingyuxuan.com/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -70,14 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>关于 | 土豆の博客
-  </title>
+  <title>虚拟内存的作用 | 土豆の博客</title>
   
 
 
@@ -216,44 +215,143 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虚拟内存的作用
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2019-11-06 13:35:23" itemprop="dateCreated datePublished" datetime="2019-11-06T13:35:23+08:00">2019-11-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="虚拟地址"><a href="#虚拟地址" class="headerlink" title="虚拟地址"></a>虚拟地址</h4><p>虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。<br><a id="more"></a></p>
+<p>例如，上面代码中变量 a 的地址是 0X402000，第一次运行时它对应的物理内存地址可能是 0X12ED90AA，第二次运行时可能又对应 0XED90，而我们的程序不需要关心这些，这些繁杂的内存管理工作交给操作系统处理即可。</p>
+<p>让我们回到程序的运行本质上来。用户程序在运行时不希望介入到这些复杂的内存管理过程中，作为普通的程序，它需要的是一个简单的执行环境，有自己的内存，有自己的CPU，好像整个程序占有整个计算机而不用关心其他的程序。</p>
+<p>除了在编程时可以使用固定的内存地址，给程序员带来方便外，使用虚拟地址还能够使不同程序的地址空间相互隔离，提高内存使用效率。</p>
+<h4 id="使不同程序的地址空间相互隔离"><a href="#使不同程序的地址空间相互隔离" class="headerlink" title="使不同程序的地址空间相互隔离"></a>使不同程序的地址空间相互隔离</h4><p>如果所有程序都直接使用物理内存，那么程序所使用的地址空间不是相互隔离的。恶意程序可以很容易改写其他程序的内存数据，以达到破坏的目的；有些非恶意、但是有 Bug 的程序也可能会不小心修改其他程序的数据，导致其他程序崩溃。</p>
+<p>这对于需要安全稳定的计算机环境的用户来说是不能容忍的，用户希望他在使用计算机的时候，其中一个任务失败了，至少不会影响其他任务。</p>
+<p>使用了虚拟地址后，程序A和程序B虽然都可以访问同一个地址，但它们对应的物理地址是不同的，无论如何操作，都不会修改对方的内存。</p>
+<h4 id="提高内存使用效率"><a href="#提高内存使用效率" class="headerlink" title="提高内存使用效率"></a>提高内存使用效率</h4><p>使用虚拟地址后，操作系统会更多地介入到内存管理工作中，这使得控制内存权限成为可能。例如，我们希望保存数据的内存没有执行权限，保存代码的内存没有修改权限，操作系统占用的内存普通程序没有读取权限等。</p>
+<p>另外，当物理内存不足时，操作系统能够更加灵活地控制换入换出的粒度，磁盘 I/O 是非常耗时的工作，这能够从很大程度上提高程序性能。</p>
+<h4 id="中间层思想"><a href="#中间层思想" class="headerlink" title="中间层思想"></a>中间层思想</h4><p>在计算机中，为了让操作更加直观、易于理解、增强用户体验，开发者经常会使用一件法宝——增加中间层，即使用一种间接的方式来屏蔽复杂的底层细节，只给用户提供简单的接口。虚拟地址是使用中间层的一个典型例子。</p>
+<p>实际上，计算机的整个发展过程就是不断引入新的中间层：<br>•计算机的早期，程序都是直接运行在硬件之上，自己负责硬件的管理工作；程序员也使用二进制进行编程，需要处理各种边界条件和安全问题。<br>•后来人们不能忍受了，于是开发出操作系统，让它来管理各种硬件，同时发明了汇编语言，减轻程序员的负担。<br>•随着软件规模的不断增大，使用汇编语言编程开始变得捉襟见肘，不仅学习成本高，开发效率也很低，于是C语言诞生了。C语言编译器先将C代码翻译为汇编代码，再由汇编器将汇编代码翻译成机器指令。<br>•随着计算机的发展，硬件越来越强大，软件越来越复杂，人们又不满足于使用C语言了，于是 C++、Java、C#、PHP 等现代化的编程语言诞生了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/06/X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" rel="next" title="X86段机制页机制详解">
+                  <i class="fa fa-chevron-left"></i> X86段机制页机制详解
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
   </div>
 
 
@@ -284,6 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟地址"><span class="nav-number">1.</span> <span class="nav-text">虚拟地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使不同程序的地址空间相互隔离"><span class="nav-number">2.</span> <span class="nav-text">使不同程序的地址空间相互隔离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提高内存使用效率"><span class="nav-number">3.</span> <span class="nav-text">提高内存使用效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间层思想"><span class="nav-number">4.</span> <span class="nav-text">中间层思想</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
