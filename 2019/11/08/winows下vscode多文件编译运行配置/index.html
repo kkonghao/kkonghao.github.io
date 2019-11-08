@@ -51,20 +51,25 @@
   };
 </script>
 
-  <meta name="description" content="如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？">
-<meta name="keywords" content="操作系统">
+  <meta name="description" content="vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c&#x2F;c++多文件开发环境，搭建开发环境分为以下几步：">
+<meta name="keywords" content="杂项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="载入内存，让程序运行起来">
-<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5&#x2F;index.html">
+<meta property="og:title" content="winows下vscode多文件编译运行配置">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？">
+<meta property="og:description" content="vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c&#x2F;c++多文件开发环境，搭建开发环境分为以下几步：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106131023.png">
-<meta property="og:updated_time" content="2019-11-02T05:09:26.000Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114551.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114759.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108112230.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114707.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108111334.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114116.png">
+<meta property="og:updated_time" content="2019-11-08T03:29:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191106131023.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114551.png">
 
-<link rel="canonical" href="http://tingyuxuan.com/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/">
+<link rel="canonical" href="http://tingyuxuan.com/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -78,7 +83,7 @@
   };
 </script>
 
-  <title>载入内存，让程序运行起来 | 土豆の博客</title>
+  <title>winows下vscode多文件编译运行配置 | 土豆の博客</title>
   
 
 
@@ -226,7 +231,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,7 +244,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          载入内存，让程序运行起来
+          winows下vscode多文件编译运行配置
         </h1>
 
         <div class="post-meta">
@@ -249,7 +254,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-02 13:09:26" itemprop="dateCreated datePublished" datetime="2019-11-02T13:09:26+08:00">2019-11-02</time>
+              <time title="创建时间：2019-11-08 11:29:05" itemprop="dateCreated datePublished" datetime="2019-11-08T11:29:05+08:00">2019-11-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,8 +262,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">杂项</span>
                   </a>
                 </span>
             </span>
@@ -279,8 +284,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -290,14 +295,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -309,17 +314,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？<br><a id="more"></a><br>首先，有一点你要明确，你安装的QQ软件是保存在硬盘中的。<br>双击QQ图标，操作系统就会知道你要运行这个软件，它会在硬盘中找到你安装的QQ软件，将数据（安装的软件本质上就是很多数据的集合）复制到内存。对！就是复制到内存！QQ不是在硬盘中运行的，而是在内存中运行的。</p>
-<p>为什么呢？因为内存的读写速度比硬盘快很多。<br>对于读写速度，内存 &gt; 固态硬盘 &gt; 机械硬盘。机械硬盘是靠电机带动盘片转动来读写数据的，而内存条通过电路来读写数据，电机的转速肯定没有电的传输速度（几乎是光速）快。虽然固态硬盘也是通过电路来读写数据，但是因为与内存的控制方式不一样，速度也不及内存。<br>所以，不管是运行QQ还是编辑Word文档，都是先将硬盘上的数据复制到内存，才能让CPU来处理，这个过程就叫作载入内存（Load into Memory）。完成这个过程需要一个特殊的程序（软件），这个程序就叫做加载器（Loader）。</p>
-<p>CPU直接与内存打交道，它会读取内存中的数据进行处理，并将结果保存到内存。如果需要保存到硬盘，才会将内存中的数据复制到硬盘。</p>
-<p>例如，打开Word文档，输入一些文字，虽然我们看到的不一样了，但是硬盘中的文档没有改变，新增的文字暂时保存到了内存，Ctrl+S才会保存到硬盘。因为内存断电后会丢失数据，所以如果你编辑完Word文档忘记保存就关机了，那么你将永远无法找回这些内容。</p>
-<p>如果我们运行的程序较多，占用的空间就会超过内存（内存条）容量。例如计算机的内存容量为2G，却运行着10个程序，这10个程序共占用3G的空间，也就意味着需要从硬盘复制 3G 的数据到内存，这显然是不可能的。</p>
-<p>操作系统（Operating System，简称 OS）为我们解决了这个问题：当程序运行需要的空间大于内存容量时，会将内存中暂时不用的数据再写回硬盘；需要这些数据时再从硬盘中读取，并将另外一部分不用的数据写入硬盘。这样，硬盘中就会有一部分空间用来存放内存中暂时不用的数据。这一部分空间就叫做虚拟内存（Virtual Memory）。<br>3G - 2G = 1G，上面的情况需要在硬盘上分配 1G 的虚拟内存。</p>
-<p>硬盘的读写速度比内存慢很多，反复交换数据会消耗很多时间，所以如果你的内存太小，会严重影响计算机的运行速度，甚至会出现”卡死“现象，即使CPU强劲，也不会有大的改观。如果经济条件允许，建议将内存升级为 4G，在 win7、win8、win10 下运行软件就会比较流畅了。</p>
-<font face="楷体" size="4">总结：CPU直接从内存中读取数据，处理完成后将结果再写入内存。</font>
+        <p>vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c/c++多文件开发环境，搭建开发环境分为以下几步：<br><a id="more"></a><br>第一步，下载文件mingw文件到本地，并将下载好的mingw文件夹下的bin目录作为环境变量配置在path路径下，本文下载mingw64版本并将其下载解压在C盘目录下。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114551.png" alt><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114759.png" alt></p>
+<p>第二步，在任意硬盘或者桌面建立一个用于放置项目文件的文件夹，并在文件夹里建立以下几个文件。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108112230.png" alt></p>
+<p>第三步，下载cmake软件，在官方网站<a href="https://cmake.org/download/目录下为自己的操作系统windows下载最新合适的cmake安装文件进行安装并为cmake配置环境变量。" target="_blank" rel="noopener">https://cmake.org/download/目录下为自己的操作系统windows下载最新合适的cmake安装文件进行安装并为cmake配置环境变量。</a><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114707.png" alt></p>
+<p>第四步，在.vscode文件中为vscode配置调试环境分别建立launch.json和c_cpp_properties.json文件，在launch.json文件中拷贝如下内容:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="string">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"Launch CMake-built program"</span>,</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">            <span class="string">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="string">"program"</span>: <span class="string">"$&#123;command:cmake.launchTargetPath&#125;"</span>,</span><br><span class="line">            <span class="string">"args"</span>: [],</span><br><span class="line">            <span class="string">"stopAtEntry"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">            <span class="string">"environment"</span>: [],</span><br><span class="line">            <span class="string">"externalConsole"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">			<span class="string">"miDebuggerPath"</span>: <span class="string">"C:\\mingw64\\bin\\gdb.exe"</span>,</span><br><span class="line"></span><br><span class="line">            <span class="string">"setupCommands"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                    <span class="string">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                    <span class="string">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在c_cpp_properties.json中拷贝如下内容:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"MinGW64"</span>,</span><br><span class="line">            <span class="string">"intelliSenseMode"</span>: <span class="string">"gcc-x64"</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="string">"includePath"</span>: [</span><br><span class="line">                <span class="string">"$&#123;workspaceFolder&#125;/Inc/"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">"browse"</span>: &#123;</span><br><span class="line">                <span class="string">"path"</span>: [</span><br><span class="line">                    <span class="string">"$&#123;workspaceFolder&#125;/Inc/"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"cStandard"</span>: <span class="string">"c11"</span>,</span><br><span class="line">            <span class="string">"cppStandard"</span>: <span class="string">"c++17"</span>,</span><br><span class="line">            <span class="string">"configurationProvider"</span>: <span class="string">"vector-of-bool.cmake-tools"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"version"</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第四步，准备插件：在vscode插件商店里下载Cmake Tools以及Cmake插件，<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108111334.png" alt><br>下载完成之后在第二步建立文件夹下的CMakeLists.txt文件中拷贝如下内容：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 最低CMake版本要求</span><br><span class="line">cmake_minimum_required(VERSION <span class="number">3.10</span><span class="number">.0</span>)</span><br><span class="line"></span><br><span class="line"># 项目名称</span><br><span class="line">project(cmake-test)</span><br><span class="line"></span><br><span class="line"># 设置C/C++开关</span><br><span class="line"><span class="built_in">set</span>(CMAKE_CXX_STANDARD_REQUIRED ON)</span><br><span class="line"></span><br><span class="line"># 头文件路径</span><br><span class="line">include_directories(<span class="string">"Inc"</span>)</span><br><span class="line"></span><br><span class="line"># 枚举头文件</span><br><span class="line">file(GLOB_RECURSE INCLUDES <span class="string">"Inc/*.h"</span> <span class="string">"Inc/*.hpp"</span> <span class="string">"Inc/*.cpp"</span> <span class="string">"Inc/*.c"</span> )</span><br><span class="line"></span><br><span class="line"># 枚举源文件</span><br><span class="line">aux_source_directory(<span class="string">"Src"</span> SOURCES )</span><br><span class="line"></span><br><span class="line"># 输出路径</span><br><span class="line"><span class="built_in">set</span>(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)</span><br><span class="line"></span><br><span class="line"># 生成可执行的文件</span><br><span class="line">add_executable($&#123;PROJECT_NAME&#125; $&#123;SOURCES&#125; $&#123;INCLUDES&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>第六步,在Inc文件夹中就可以编辑c/c++文件，在Src中建立main.c/main.cpp文件，按Ctrl+shift+p为该文件适配安装的cmake gcc版本，按F5完成文件的编译和运行。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114116.png" alt></p>
 
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106131023.png" alt></p>
-<center><font face="楷体" size="4">CPU、内存、硬盘和主板的关系。</font></center>
     </div>
 
     
@@ -329,24 +330,21 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+              <a href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag"><i class="fa fa-tag"></i> 杂项</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/27/hello-world/" rel="next" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2019/11/07/gcc%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99/" rel="next" title="gcc版本下载资源网站">
+                  <i class="fa fa-chevron-left"></i> gcc版本下载资源网站
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/03/%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%9F/" rel="prev" title="一个程序在计算机中是如何运行的？">
-                  一个程序在计算机中是如何运行的？ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
