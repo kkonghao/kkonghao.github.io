@@ -1,8 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>gcc版本下载资源网站</title>
+    <url>/2019/11/07/gcc%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99/</url>
+    <content><![CDATA[<p>国内好用的已经编译好的gcc版本文件源地址:<a href="https://gcc-mcf.lhmouse.com/" target="_blank" rel="noopener">https://gcc-mcf.lhmouse.com/</a><br>在该页面下载相应的版本文件替换自己已经存在的mingw文件就ok，推荐!!!</p>
+]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+      <tags>
+        <tag>杂项</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>8086CPU的一些认知</title>
+    <url>/2019/11/06/8086CPU%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A4%E7%9F%A5/</url>
+    <content><![CDATA[<h4 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h4><p>首先浅要介绍一下Intel CPU 的发展史吧：Intel CPU 系列，最初是 4 位微处理器 4004，然后到到 8 位微处理器的 8008 ，再到 8 微微处理器 8080,以及稍后的 16 位微处理器 8086，由 8086 开始，Intel 进入现在所谓的  x86  时代 。Intel  8086 为 16 位  CPU ，而因为在 8086 之前的 CPU 都是 8 位 CPU，这样也就造成了很多的外设也只支持 8 位，因此  Intel  紧接着就退出了 8 位的 8088 CPU，因此  Intel 8088 也就可以看做是 8086 的 8 位版本；如果是但从汇编语言的角度上来说，8086 和 8088 是没有区别的，即 8086 上跑的程序可以不加修改的移植到 8088，8088上跑的程序也可以不加修改的移植到 8086 上，当然，还是有些特殊的地方是不同的，而这些基本上在这里可以忽略掉，在 8088  CPU 之后，Intel  又推出了  80186 ，80286 ，这两款 CPU 均是 16 位  CPU，而对于 80186 来说，其与 8086 的区别可以简单的看做是 80186 多了几条指令而已，而 80286 则不同，80286 的地址总线数目有了变化，在 8086 , 8088 , 80186 上，CPU 的地址总线都是 20 根，即可最大寻址 220 即达到 1MB 的寻址能力，而对于 80286 CPU 来说，其地址总线数目达到了 24 根，从而最大寻址能力为 224 即 16MB。<br><a id="more"></a></p>
+<p>由于支持更多的物理内存寻址，因此 80286 便开始成为了多任务，多用户系统的核心。而后来，Intel  又推出了 80386 ，80386 为 32 位微处理器，Intel 80x86 家族的 32 位微处理器始于 80386；同时 80386 也完全兼容先前的 8086/8088，80186，80286，并且 80386 全面支持 32 位数据类型和 32 位操作，并且 80386 的数据总线根数和地址总线根数均达到了 32 根，从而可以最大物理寻址为 232  即 4GB 。</p>
+<p>而之后的 80486 也是 32 位微处理器，而后又出来了 Pentium 和 Pentium Pro 等等第五代微处理器，这些处理器虽然也是 32 位微处理器，但是他们的数据总线和地址总线都有所扩展，比如 Pentium 的数据总线达到 64 位，而 Pentium Pro 的地址总线位数达到了 36 位 。好，关于 Intel CPU 的介绍就到这里了，下面就要开始回归中心，看 CPU 中的寄存器了，</p>
+<p>首先，从学习的角度来说，从 8086/8088  CPU 下手是不错的选择，而我这里选择的也是 8086 CPU 而已，说实在的，像 80386 CPU 我也还没有研究过，像奔腾这些，呵呵，扯更远了，说到底也就只能拿 8086 出来晒晒而已，当然，从 8086 开始也是学习的最佳路径 。</p>
+<p>说了这么久，到底寄存器是什么呢？其实很简单，寄存器就是个存储信息的单元或者说是器件又或者说是容器而已，就比如内存也是一个存储介质或者说是存储单元而已，其实寄存器从理解上来说和内存差不多，只不过寄存器（这里讨论的寄存器都是 CPU 中的寄存器，不包括外设上的寄存器）位于  CPU  内部，而内存位于 CPU 外部，而且，寄存器比内存可是珍贵得多啊，就拿内存和硬盘来比，肯定是内存在使用上珍贵得多，是 PC 中的稀有资源，而寄存器是 CPU 中的稀有资源，内存和寄存器相比就像硬盘和内存相比一样 。而对于一个汇编程序员来说，CPU 中主要可以使用的也就是寄存器而已，汇编程序员可以使用指令来读写 CPU 中的寄存器，<br>从而可以实现对于 CPU 的控制，当然，不同的 CPU ，寄存器的个数和结构都是不一样的，比如 8086 CPU 中，寄存器的个数也就 14 个而已，并且 8086 CPU 中所有的寄存器的结构为 16 位，即一个寄存器中可以存放下 2B 即 2 个字节，而到了 80386 CPU 中，寄存器的个数也比 8086 增多了，比如在 80386 中添加了系统地址寄存器等寄存器，同时寄存器的结构也变了，比如在 80386 中绝大多数的寄存器为 32 位，而有些寄存器则是 16 位 。</p>
+<p>8086  CPU 中寄存器总共为 14 个，且均为 16 位 。即 AX，BX，CX，DX，SP，BP，SI，DI，IP，FLAG，CS，DS，SS，ES 共 14 个。而这 14 个寄存器按照一定方式又分为了通用寄存器，控制寄存器和段寄存器。</p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>X86段机制页机制详解</title>
+    <url>/2019/11/06/X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<center><font face="楷体" size="4">注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16</font></center>
+
+
+<h4 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h4><p>MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址(或叫虚拟地址)。<font face="楷体" size="4">在80386 的段机制中，逻辑地址由两部分组成，即段部分（选择符）及偏移部分。</font></p>
+<a id="more"></a>
+<p>段是形成逻辑地址到线性地址转换的基础。如果我们把段看成一个对象的话，那么对它的描述如下。<br>• 段的基地址(Base Address):在线性地址空间中段的起始地址。<br>• 段的界限(Limit):表示在逻辑地址中，段内可以使用的最大偏移量。<br>• 段的属性(Attribute):表示段的特性。例如，该段是否可被读出或写入，或者该段是否作为一个程序来执行，以及段的特权级等。</p>
+<h4 id="逻辑地址、线性地址和物理地址"><a href="#逻辑地址、线性地址和物理地址" class="headerlink" title="逻辑地址、线性地址和物理地址"></a>逻辑地址、线性地址和物理地址</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106053402.png" alt="qq"></p>
+<center><font face="楷体" size="4">图1 MMU把逻辑地址转换为物理地址过程</font></center>
+#### 用户段描述符(User Descriptor)
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106060132.png)
+<center><font face="楷体" size="4">图2 存取权字节的一般格式</font></center>
+一个段描述符指出了段的32 位基地址和20 位段界限（即段大小）。第6 个字节的G 位是粒度位，当G=0 时，段长表示段格式的字节长度，即一个段最长可达1M  字节。当G=1 时，段长表示段的以4K 字节为一页的页的数目，即一个段最长可达1M×4K=4G 字节。D 位表示缺省操作数的大小，如果D=0，操作数为16 位，如果D=1，操作数为32 位。    
+
+第7 位P 位（Present） 是存在位，表示段描述符描述的这个段是否在内存中，如果在内存中。P=1；如果不在内存中，P=0。
+
+DPL（Descriptor Privilege Level），就是描述符特权级，它占两位，其值为0～3，用来确定这个段的特权级即保护等级。0为内核级别，3为用户级别。
+
+S 位（System）表示这个段是系统段还是用户段。如果S=0，则为系统段，如果S=1，则为用户程序的代码段、数据段或堆栈段。
+
+类型占3 位，第3 位为E 位，表示段是否可执行。当E=0 时，为数据段描述符，这时的第2 位ED 表示地址增长方向。第1  位（W）是可写位。当段为代码段时，第3 位E=1，这时第2 位为一致位（C）。当C=1 时，如果当前特权级低于描述符特权级，并且当前特权级保持不变，那么代码段只能执行。所谓当前特权级CPL（Current  Privilege Level），就是当前正在执行的任务的特权级。第1 位为可读位R。
+
+存取权字节的第0 位A 位是访问位，用于请求分段不分页的系统中，每当该段被访问时，将A 置1。对于分页系统，则A 被忽略未用。
+
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062438.png)
+<center><font face="楷体" size="4">图3 数据段的存取字节</font></center>
+
+<p><img src="/images/2019/11/06/bc583af0-001a-11ea-8860-b9b91b2a10f8.png" alt="image.png"></p>
+<center><font face="楷体" size="4">图4 代码段的存取字节</font></center>
+#### 系统段描述符(Sys Descriptor)
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062329.png)
+<center><font face="楷体" size="4">图5 系统段描述符一般格式</font></center>
+系统段描述符的第5 个字节的第4 位为0，说明它是系统段描述符，类型占4 位，没有A 位。第6 个字节的第6 位为0，说明系统段的长度是字节粒度，所以，一个系统段的最大长度为1M字节。
+
+系统段的类型为16 种，如图2.15 所示。在这16 种类型中，保留类型和有关286 的类型不予考虑。门也是一种描述符,有调用门、任务门、中断门和陷阱门4  种门描述符。
+
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062556.png)
+<center><font face="楷体" size="4">图6 系统段的类型</font></center>
+#### 选择符、描述符表和描述符表寄存器
+描述符表（即段表）定义了386 系统的所有段的情况。所有的描述符表本身都占据一个字节为8 的倍数的存储器空间，空间大小在8 个字节（至少含一个描述符）到64K 字节（至多含8K=8192）个描述符之间。
+
+1.全局描述符表（GDT）
+全局描述符表GDT（Global Descriptor Table），除了任务门，中断门和陷阱门描述符外，包含着系统中所有任务都共用的那些段的描述符。它的第一个8 字节位置没有使用。
+
+2.中断描述符表（IDT）
+中断描述符表IDT（Interrupt Descriptor Table），包含256 个门描述符。IDT 中只能包含任务门、中断门和陷阱门描述符，虽然IDT 表最长也可以为64K 字节，但只能存取2K字节以内的描述符，即256  个描述符，这个数字是为了和8086 保持兼容。
+
+3.局部描述符表（LDT）
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062802.png)
+<center><font face="楷体" size="4">图7 选择符表结构</font></center>
+局部描述符表LDT（Local Descriptor Table），包含了与一个给定任务有关的描述符，每个任务各自有一个的LDT。有了LDT，就可以使给定任务的代码、数据与别的任务相隔离。每一个任务的局部描述符表LDT  本身也用一个描述符来表示，称为LDT 描述符，它包含了有关局部描述符表的信息，被放在全局描述符表GDT 中，使用LDTR进行索引。
+
+在实模式下，段寄存器存储的是真实的段基址，在保护模式下，16 位的段寄存器无法放下32 位的段基址，因此，它们被称为选择符，即段寄存器的作用是用来选择描述符。选择符的结构如图2.16  所示。
+
+可以看出，选择符有3 个域：第15~3 位这13 位是索引域，表示的数据为0~8129，用于指向全局描述符表中相应的描述符。第2 位为选择域，如果TI=1，就从局部描述符表中选择相应的描述符，如果TI=0，就从全局描述符表中选择描述符。第1、0  位是特权级，表示选择符的特权级，被称为请求者特权级RPL（Requestor Privilege Level）。只有请求者特权级RPL  高于（数字低于）或等于相应的描述符特权级DPL，描述符才能被存取，这就可以实现一定程度的保护。
+
+下面讲一下在没有分页操作时，寻址一个存储器操作数的步骤。
+(1)在段选择符中装入16 位数，同时给出32 位地址偏移量（比如在ESI、EDI 中等）。
+(2)先根据相应描述符表寄存器中的段地址（确定描述符表的地址）和段界限（确定描述符表的大小），根据段选择符的TI决定从哪种描述符表中取，再根据段选择符的索引找到相应段描述符的位置，比较RPL与DPL，若该段无问题，就取出相应的段描述符放入段描述符高速缓冲寄存器中。
+(3)将段描述符中的32 位段基地址和放在ESI、EDI 等中的32 位有效地址相加，就形成了32 位物理地址。
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062851.png)
+<center><font face="楷体" size="4">图8 寻址过程</font></center>
+#### linux中的段机制
+从2.2 版开始，Linux 让所有的进程（或叫任务）都使用相同的逻辑地址空间，因此就没有必要使用局部描述符表LDT。
+
+Linux 在启动的过程中设置了段寄存器的值和全局描述符表GDT 的内容，段寄存器的定义在include/asm-i386/segment.h 中：
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __KERNEL_CS 0x10 <span class="comment">//内核代码段，index=2,TI=0,RPL=0 </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __KERNEL_DS 0x18 <span class="comment">//内核数据段, index=3,TI=0,RPL=0</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USER_CS   0x23 <span class="comment">//用户代码段, index=4,TI=0,RPL=3</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USER_DS   0x2B <span class="comment">//用户数据段, index=5,TI=0,RPL=3</span></span></span><br></pre></td></tr></table></figure>
+
+从定义看出，没有定义堆栈段，实际上，Linux 内核不区分数据段和堆栈段，这也体现了Linux 内核尽量减少段的使用。因为没有使用LDT，因此，TI=0，并把这4 个段描述符都放在GDT中,  index 就是某个段描述符在GDT 表中的下标。内核代码段和数据段具有最高特权，因此其RPL为0，而用户代码段和数据段具有最低特权，因此其RPL 为3。
+
+全局描述符表的定义在arch/i386/kernel/head.S 中：
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ENTRY（gdt_table）</span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* NULL descriptor */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br><span class="line">.quad <span class="number">0x00cf9a000000ffff</span> <span class="comment">/* 0x10 kernel 4GB code at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cf92000000ffff</span> <span class="comment">/* 0x18 kernel 4GB data at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cffa000000ffff</span> <span class="comment">/* 0x23 user 4GB code at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cff2000000ffff</span> <span class="comment">/* 0x2b user 4GB data at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br></pre></td></tr></table></figure>
+
+从代码可以看出，GDT 放在数组变量gdt_table 中。按Intel 规定，GDT 中的第一项为空，这是为了防止加电后段寄存器未经初始化就进入保护模式而使用GDT 的。第二项也没用。从下标2～5  共4 项对应于前面的4 种段描述符值。对照图2.10，从描述符的数值可以得出：
+
+• 段的基地址全部为0x00000000；
+• 段的上限全部为0xffff；
+• 段的粒度G 为1，即段长单位为4KB；
+• 段的D 位为1，即对这4 个段的访问都为32 位指令；
+• 段的P 位为1，即4 个段都在内存。
+
+由此可以得出，每个段的逻辑地址空间范围为0～4GB。每个段的基地址为0，因此，逻辑地址到线性地址映射保持不变，也就是说，偏移量就是线性地址，我们以后所提到的逻辑地址（或虚拟地址）和线性地址指的也就是同一地址。看来，Linux  巧妙地把段机制给绕过去了，它只把段分为两种：用户态（RPL＝3）的段和内核态（RPL=0）的段，而完全利用了分页机制。
+
+按Intel 的规定，每个进程有一个任务状态段（TSS）和局部描述符表LDT，但Linux 也没有完全遵循Intel 的设计思路。如前所述，Linux 的进程没有使用LDT，而对TSS 的使用也非常有限，每个CPU  仅使用一个TSS。TSS 有它自己 8 字节的任务段描述符（Task State Segment Descriptor ，简称TSSD）。这个描述符包括指向TSS 起始地址的32 位基地址域，20 位界限域，界限域值不能小于十进制104（由TSS  段的最小长度决定）。TSS 描述符存放在GDT 中，它是GDT 中的一个表项，由中断描述符表（IDT）中的任务门（存放TSS段的选择符）装入TR来进行索引。
+
+#### 页目录项、页表项、页面项
+80386 使用4K 字节大小的页。每一页都有4K 字节长，并在4K 字节的边界上对齐，即每一页的起始地址都能被4K 整除。因此，80386 把4G 字节的线性地址空间，划分为1G 个页面，每页有4K  字节大小。分页机制通过把线性地址空间中的页，重新定位到物理地址空间来进行管理，因为每个页面的整个4K 字节作为一个单位进行映射，并且每个页面都对齐4K 字节的边界，因此，线性地址的低12 位经过分页机制直接地作为物理地址的低12 位使用。
+
+页目录表，存储在一个4K 字节的页面中，最多可包含1024  个页目录项，每个页目录项为4 个字节，结构如图9所示。
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063019.png)
+<center><font face="楷体" size="4">图9 页目录中的页目录项</font></center>
+
+<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063116.png" alt></p>
+<center><font face="楷体" size="4">图10 由U/S和R/W提供的保护</font></center>
+• 第31~12位是20位页表地址，由于页表地址的低12位总为0，所以用高20 位指出32位页表地址就可以了。
+• 第0位是存在位，如果P=1，表示页表地址指向的该页在内存中，如果P=0，表示不在内存中。
+• 第1位是读/写位，第2 位是用户/管理员位，这两位为页目录项提供硬件保护。当特权级为3  的进程要想访问页面时，需要通过页保护检查，而特权级为0 的进程就可以绕过页保护，如图2.23 所示。
+
+• 第3位是PWT（Page Write-Through）位，表示是否采用写透方式，写透方式就是既写内存（RAM）也写高速缓存,该位为1  表示采用写透方式。
+• 第4位是PCD（Page Cache Disable）位，表示是否启用高速缓存，该位为1 表示启用高速缓存。
+• 第5位是访问位，当对页目录项进行访问时，A位=1。
+• 第7位是Page Size 标志，只适用于页目录项。如果置为1，页目录项指的是4MB 的页面，即扩展分页。
+
+80386的每个页目录项指向一个页表，存储在一个4K字节的页面中，页表最多含有1024个页面项，每项4  个字节，包含页面的起始地址和有关该页面的信息。页面的起始地址也是4K的整数倍，所以页面的低12位也留作它用，如图2.24所示。
+
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063246.png)
+<center><font face="楷体" size="4">图11 页表中的页面项</font></center>
+第31～12位是20位物理页面地址，除第6位外第0～5位及9～11位的用途和页目录项一样，第6位是页面项独有的，当对涉及的页面进行写操作时，D位被置1。
+
+4GB的存储器只有一个页目录，它最多有1024个页目录项，每个页目录项又含有1024个页面项，因此，存储器一共可以分成1024×1024=1M个页面。由于每个页面为4K个字节，所以，存储器的大小正好最多为4GB。
+
+当访问一个操作单元时，如何由分段结构确定的32位线性地址通过分页操作转化成32位物理地址呢？
+
+第一步，CR3包含着页目录的起始地址，用32位线性地址的最高10位A31~A22作为页目录表的页目录项的索引，将它乘以4，与CR3 中的页目录表的起始地址相加，形成相应页目录项的地址。
+
+第二步，从指定的地址中取出32位页目录项，它的低12位为0，这32位是页表的起始地址。用32位线性地址中的A21~A12位作为页表中的页表项的索引，将它乘以4，与页表的起始地址相加，形成相应页表项的地址。
+
+第三步，从指定地址中取出32位页表项，它的低12位为0，这32位是页面地址，将A11~A0作为相对于页面地址的偏移量，与32位页面地址相加，形成32位物理地址。
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106070415.png)
+<center><font face="楷体" size="4">图12 两级页表结构</font></center>
+#### linux 中的分页机制
+Linux 的分段机制使得所有的进程都使用相同的段寄存器值，这就使得内存管理变得简单，也就是说，所有的进程都使用同样的线性地址空间（0～4GB）。Linux  采用三级分页模式而不是两级。如图2.28 所示为三级分页模式，为此，Linux定义了3 种类型的表。
+
+• 总目录PGD（Page Global Directory）
+• 中间目录PMD（Page Middle Derectory）
+• 页表PT（Page Table）
+
+![](https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063456.png)
+
+<center><font face="楷体" size="4">图13 Linux三级分页</font></center>]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>虚拟内存的作用</title>
-    <url>/2019/11/06/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/</url>
+    <url>/2019/11/05/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E4%BD%9C%E7%94%A8/</url>
     <content><![CDATA[<h4 id="虚拟地址"><a href="#虚拟地址" class="headerlink" title="虚拟地址"></a>虚拟地址</h4><p>虚拟地址的整个想法是这样的：把程序给出的地址看做是一种虚拟地址（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。这样，只要我们能够妥善地控制这个虚拟地址到物理地址的映射过程，就可以保证程序每次运行时都可以使用相同的地址。<br><a id="more"></a></p>
 <p>例如，上面代码中变量 a 的地址是 0X402000，第一次运行时它对应的物理内存地址可能是 0X12ED90AA，第二次运行时可能又对应 0XED90，而我们的程序不需要关心这些，这些繁杂的内存管理工作交给操作系统处理即可。</p>
 <p>让我们回到程序的运行本质上来。用户程序在运行时不希望介入到这些复杂的内存管理过程中，作为普通的程序，它需要的是一个简单的执行环境，有自己的内存，有自己的CPU，好像整个程序占有整个计算机而不用关心其他的程序。</p>
@@ -20,100 +198,6 @@
       </categories>
       <tags>
         <tag>操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>X86段机制页机制详解</title>
-    <url>/2019/11/06/X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<center><font face="楷体" size="4">注：本文的主要内容来自对《深入分析linux内核源代码》的整理，linux内核版本为2.4.16</font></center>
-
-
-
-<h4 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h4><p>MOVE REG，ADDR ; 它把地址为ADDR（假设为10000）的内存单元的内容复制到REG中在8086 的实模式下，把某一段寄存器(基地址)左移4 位，然后与地址ADDR 相加后被直接送到内存总线上，这个相加后的地址(20位)就是内存单元的物理地址，而程序中的这个地址ADDR就叫逻辑地址(或叫虚拟地址)。<font face="楷体" size="4">在80386 的段机制中，逻辑地址由两部分组成，即段部分（选择符）及偏移部分。</font><br><a id="more"></a></p>
-<p>段是形成逻辑地址到线性地址转换的基础。如果我们把段看成一个对象的话，那么对它的描述如下。<br>• 段的基地址(Base Address):在线性地址空间中段的起始地址。<br>• 段的界限(Limit):表示在逻辑地址中，段内可以使用的最大偏移量。<br>• 段的属性(Attribute):表示段的特性。例如，该段是否可被读出或写入，或者该段是否作为一个程序来执行，以及段的特权级等。</p>
-<h4 id="逻辑地址、线性地址和物理地址"><a href="#逻辑地址、线性地址和物理地址" class="headerlink" title="逻辑地址、线性地址和物理地址"></a>逻辑地址、线性地址和物理地址</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106053402.png" alt="qq"></p>
-<center><font face="楷体" size="4">图1 MMU把逻辑地址转换为物理地址过程</font></center>
-
-<h4 id="用户段描述符-User-Descriptor"><a href="#用户段描述符-User-Descriptor" class="headerlink" title="用户段描述符(User Descriptor)"></a>用户段描述符(User Descriptor)</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106060132.png" alt></p>
-<center><font face="楷体" size="4">图2 存取权字节的一般格式</font></center>
-
-<p>一个段描述符指出了段的32 位基地址和20 位段界限（即段大小）。第6 个字节的G 位是粒度位，当G=0 时，段长表示段格式的字节长度，即一个段最长可达1M  字节。当G=1 时，段长表示段的以4K 字节为一页的页的数目，即一个段最长可达1M×4K=4G 字节。D 位表示缺省操作数的大小，如果D=0，操作数为16 位，如果D=1，操作数为32 位。    </p>
-<p>第7 位P 位（Present） 是存在位，表示段描述符描述的这个段是否在内存中，如果在内存中。P=1；如果不在内存中，P=0。</p>
-<p>DPL（Descriptor Privilege Level），就是描述符特权级，它占两位，其值为0～3，用来确定这个段的特权级即保护等级。0为内核级别，3为用户级别。</p>
-<p>S 位（System）表示这个段是系统段还是用户段。如果S=0，则为系统段，如果S=1，则为用户程序的代码段、数据段或堆栈段。</p>
-<p>类型占3 位，第3 位为E 位，表示段是否可执行。当E=0 时，为数据段描述符，这时的第2 位ED 表示地址增长方向。第1  位（W）是可写位。当段为代码段时，第3 位E=1，这时第2 位为一致位（C）。当C=1 时，如果当前特权级低于描述符特权级，并且当前特权级保持不变，那么代码段只能执行。所谓当前特权级CPL（Current  Privilege Level），就是当前正在执行的任务的特权级。第1 位为可读位R。</p>
-<p>存取权字节的第0 位A 位是访问位，用于请求分段不分页的系统中，每当该段被访问时，将A 置1。对于分页系统，则A 被忽略未用。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062438.png" alt></p>
-<center><font face="楷体" size="4">图3 数据段的存取字节</font></center>
-
-
-<p><img src="/images/2019/11/06/bc583af0-001a-11ea-8860-b9b91b2a10f8.png" alt="image.png"></p>
-<center><font face="楷体" size="4">图4 代码段的存取字节</font></center>
-
-<h4 id="系统段描述符-Sys-Descriptor"><a href="#系统段描述符-Sys-Descriptor" class="headerlink" title="系统段描述符(Sys Descriptor)"></a>系统段描述符(Sys Descriptor)</h4><p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062329.png" alt></p>
-<center><font face="楷体" size="4">图5 系统段描述符一般格式</font></center>
-
-<p>系统段描述符的第5 个字节的第4 位为0，说明它是系统段描述符，类型占4 位，没有A 位。第6 个字节的第6 位为0，说明系统段的长度是字节粒度，所以，一个系统段的最大长度为1M字节。</p>
-<p>系统段的类型为16 种，如图2.15 所示。在这16 种类型中，保留类型和有关286 的类型不予考虑。门也是一种描述符,有调用门、任务门、中断门和陷阱门4  种门描述符。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062556.png" alt></p>
-<center><font face="楷体" size="4">图6 系统段的类型</font></center>
-
-<h4 id="选择符、描述符表和描述符表寄存器"><a href="#选择符、描述符表和描述符表寄存器" class="headerlink" title="选择符、描述符表和描述符表寄存器"></a>选择符、描述符表和描述符表寄存器</h4><p>描述符表（即段表）定义了386 系统的所有段的情况。所有的描述符表本身都占据一个字节为8 的倍数的存储器空间，空间大小在8 个字节（至少含一个描述符）到64K 字节（至多含8K=8192）个描述符之间。</p>
-<p>1.全局描述符表（GDT）<br>全局描述符表GDT（Global Descriptor Table），除了任务门，中断门和陷阱门描述符外，包含着系统中所有任务都共用的那些段的描述符。它的第一个8 字节位置没有使用。</p>
-<p>2.中断描述符表（IDT）<br>中断描述符表IDT（Interrupt Descriptor Table），包含256 个门描述符。IDT 中只能包含任务门、中断门和陷阱门描述符，虽然IDT 表最长也可以为64K 字节，但只能存取2K字节以内的描述符，即256  个描述符，这个数字是为了和8086 保持兼容。</p>
-<p>3.局部描述符表（LDT）</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062802.png" alt></p>
-<center><font face="楷体" size="4">图7 选择符表结构</font></center>
-
-<p>局部描述符表LDT（Local Descriptor Table），包含了与一个给定任务有关的描述符，每个任务各自有一个的LDT。有了LDT，就可以使给定任务的代码、数据与别的任务相隔离。每一个任务的局部描述符表LDT  本身也用一个描述符来表示，称为LDT 描述符，它包含了有关局部描述符表的信息，被放在全局描述符表GDT 中，使用LDTR进行索引。</p>
-<p>在实模式下，段寄存器存储的是真实的段基址，在保护模式下，16 位的段寄存器无法放下32 位的段基址，因此，它们被称为选择符，即段寄存器的作用是用来选择描述符。选择符的结构如图2.16  所示。</p>
-<p>可以看出，选择符有3 个域：第15~3 位这13 位是索引域，表示的数据为0~8129，用于指向全局描述符表中相应的描述符。第2 位为选择域，如果TI=1，就从局部描述符表中选择相应的描述符，如果TI=0，就从全局描述符表中选择描述符。第1、0  位是特权级，表示选择符的特权级，被称为请求者特权级RPL（Requestor Privilege Level）。只有请求者特权级RPL  高于（数字低于）或等于相应的描述符特权级DPL，描述符才能被存取，这就可以实现一定程度的保护。</p>
-<p>下面讲一下在没有分页操作时，寻址一个存储器操作数的步骤。<br>(1)在段选择符中装入16 位数，同时给出32 位地址偏移量（比如在ESI、EDI 中等）。<br>(2)先根据相应描述符表寄存器中的段地址（确定描述符表的地址）和段界限（确定描述符表的大小），根据段选择符的TI决定从哪种描述符表中取，再根据段选择符的索引找到相应段描述符的位置，比较RPL与DPL，若该段无问题，就取出相应的段描述符放入段描述符高速缓冲寄存器中。<br>(3)将段描述符中的32 位段基地址和放在ESI、EDI 等中的32 位有效地址相加，就形成了32 位物理地址。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106062851.png" alt></p>
-<center><font face="楷体" size="4">图8 寻址过程</font></center>
-
-<h4 id="linux中的段机制"><a href="#linux中的段机制" class="headerlink" title="linux中的段机制"></a>linux中的段机制</h4><p>从2.2 版开始，Linux 让所有的进程（或叫任务）都使用相同的逻辑地址空间，因此就没有必要使用局部描述符表LDT。</p>
-<p>Linux 在启动的过程中设置了段寄存器的值和全局描述符表GDT 的内容，段寄存器的定义在include/asm-i386/segment.h 中：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __KERNEL_CS 0x10 <span class="comment">//内核代码段，index=2,TI=0,RPL=0 </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __KERNEL_DS 0x18 <span class="comment">//内核数据段, index=3,TI=0,RPL=0</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USER_CS   0x23 <span class="comment">//用户代码段, index=4,TI=0,RPL=3</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USER_DS   0x2B <span class="comment">//用户数据段, index=5,TI=0,RPL=3</span></span></span><br></pre></td></tr></table></figure></p>
-<p>从定义看出，没有定义堆栈段，实际上，Linux 内核不区分数据段和堆栈段，这也体现了Linux 内核尽量减少段的使用。因为没有使用LDT，因此，TI=0，并把这4 个段描述符都放在GDT中,  index 就是某个段描述符在GDT 表中的下标。内核代码段和数据段具有最高特权，因此其RPL为0，而用户代码段和数据段具有最低特权，因此其RPL 为3。</p>
-<p>全局描述符表的定义在arch/i386/kernel/head.S 中：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ENTRY（gdt_table）</span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* NULL descriptor */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br><span class="line">.quad <span class="number">0x00cf9a000000ffff</span> <span class="comment">/* 0x10 kernel 4GB code at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cf92000000ffff</span> <span class="comment">/* 0x18 kernel 4GB data at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cffa000000ffff</span> <span class="comment">/* 0x23 user 4GB code at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x00cff2000000ffff</span> <span class="comment">/* 0x2b user 4GB data at 0x00000000 */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br><span class="line">.quad <span class="number">0x0000000000000000</span> <span class="comment">/* not used */</span></span><br></pre></td></tr></table></figure>
-<p>从代码可以看出，GDT 放在数组变量gdt_table 中。按Intel 规定，GDT 中的第一项为空，这是为了防止加电后段寄存器未经初始化就进入保护模式而使用GDT 的。第二项也没用。从下标2～5  共4 项对应于前面的4 种段描述符值。对照图2.10，从描述符的数值可以得出：</p>
-<p>• 段的基地址全部为0x00000000；<br>• 段的上限全部为0xffff；<br>• 段的粒度G 为1，即段长单位为4KB；<br>• 段的D 位为1，即对这4 个段的访问都为32 位指令；<br>• 段的P 位为1，即4 个段都在内存。</p>
-<p>由此可以得出，每个段的逻辑地址空间范围为0～4GB。每个段的基地址为0，因此，逻辑地址到线性地址映射保持不变，也就是说，偏移量就是线性地址，我们以后所提到的逻辑地址（或虚拟地址）和线性地址指的也就是同一地址。看来，Linux  巧妙地把段机制给绕过去了，它只把段分为两种：用户态（RPL＝3）的段和内核态（RPL=0）的段，而完全利用了分页机制。</p>
-<p>按Intel 的规定，每个进程有一个任务状态段（TSS）和局部描述符表LDT，但Linux 也没有完全遵循Intel 的设计思路。如前所述，Linux 的进程没有使用LDT，而对TSS 的使用也非常有限，每个CPU  仅使用一个TSS。TSS 有它自己 8 字节的任务段描述符（Task State Segment Descriptor ，简称TSSD）。这个描述符包括指向TSS 起始地址的32 位基地址域，20 位界限域，界限域值不能小于十进制104（由TSS  段的最小长度决定）。TSS 描述符存放在GDT 中，它是GDT 中的一个表项，由中断描述符表（IDT）中的任务门（存放TSS段的选择符）装入TR来进行索引。</p>
-<h4 id="页目录项、页表项、页面项"><a href="#页目录项、页表项、页面项" class="headerlink" title="页目录项、页表项、页面项"></a>页目录项、页表项、页面项</h4><p>80386 使用4K 字节大小的页。每一页都有4K 字节长，并在4K 字节的边界上对齐，即每一页的起始地址都能被4K 整除。因此，80386 把4G 字节的线性地址空间，划分为1G 个页面，每页有4K  字节大小。分页机制通过把线性地址空间中的页，重新定位到物理地址空间来进行管理，因为每个页面的整个4K 字节作为一个单位进行映射，并且每个页面都对齐4K 字节的边界，因此，线性地址的低12 位经过分页机制直接地作为物理地址的低12 位使用。</p>
-<p>页目录表，存储在一个4K 字节的页面中，最多可包含1024  个页目录项，每个页目录项为4 个字节，结构如图9所示。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063019.png" alt></p>
-<center><font face="楷体" size="4">图9 页目录中的页目录项</font></center>
-
-
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063116.png" alt></p>
-<center><font face="楷体" size="4">图10 由U/S和R/W提供的保护</font></center>
-
-<p>• 第31~12位是20位页表地址，由于页表地址的低12位总为0，所以用高20 位指出32位页表地址就可以了。<br>• 第0位是存在位，如果P=1，表示页表地址指向的该页在内存中，如果P=0，表示不在内存中。<br>• 第1位是读/写位，第2 位是用户/管理员位，这两位为页目录项提供硬件保护。当特权级为3  的进程要想访问页面时，需要通过页保护检查，而特权级为0 的进程就可以绕过页保护，如图2.23 所示。</p>
-<p>• 第3位是PWT（Page Write-Through）位，表示是否采用写透方式，写透方式就是既写内存（RAM）也写高速缓存,该位为1  表示采用写透方式。<br>• 第4位是PCD（Page Cache Disable）位，表示是否启用高速缓存，该位为1 表示启用高速缓存。<br>• 第5位是访问位，当对页目录项进行访问时，A位=1。<br>• 第7位是Page Size 标志，只适用于页目录项。如果置为1，页目录项指的是4MB 的页面，即扩展分页。</p>
-<p>80386的每个页目录项指向一个页表，存储在一个4K字节的页面中，页表最多含有1024个页面项，每项4  个字节，包含页面的起始地址和有关该页面的信息。页面的起始地址也是4K的整数倍，所以页面的低12位也留作它用，如图2.24所示。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063246.png" alt></p>
-<center><font face="楷体" size="4">图11 页表中的页面项</font></center>
-
-<p>第31～12位是20位物理页面地址，除第6位外第0～5位及9～11位的用途和页目录项一样，第6位是页面项独有的，当对涉及的页面进行写操作时，D位被置1。</p>
-<p>4GB的存储器只有一个页目录，它最多有1024个页目录项，每个页目录项又含有1024个页面项，因此，存储器一共可以分成1024×1024=1M个页面。由于每个页面为4K个字节，所以，存储器的大小正好最多为4GB。</p>
-<p>当访问一个操作单元时，如何由分段结构确定的32位线性地址通过分页操作转化成32位物理地址呢？</p>
-<p>第一步，CR3包含着页目录的起始地址，用32位线性地址的最高10位A31~A22作为页目录表的页目录项的索引，将它乘以4，与CR3 中的页目录表的起始地址相加，形成相应页目录项的地址。</p>
-<p>第二步，从指定的地址中取出32位页目录项，它的低12位为0，这32位是页表的起始地址。用32位线性地址中的A21~A12位作为页表中的页表项的索引，将它乘以4，与页表的起始地址相加，形成相应页表项的地址。</p>
-<p>第三步，从指定地址中取出32位页表项，它的低12位为0，这32位是页面地址，将A11~A0作为相对于页面地址的偏移量，与32位页面地址相加，形成32位物理地址。</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106070415.png" alt></p>
-<center><font face="楷体" size="4">图12 两级页表结构</font></center>
-
-<h4 id="linux-中的分页机制"><a href="#linux-中的分页机制" class="headerlink" title="linux 中的分页机制"></a>linux 中的分页机制</h4><p>Linux 的分段机制使得所有的进程都使用相同的段寄存器值，这就使得内存管理变得简单，也就是说，所有的进程都使用同样的线性地址空间（0～4GB）。Linux  采用三级分页模式而不是两级。如图2.28 所示为三级分页模式，为此，Linux定义了3 种类型的表。</p>
-<p>• 总目录PGD（Page Global Directory）<br>• 中间目录PMD（Page Middle Derectory）<br>• 页表PT（Page Table）</p>
-<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191106063456.png" alt></p>
-<center><font face="楷体" size="4">图13 Linux三级分页</font></center>]]></content>
-      <categories>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>计算机组成原理</tag>
       </tags>
   </entry>
   <entry>
