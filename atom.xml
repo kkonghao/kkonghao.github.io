@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tingyuxuan.com/"/>
-  <updated>2019-11-08T03:29:05.000Z</updated>
+  <updated>2019-11-08T10:56:45.000Z</updated>
   <id>http://tingyuxuan.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python模块的安装方式</title>
+    <link href="http://tingyuxuan.com/2019/11/08/python%E6%A8%A1%E5%9D%97%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/"/>
+    <id>http://tingyuxuan.com/2019/11/08/python模块的安装方式/</id>
+    <published>2019-11-08T10:56:45.000Z</published>
+    <updated>2019-11-08T10:56:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>python模块的安装因为网络的原因容易安装失败最好的方法是使用国内源的方法安装，自己在模块安装实践中有以下集中方法：</p><h4 id="whel方法安装"><a href="#whel方法安装" class="headerlink" title="whel方法安装"></a>whel方法安装</h4><p>1.将.whl格式的文件移动到C:\Users\luckydog目录下<br>2.pip install XXXX.whl即可<br>3.安装源：<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a> </p><h4 id><a href="#" class="headerlink" title=" "></a> </h4><p>豆瓣源安装方式：<br>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> ipython<br>pip install -U <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> Django</p><h4 id="pycharm安装方式："><a href="#pycharm安装方式：" class="headerlink" title="pycharm安装方式："></a>pycharm安装方式：</h4><p>在pycharm软件安装方式下，可以使用清华源进行安装，效果最佳</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;python模块的安装因为网络的原因容易安装失败最好的方法是使用国内源的方法安装，自己在模块安装实践中有以下集中方法：&lt;/p&gt;
+&lt;h4 id=&quot;whel方法安装&quot;&gt;&lt;a href=&quot;#whel方法安装&quot; class=&quot;headerlink&quot; title=&quot;whel方法安装&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="杂项" scheme="http://tingyuxuan.com/categories/%E6%9D%82%E9%A1%B9/"/>
+    
+    
+      <category term="杂项" scheme="http://tingyuxuan.com/tags/%E6%9D%82%E9%A1%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>winows下vscode多文件编译运行配置</title>
