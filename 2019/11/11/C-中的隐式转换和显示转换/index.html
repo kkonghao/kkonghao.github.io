@@ -52,7 +52,7 @@
 </script>
 
   <meta name="description" content="类型转换是一门计算机语言所具有的的重要的功能，类型的转换设计到数据的安全问题因此必须受到重视。c++语言继承了c语言的精髓并在其基础上增加了新的内容在类型转换机制上存在显示转换和因式转换两种类型。">
-<meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++中的隐式转换和显示转换">
 <meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;C-%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E6%98%BE%E7%A4%BA%E8%BD%AC%E6%8D%A2&#x2F;index.html">
@@ -159,12 +159,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -249,6 +249,17 @@
 
               <time title="创建时间：2019-11-11 10:58:19" itemprop="dateCreated datePublished" datetime="2019-11-11T10:58:19+08:00">2019-11-11</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -277,14 +288,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.2k</span>
+              <span>7.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -349,6 +360,10 @@
 <li>const_cast&lt;目标类型&gt;（标识符）:目标类型只能是指针或者引用</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> A a = &#123; <span class="number">200</span> &#125;;</span><br><span class="line">	A a1 = <span class="keyword">const_cast</span>&lt;A&gt;(a);    <span class="comment">//错误，const_cast 目标类型只能是引用或者指针</span></span><br><span class="line">	a1.data = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">	A&amp; a2 = <span class="keyword">const_cast</span>&lt;A&amp;&gt;(a);</span><br><span class="line">	a2.data = <span class="number">100</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a.data &lt;&lt; <span class="string">' '</span> &lt;&lt; a2.data &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	A* a3 = <span class="keyword">const_cast</span>&lt;A*&gt;(&amp;a);</span><br><span class="line">	a3-&gt;data = <span class="number">100</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a.data &lt;&lt; <span class="string">' '</span> &lt;&lt; a3-&gt;data &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> x = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>&amp; x1 = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>&amp;&gt;(x);</span><br><span class="line">	x1 = <span class="number">200</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span> &lt;&lt; x1 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>* x2 = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;x);</span><br><span class="line">	*x2 = <span class="number">300</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span> &lt;&lt; *x2 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font face="楷体"> <strong>注意一:</strong></font>该函数用来移除对象的常量性(cast away the constness)使用 const_cast 去除 const 限定的目的不是为了修改它的内容，使用 const_cast 去除 const 限定，通常是为了函数能够接受这个实际参数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> &amp;ref)</span> <span class="comment">//别人己经写好的程序或类库</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ref &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">4444</span>;</span><br><span class="line">	func(<span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> &amp;&gt;(m));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font face="楷体"> <strong>注意二:</strong></font>脱掉 const 后的引用或指针可以改吗？<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> x = <span class="number">200</span>;</span><br><span class="line">	<span class="keyword">int</span> &amp;a = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> &amp;&gt;(x); <span class="comment">// int &amp;a = x;</span></span><br><span class="line">	a = <span class="number">300</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;a &lt;&lt; <span class="string">"---"</span> &lt;&lt; &amp;x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">int</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> *&gt;(&amp;x); <span class="comment">// int *p = &amp;x;</span></span><br><span class="line">	*p = <span class="number">400</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p &lt;&lt; <span class="string">"---"</span> &lt;&lt; &amp;x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">int</span> data;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> A xx = &#123;<span class="number">1111</span>&#125;;</span><br><span class="line">	A &amp;a1 = <span class="keyword">const_cast</span>&lt;A &amp;&gt;(xx);</span><br><span class="line">	a1.data = <span class="number">222</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a1.data &lt;&lt; xx.data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	A *p1 = <span class="keyword">const_cast</span>&lt;A *&gt;(&amp;xx);</span><br><span class="line">	p1-&gt;data = <span class="number">333</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p1-&gt;data &lt;&lt; xx.data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><font face="楷体"> <strong>结论:</strong></font>可以改变 const 自定义类的成员变量，但是对于内置数据类型，却表现未定义行为.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Depending on the type of the referenced object, a write operation through the resulting pointer, </span><br><span class="line">reference, <span class="keyword">or</span> pointer to data member might produce undefined behavior.</span><br></pre></td></tr></table></figure></p>
 <p><strong>4.reinterpret_cast 重新解释类型转换</strong></p>
 <ul>
 <li>reinterpret_cast&lt;目标类型&gt;（标识符）</li>
@@ -368,6 +383,10 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
 
         
 
@@ -443,13 +462,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -503,13 +522,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">29k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
 <!--
