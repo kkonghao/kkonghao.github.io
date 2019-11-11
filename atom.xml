@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tingyuxuan.com/"/>
-  <updated>2019-11-11T02:58:19.000Z</updated>
+  <updated>2019-11-11T03:39:20.000Z</updated>
   <id>http://tingyuxuan.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vcpkg神器加速下载的方法</title>
+    <link href="http://tingyuxuan.com/2019/11/11/vcpkg%E7%A5%9E%E5%99%A8%E5%8A%A0%E9%80%9F%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://tingyuxuan.com/2019/11/11/vcpkg神器加速下载的方法/</id>
+    <published>2019-11-11T03:39:20.000Z</published>
+    <updated>2019-11-11T03:39:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>vcpkg是微软开发的c++语言第三方cpp库应用类似于pycharm中python模块的安装。vcpkg具有优良的特性安装cpp库并自动实现编译，编译之后在vs和vscode能直接使用引用头文件的方法使用第三方库中的文件。但是在第三方库的安装过程中由于网络原因会出现安装失败的情况。经过百度之后笔者发现使用下面的方法可以加速文件的安装：<br><a id="more"></a><br>在安装失败的界面拷贝安装失败的网络路径并使用浏览器下载或者迅雷软件下载到本地，下载完成后将下载到本地的唯洁雅文件拷贝到vcpkg文件夹下面的download界面如笔者的路径F:\vcpkg-2019.10\downloads然后在cmd下vcpkg install xxx即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;vcpkg是微软开发的c++语言第三方cpp库应用类似于pycharm中python模块的安装。vcpkg具有优良的特性安装cpp库并自动实现编译，编译之后在vs和vscode能直接使用引用头文件的方法使用第三方库中的文件。但是在第三方库的安装过程中由于网络原因会出现安装失败的情况。经过百度之后笔者发现使用下面的方法可以加速文件的安装：&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="杂项" scheme="http://tingyuxuan.com/categories/%E6%9D%82%E9%A1%B9/"/>
+    
+    
+      <category term="杂项" scheme="http://tingyuxuan.com/tags/%E6%9D%82%E9%A1%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>C++中的隐式转换和显示转换</title>
