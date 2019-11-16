@@ -12,6 +12,12 @@
 <p>PrintT(std::move(v));是将 v 变成一个右值引用， 虽然它本来也是右值引用， 因此它和PrintT(std::forward<T>(v));的输出结果是一样的。</T></p>
 <p><strong>四、引用折叠（Reference collapsing）规则</strong><br>1.所有的右值引用叠加到右值引用上变成一个右值引用<br>2.所有的其它引用类型叠加都变成一个左值引用<br>3.左值或者右值是独立于它的类型的， 也就是说一个右值引用类型的左值是合法的。</p>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
   </entry>
   <entry>
     <title>C++中的隐式转换和显示转换</title>
