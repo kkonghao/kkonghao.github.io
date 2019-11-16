@@ -168,7 +168,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">15</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -219,6 +219,99 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/" class="post-title-link" itemprop="url">C++完美转发问题---perfect forwarding</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-17 00:30:20" itemprop="dateCreated datePublished" datetime="2019-11-17T00:30:20+08:00">2019-11-17</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>一、语义</strong><br>右值引用类型是独立于值的，一个右值引用参数作为函数的形参，在函数内部再转发该参数的时候它已经变成一个左值了，并不是它原来的类型了。因此，我们需要一种方法能按照参数原来的类型转发到另一个函数，这种转发被称为完美转发。所谓完美转发（perfect forwarding），是指在函数模板中，完全依照模板的参数的类型，将参数传递给函数模板中调用的另外一个函数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1140,110 +1233,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="嘿你的土豆">
-      <meta itemprop="description" content="我的征途是星辰大海">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="土豆の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/" class="post-title-link" itemprop="url">载入内存，让程序运行起来</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-02 13:09:26" itemprop="dateCreated datePublished" datetime="2019-11-02T13:09:26+08:00">2019-11-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如果你的电脑上安装了QQ，你希望和好友聊天，会双击QQ图标，打开QQ软件，输入账号和密码，然后登录就可以了。那么，QQ是怎么运行起来的呢？<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/02/%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%EF%BC%8C%E8%AE%A9%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%B5%B7%E6%9D%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1294,7 +1283,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1361,13 +1350,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">54k</span>
+    <span title="站点总字数">55k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">49 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
 </div>
 
 <!--
