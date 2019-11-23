@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="土豆の博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="定义变量不可变绑定自动类型推导在对变量名进行复制的时候可以不显示的写出变量的类型，Rust语言可以根据数值的类型自动进行变量的类型推导，这类问题比较简单也没有坑可以简单带过。12345fn main() &amp;#123;    let a1 = 5; &#x2F;&#x2F; 自动推导数据类型i32    let a2: i32 = 5; &#x2F;&#x2F; 指定数据类型i32&amp;#125; 不可变绑定的重新赋值值得注意的是：虽然编译器">
+<meta name="keywords" content="Rust">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rust语言关于变量问题的一些细节">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;23&#x2F;rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82&#x2F;index.html">
+<meta property="og:site_name" content="土豆の博客">
+<meta property="og:description" content="定义变量不可变绑定自动类型推导在对变量名进行复制的时候可以不显示的写出变量的类型，Rust语言可以根据数值的类型自动进行变量的类型推导，这类问题比较简单也没有坑可以简单带过。12345fn main() &amp;#123;    let a1 = 5; &#x2F;&#x2F; 自动推导数据类型i32    let a2: i32 = 5; &#x2F;&#x2F; 指定数据类型i32&amp;#125; 不可变绑定的重新赋值值得注意的是：虽然编译器">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-23T10:23:36.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://tingyuxuan.com/2019/11/23/rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>rust语言关于变量问题的一些细节 | 土豆の博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a href="https://github.com/kkonghao" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z">
+	</path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 
+	C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,
+	84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" 
+	class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,
+	60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">土豆の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/23/rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rust语言关于变量问题的一些细节
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-23 18:23:36" itemprop="dateCreated datePublished" datetime="2019-11-23T18:23:36+08:00">2019-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/23/rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/23/rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h4><h5 id="不可变绑定"><a href="#不可变绑定" class="headerlink" title="不可变绑定"></a>不可变绑定</h5><h6 id="自动类型推导"><a href="#自动类型推导" class="headerlink" title="自动类型推导"></a>自动类型推导</h6><p>在对变量名进行复制的时候可以不显示的写出变量的类型，Rust语言可以根据数值的类型自动进行变量的类型推导，这类问题比较简单也没有坑可以简单带过。<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a1 = <span class="number">5</span>; <span class="comment">// 自动推导数据类型i32</span></span><br><span class="line">    <span class="keyword">let</span> a2: <span class="built_in">i32</span> = <span class="number">5</span>; <span class="comment">// 指定数据类型i32</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="不可变绑定的重新赋值"><a href="#不可变绑定的重新赋值" class="headerlink" title="不可变绑定的重新赋值"></a>不可变绑定的重新赋值</h6><p>值得注意的是：虽然编译器能够推导出变量的类型，完成对变量的赋值操作。但是不能对该变量进行重新赋值操作。原因是：此时的绑定是不可变绑定，变量声明为不可变类型。<br>具体代码演示如下：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a1 = <span class="number">5</span>; <span class="comment">// 自动推导数据类型i32</span></span><br><span class="line">    a1 = <span class="number">10</span>; <span class="comment">// error: cannot assign twice to immutable variable `a1`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译器报错为：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">error[E0384]: cannot assign twice to immutable variable `a1`</span><br><span class="line">  --&gt; main.rs:<span class="number">14</span>:<span class="number">3</span></span><br><span class="line">   |</span><br><span class="line"><span class="number">11</span> |   <span class="keyword">let</span> a1 = <span class="number">5</span>; <span class="comment">// 自动推导数据类型i32</span></span><br><span class="line">   |       -- first assignment to `a1`</span><br><span class="line">...</span><br><span class="line"><span class="number">14</span> |   a1 = <span class="number">10</span>;</span><br><span class="line">   |   ^^^^^^^ cannot assign twice to immutable variable</span><br></pre></td></tr></table></figure></p>
+<h5 id="可变绑定"><a href="#可变绑定" class="headerlink" title="可变绑定"></a>可变绑定</h5><h6 id="可变绑定的赋值"><a href="#可变绑定的赋值" class="headerlink" title="可变绑定的赋值"></a>可变绑定的赋值</h6><p>可变绑定即在变量名前面增加一个关键字mut即可。注意有时关键字mut会被编译器提醒warning 提醒coder知道自己使用mut的意图是什么。。对于可变绑定我们首先要了解一下几个问题：一、可变绑定的自动类型推导；二、可变绑定的赋值问题；三、可变绑定的重新绑定问题</p>
+<h6 id="可变绑定自动类型推导"><a href="#可变绑定自动类型推导" class="headerlink" title="可变绑定自动类型推导"></a>可变绑定自动类型推导</h6><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> a1=<span class="number">12</span>;<span class="comment">//可变绑定可以实现编译器对绑定数值的自动类型推导，</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="可变绑定的赋值问题"><a href="#可变绑定的赋值问题" class="headerlink" title="可变绑定的赋值问题"></a>可变绑定的赋值问题</h6><p>不可变绑定不能为已经绑定的变量重新绑定数值，可变绑定则可以实现对已绑定变量的重新绑定操作。示例代码如下：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 在声明变量时，在变量前面加入 mut 关键字，变量就会成为可变绑定的变量</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> a: <span class="built_in">f64</span> = <span class="number">1.0</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, a);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//改变变量a的值,可变绑定可实现重新赋值</span></span><br><span class="line">    a = <span class="number">2.0</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="可变绑定的重新绑定"><a href="#可变绑定的重新绑定" class="headerlink" title="可变绑定的重新绑定"></a>可变绑定的重新绑定</h6><p>注意可以使用不可变绑已绑定定为可变绑定的未绑定赋值，也可使用可变绑定已绑定为不可变绑定的未绑定赋值。示例代码如下：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 在声明变量时，在变量前面加入 mut 关键字，变量就会成为可变绑定的变量 ok</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> a: <span class="built_in">f64</span> = <span class="number">1.0</span>;<span class="comment">//warning: variable does not need to be mutable</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, a);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重新绑定为不可变</span></span><br><span class="line">    <span class="keyword">let</span> a1 = a;<span class="comment">//可变绑定已绑定为不可变绑定未绑定赋值 ok</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, a1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重新绑定为可变</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> a2 = a1;<span class="comment">//不可变绑定未绑定为可变绑定已绑定赋值 ok</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, a2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译器显示为:<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">warning: variable does not need to be mutable</span><br><span class="line"> --&gt; src\main.rs:<span class="number">4</span>:<span class="number">9</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     <span class="keyword">let</span> <span class="keyword">mut</span> a: <span class="built_in">f64</span> = <span class="number">1.0</span>;<span class="comment">//warning: variable does not need to be mutable</span></span><br><span class="line">  |         ----^</span><br><span class="line">  |         |</span><br><span class="line">  |         help: remove this `<span class="keyword">mut</span>`</span><br><span class="line">  |</span><br><span class="line">  = note: `<span class="meta">#[warn(unused_mut)]</span>` on by default</span><br><span class="line"></span><br><span class="line">warning: variable does not need to be mutable</span><br><span class="line">  --&gt; src\main.rs:<span class="number">12</span>:<span class="number">9</span></span><br><span class="line">   |</span><br><span class="line"><span class="number">12</span> |     <span class="keyword">let</span> <span class="keyword">mut</span> a2 = a1;<span class="comment">//</span></span><br><span class="line">   |         ----^^</span><br><span class="line">   |         |</span><br><span class="line">   |         help: remove this `<span class="keyword">mut</span>`</span><br><span class="line"></span><br><span class="line">    Finished dev [unoptimized + debuginfo] target(s) <span class="keyword">in</span> <span class="number">0.25</span>s</span><br><span class="line">     Running `target\debug\rust_proj.exe`</span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="number">1.0</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="一个经典的错误"><a href="#一个经典的错误" class="headerlink" title="一个经典的错误"></a>一个经典的错误</h5><p>对一个已经发生借用的变量进行操作，会报错<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> x: <span class="built_in">u32</span> = <span class="number">22</span>;</span><br><span class="line">    <span class="keyword">let</span> y: &amp;<span class="built_in">u32</span> = &amp;x;<span class="comment">//可变绑定已绑定x为借用赋值</span></span><br><span class="line">    x += <span class="number">1</span>;<span class="comment">//x变量已经被借用，此时对x变量进行内存操作编译器会报错</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">warning: value assigned to `x` is never read</span><br><span class="line"> --&gt; src\main.rs:<span class="number">5</span>:<span class="number">5</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">5</span> |     x += <span class="number">1</span>;<span class="comment">//x变量已经被借用，此时对x变量进行内存操作编译器会报错</span></span><br><span class="line">  |     ^</span><br><span class="line">  |</span><br><span class="line">  = note: `<span class="meta">#[warn(unused_assignments)]</span>` on by default</span><br><span class="line">  = help: maybe it is overwritten before being read?</span><br><span class="line"></span><br><span class="line">error[E0506]: cannot assign to `x` because it is borrowed</span><br><span class="line"> --&gt; src\main.rs:<span class="number">5</span>:<span class="number">5</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     <span class="keyword">let</span> y: &amp;<span class="built_in">u32</span> = &amp;x;</span><br><span class="line">  |                   -- borrow of `x` occurs here</span><br><span class="line"><span class="number">5</span> |     x += <span class="number">1</span>;<span class="comment">//x变量已经被借用，此时对x变量进行内存操作编译器会报错</span></span><br><span class="line">  |     ^^^^^^ assignment to borrowed `x` occurs here</span><br><span class="line"><span class="number">6</span> |     <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, y);</span><br><span class="line">  |                    - borrow later used here</span><br><span class="line"></span><br><span class="line">error: aborting due to previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0506`.</span><br><span class="line">error: could not compile `rust_proj`.</span><br><span class="line"></span><br><span class="line">To learn more, run the command again with --verbose.</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Rust/" rel="tag"><i class="fa fa-tag"></i> Rust</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/19/C-%E7%BB%86%E8%8A%82%E6%80%BB%E7%BB%93/" rel="next" title="C++细节总结">
+                  <i class="fa fa-chevron-left"></i> C++细节总结
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义变量"><span class="nav-number">1.</span> <span class="nav-text">定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不可变绑定"><span class="nav-number">1.1.</span> <span class="nav-text">不可变绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#自动类型推导"><span class="nav-number">1.1.1.</span> <span class="nav-text">自动类型推导</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#不可变绑定的重新赋值"><span class="nav-number">1.1.2.</span> <span class="nav-text">不可变绑定的重新赋值</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可变绑定"><span class="nav-number">1.2.</span> <span class="nav-text">可变绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可变绑定的赋值"><span class="nav-number">1.2.1.</span> <span class="nav-text">可变绑定的赋值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#可变绑定自动类型推导"><span class="nav-number">1.2.2.</span> <span class="nav-text">可变绑定自动类型推导</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#可变绑定的赋值问题"><span class="nav-number">1.2.3.</span> <span class="nav-text">可变绑定的赋值问题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#可变绑定的重新绑定"><span class="nav-number">1.2.4.</span> <span class="nav-text">可变绑定的重新绑定</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一个经典的错误"><span class="nav-number">1.3.</span> <span class="nav-text">一个经典的错误</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="嘿你的土豆"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">嘿你的土豆</p>
+  <div class="site-description" itemprop="description">我的征途是星辰大海</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kkonghao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;kkonghao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kkonghao@126.com" title="E-Mail &amp;rarr; mailto:kkonghao@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5644679669/profile?topnav=1&wvr=6&is_all=1" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;5644679669&#x2F;profile?topnav=1&amp;wvr=6&amp;is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/yourname" title="Google &amp;rarr; https:&#x2F;&#x2F;plus.google.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">嘿你的土豆</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">90k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.2
+  </div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'NFFFptScgpTiPhpy4cNPz8Ww-gzGzoHsz',
+    appKey: '9Az9HaiBHxvseEr35PuO2KaO',
+    placeholder: "ヾﾉ≧∀≦)o 来呀！快活呀！~",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '4' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

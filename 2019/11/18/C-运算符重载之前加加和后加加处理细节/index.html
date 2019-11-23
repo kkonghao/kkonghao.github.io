@@ -51,17 +51,18 @@
   };
 </script>
 
-  <meta name="description" content="我的征途是星辰大海">
+  <meta name="description" content="一、来自基本数据类型的启发运算符重载的一个重要目的就是使得自定义的数据类型对象拥有基本数据类型的运算能力和运算方法。运算符重载的一个要求之一：在对某一自定义类型的数据进行运算符重载时不能改变运算符运算的优先级。因此为了研究前加加和后加加运算符之间的区别，本文首先以int类型的变量出发研究基本数据前加加和后加加的区别。">
 <meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
-<meta property="og:type" content="website">
-<meta property="og:title" content="土豆の博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;archives&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++运算符重载之前加加和后加加处理细节">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="我的征途是星辰大海">
+<meta property="og:description" content="一、来自基本数据类型的启发运算符重载的一个重要目的就是使得自定义的数据类型对象拥有基本数据类型的运算能力和运算方法。运算符重载的一个要求之一：在对某一自定义类型的数据进行运算符重载时不能改变运算符运算的优先级。因此为了研究前加加和后加加运算符之间的区别，本文首先以int类型的变量出发研究基本数据前加加和后加加的区别。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-18T10:39:32.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://tingyuxuan.com/archives/">
+<link rel="canonical" href="http://tingyuxuan.com/2019/11/18/C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82/">
 
 
 <script id="page-configurations">
@@ -69,13 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 土豆の博客</title>
+  <title>C++运算符重载之前加加和后加加处理细节 | 土豆の博客</title>
   
 
 
@@ -218,236 +219,125 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/18/C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++运算符重载之前加加和后加加处理细节
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-18 18:39:32" itemprop="dateCreated datePublished" datetime="2019-11-18T18:39:32+08:00">2019-11-18</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 18 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/18/C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>563</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-23T18:23:36+08:00"
-              content="2019-11-23">
-          11-23
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/23/rust%E8%AF%AD%E8%A8%80%E5%85%B3%E4%BA%8E%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/" itemprop="url">
-            <span itemprop="name">rust语言关于变量问题的一些细节</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-19T15:05:47+08:00"
-              content="2019-11-19">
-          11-19
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/19/C-%E7%BB%86%E8%8A%82%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">C++细节总结</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-18T18:39:32+08:00"
-              content="2019-11-18">
-          11-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/18/C-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B9%8B%E5%89%8D%E5%8A%A0%E5%8A%A0%E5%92%8C%E5%90%8E%E5%8A%A0%E5%8A%A0%E5%A4%84%E7%90%86%E7%BB%86%E8%8A%82/" itemprop="url">
-            <span itemprop="name">C++运算符重载之前加加和后加加处理细节</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-17T00:30:20+08:00"
-              content="2019-11-17">
-          11-17
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/" itemprop="url">
-            <span itemprop="name">C++完美转发问题---perfect forwarding</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-11T10:58:19+08:00"
-              content="2019-11-11">
-          11-11
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/11/C-%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E6%98%BE%E7%A4%BA%E8%BD%AC%E6%8D%A2/" itemprop="url">
-            <span itemprop="name">C++中的隐式转换和显示转换</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-08T18:56:45+08:00"
-              content="2019-11-08">
-          11-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/08/python%E6%A8%A1%E5%9D%97%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">python模块的安装方式</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-08T11:29:05+08:00"
-              content="2019-11-08">
-          11-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">winows下vscode多文件编译运行配置</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-07T10:51:11+08:00"
-              content="2019-11-07">
-          11-07
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/07/gcc%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99/" itemprop="url">
-            <span itemprop="name">gcc版本下载资源网站</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-06T14:10:17+08:00"
-              content="2019-11-06">
-          11-06
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/06/8086CPU%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A4%E7%9F%A5/" itemprop="url">
-            <span itemprop="name">8086CPU的一些认知</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-06T05:24:29+08:00"
-              content="2019-11-06">
-          11-06
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/06/X86%E6%AE%B5%E6%9C%BA%E5%88%B6%E9%A1%B5%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">X86段机制页机制详解</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+        <h4 id="一、来自基本数据类型的启发"><a href="#一、来自基本数据类型的启发" class="headerlink" title="一、来自基本数据类型的启发"></a>一、来自基本数据类型的启发</h4><p>运算符重载的一个重要目的就是使得自定义的数据类型对象拥有基本数据类型的运算能力和运算方法。运算符重载的一个要求之一：在对某一自定义类型的数据进行运算符重载时不能改变运算符运算的优先级。因此为了研究前加加和后加加运算符之间的区别，本文首先以int类型的变量出发研究基本数据前加加和后加加的区别。<br><a id="more"></a></p>
+<p>结论一：如果未与其他运算结合参与运算，前加加和后加加的执行的结果是一致的；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"前加加的i++的执行次数："</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"=======================\n"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"后加加的i++的执行次数："</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/17/C-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98-perfect-forwarding/" rel="next" title="C++完美转发问题---perfect forwarding">
+                  <i class="fa fa-chevron-left"></i> C++完美转发问题---perfect forwarding
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/19/C-%E7%BB%86%E8%8A%82%E6%80%BB%E7%BB%93/" rel="prev" title="C++细节总结">
+                  C++细节总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           
@@ -472,6 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、来自基本数据类型的启发"><span class="nav-number">1.</span> <span class="nav-text">一、来自基本数据类型的启发</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
