@@ -51,13 +51,13 @@
   };
 </script>
 
-  <meta name="description" content="条件编译123456#ifdef _XXXX... 程序段1...#else... 程序段2...#endif	这表明如果标识符_XXXX已被 #define命令定义过则对程序段1进行编译；否则对程序段2进行编译。 123456#ifndef _XXXX... 程序段1...#else... 程序段2...#endif	这里使用了 #ifndef，表示的是if not def。当然是和 #ifde">
+  <meta name="description" content="条件编译123456#ifdef _XXXX... 程序段1...#else... 程序段2...#endif	这表明如果标识符_XXXX已被 #define命令定义过则对程序段1进行编译；否则对程序段2进行编译。 123456#ifndef _XXXX... 程序段1...#else... 程序段2...#endif	这里使用了 #ifndef，表示的是if not def。当然是和 #ifd">
 <meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C&#x2F;C++中的条件编译">
 <meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;09&#x2F;10&#x2F;C-C-%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="条件编译123456#ifdef _XXXX... 程序段1...#else... 程序段2...#endif	这表明如果标识符_XXXX已被 #define命令定义过则对程序段1进行编译；否则对程序段2进行编译。 123456#ifndef _XXXX... 程序段1...#else... 程序段2...#endif	这里使用了 #ifndef，表示的是if not def。当然是和 #ifde">
+<meta property="og:description" content="条件编译123456#ifdef _XXXX... 程序段1...#else... 程序段2...#endif	这表明如果标识符_XXXX已被 #define命令定义过则对程序段1进行编译；否则对程序段2进行编译。 123456#ifndef _XXXX... 程序段1...#else... 程序段2...#endif	这里使用了 #ifndef，表示的是if not def。当然是和 #ifd">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-09-10T08:39:18.000Z">
 <meta name="twitter:card" content="summary">
@@ -169,7 +169,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">19</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -296,7 +296,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _XXXX</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这表明如果标识符_XXXX已被 <span class="meta">#<span class="meta-keyword">define</span>命令定义过则对程序段1进行编译；否则对程序段2进行编译。</span></span><br></pre></td></tr></table></figure>
+        <a id="more"></a>
+<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _XXXX</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这表明如果标识符_XXXX已被 <span class="meta">#<span class="meta-keyword">define</span>命令定义过则对程序段1进行编译；否则对程序段2进行编译。</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _XXXX</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这里使用了 <span class="meta">#<span class="meta-keyword">ifndef</span>，表示的是<span class="meta-keyword">if</span> not def。当然是和 #<span class="meta-keyword">ifdef</span>相反的状况（如果没有定义了标识符_XXXX，那么执行程序段1，否则执行程序段2）。</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 常量</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> <span class="meta-string">&lt;常量表达式2&gt;</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> <span class="meta-string">&lt;常量表达式3&gt;</span></span></span><br><span class="line">... 程序段<span class="number">3.</span>........</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这里表示，如果常量为真（非<span class="number">0</span>，随便什么数字，只要不是<span class="number">0</span>），就执行程序段<span class="number">1</span>，否则执行程序段<span class="number">2</span>。</span><br></pre></td></tr></table></figure>
 <p>实例：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(_PC) &amp;&amp; defined(_SSE)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __PC_VERIFY_ALIGNMENT__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __PC_VERIFY_ALIGNMENT__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr) /</span></span><br><span class="line">&#123;</span><br><span class="line">	/</span><br><span class="line">		<span class="keyword">if</span> ((((INT)ptr) % <span class="number">16</span>) != <span class="number">0</span>) /</span><br><span class="line">	&#123;</span><br><span class="line">		/</span><br><span class="line">			debugf(NAME_Critical, TEXT(<span class="string">"Unaligned PC data (0x%X)"</span>), ptr);</span><br><span class="line">		/</span><br><span class="line">			DebugBreak();</span><br><span class="line">		/</span><br><span class="line">	&#125;</span><br><span class="line">	/</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
@@ -376,7 +377,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -443,13 +444,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">90k</span>
+    <span title="站点总字数">93k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:24</span>
 </div>
 
 <!--
