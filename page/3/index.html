@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="土豆の博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="我的征途是星辰大海">
+<meta name="keywords" content="C++&#x2F;Python&#x2F;Machine learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="土豆の博客">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;page&#x2F;3&#x2F;index.html">
+<meta property="og:site_name" content="土豆の博客">
+<meta property="og:description" content="我的征途是星辰大海">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://tingyuxuan.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>土豆の博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a href="https://github.com/kkonghao" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z">
+	</path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 
+	C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,
+	84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" 
+	class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,
+	60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">土豆の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">22</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/09/10/C-C-%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/10/C-C-%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" class="post-title-link" itemprop="url">C/C++中的条件编译</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-10 16:39:18" itemprop="dateCreated datePublished" datetime="2019-09-10T16:39:18+08:00">2019-09-10</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/09/10/C-C-%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/10/C-C-%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>787</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _XXXX</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这表明如果标识符_XXXX已被 <span class="meta">#<span class="meta-keyword">define</span>命令定义过则对程序段1进行编译；否则对程序段2进行编译。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _XXXX</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这里使用了 <span class="meta">#<span class="meta-keyword">ifndef</span>，表示的是<span class="meta-keyword">if</span> not def。当然是和 #<span class="meta-keyword">ifdef</span>相反的状况（如果没有定义了标识符_XXXX，那么执行程序段1，否则执行程序段2）。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 常量</span></span><br><span class="line">... 程序段<span class="number">1.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> <span class="meta-string">&lt;常量表达式2&gt;</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> <span class="meta-string">&lt;常量表达式3&gt;</span></span></span><br><span class="line">... 程序段<span class="number">3.</span>........</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">... 程序段<span class="number">2.</span>..</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	这里表示，如果常量为真（非<span class="number">0</span>，随便什么数字，只要不是<span class="number">0</span>），就执行程序段<span class="number">1</span>，否则执行程序段<span class="number">2</span>。</span><br></pre></td></tr></table></figure>
+<p>实例：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(_PC) &amp;&amp; defined(_SSE)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __PC_VERIFY_ALIGNMENT__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __PC_VERIFY_ALIGNMENT__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr) /</span></span><br><span class="line">&#123;</span><br><span class="line">	/</span><br><span class="line">		<span class="keyword">if</span> ((((INT)ptr) % <span class="number">16</span>) != <span class="number">0</span>) /</span><br><span class="line">	&#123;</span><br><span class="line">		/</span><br><span class="line">			debugf(NAME_Critical, TEXT(<span class="string">"Unaligned PC data (0x%X)"</span>), ptr);</span><br><span class="line">		/</span><br><span class="line">			DebugBreak();</span><br><span class="line">		/</span><br><span class="line">	&#125;</span><br><span class="line">	/</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PC_VERIFY_ALIGN_ASSERT(ptr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/09/01/Rust%E4%B8%AD%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="嘿你的土豆">
+      <meta itemprop="description" content="我的征途是星辰大海">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="土豆の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/01/Rust%E4%B8%AD%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Rust中数组问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-01 22:45:08" itemprop="dateCreated datePublished" datetime="2019-09-01T22:45:08+08:00">2019-09-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/09/01/Rust%E4%B8%AD%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/Rust%E4%B8%AD%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Rust数组"><a href="#Rust数组" class="headerlink" title="Rust数组"></a>Rust数组</h4><p>数组，是用来存储一系列数据，但它往往被认为是一系列相同类型的变量，也就是说，数组 是可以存储一个固定大小的相同类型元素的顺序集合。数组的声明并不是声明一个个单独的变量，比如 number0、number1、…、number99，而是声明一个数组变量，比如 numbers，然后使用 numbers[0]、numbers[1]、…、numbers[99] 来代表一个个单独的变量。 数组中的特定元素可以通过索引访问数组可以理解为相同数据类型的值的集合。</p>
+<h5 id="数组的特性"><a href="#数组的特性" class="headerlink" title="数组的特性"></a>数组的特性</h5><ul>
+<li>数组的定义其实就是为分配一段连续的相同数据类型的内存块。</li>
+<li>数组是静态的。这意味着一旦定义和初始化，则永远不可更改它的长度。</li>
+<li>数组的元素有着相同的数据类型，每一个元素都独占者数据类型大小的内存块。数组的内存大小等于数组的长度乘以数组的数据类型。</li>
+<li>数组中每一个元素都按照顺序依次存储，顺序号既代表着元素的存储位置，也是数组元素的唯一标识。</li>
+<li>数组下标从0开始。</li>
+<li>填充数组中的每一个元素的过程称为数组初始化。</li>
+</ul>
+<h5 id="声明和初始化数组"><a href="#声明和初始化数组" class="headerlink" title="声明和初始化数组"></a>声明和初始化数组</h5><p>Rust 语言为数组的声明和初始化提供了3种语法</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr:[<span class="built_in">i32</span>;<span class="number">4</span>] = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>];<span class="comment">//let variable_name:[dataType;size] = [value1,value2,value3];</span></span><br><span class="line">    <span class="keyword">let</span> arr1 = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>];<span class="comment">//let variable_name = [value1,value2,value3];</span></span><br><span class="line">    <span class="keyword">let</span> arr2:[<span class="built_in">i32</span>;<span class="number">4</span>] = [-<span class="number">1</span>;<span class="number">4</span>];<span class="comment">//let variable_name:[dataType;size] = [default_value_for_elements,size];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="数组的长度"><a href="#数组的长度" class="headerlink" title="数组的长度"></a>数组的长度</h5><p>Rust为数组提供了len()方法用于返回数组的长度。len()方法的返回值是一个整型。<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [-<span class="number">1</span>; <span class="number">4</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"array size is :&#123;&#125;"</span>, arr.len());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="for-in-循环遍历数组"><a href="#for-in-循环遍历数组" class="headerlink" title="for in 循环遍历数组"></a>for in 循环遍历数组</h5><p>在其它语言中，一般使用 for 循环来遍历数组，Rust语言也可以，只不过时使用for语句的变种 for … in ..语句。因为数组的长度在编译时就时已知的，因此我们可以使用for … in 语句来遍历数组。注意 for in 语法中的左闭右开法则。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"array is &#123;:?&#125;"</span>, arr);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"array size is :&#123;&#125;"</span>, arr.len());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">0</span>..<span class="number">4</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"index is: &#123;&#125; &amp; value is : &#123;&#125;"</span>, index, arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array is [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>]</span><br><span class="line">array size is :<span class="number">4</span></span><br><span class="line">index is: <span class="number">0</span> &amp; value is : <span class="number">10</span></span><br><span class="line">index is: <span class="number">1</span> &amp; value is : <span class="number">20</span></span><br><span class="line">index is: <span class="number">2</span> &amp; value is : <span class="number">30</span></span><br><span class="line">index is: <span class="number">3</span> &amp; value is : <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<h5 id="迭代数组iter"><a href="#迭代数组iter" class="headerlink" title="迭代数组iter()"></a>迭代数组iter()</h5><p>我们可以使用 iter() 函数为数组生成一个迭代器。然后就可以使用 for in 语法来迭代数组。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"array is &#123;:?&#125;"</span>, arr);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"array size is :&#123;&#125;"</span>, arr.len());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> arr.iter() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"value is :&#123;&#125;"</span>, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array is [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>]</span><br><span class="line">array size is :<span class="number">4</span></span><br><span class="line">value is :<span class="number">10</span></span><br><span class="line">value is :<span class="number">20</span></span><br><span class="line">value is :<span class="number">30</span></span><br><span class="line">value is :<span class="number">40</span></span><br></pre></td></tr></table></figure>
+<h5 id="可变数组"><a href="#可变数组" class="headerlink" title="可变数组"></a>可变数组</h5><p>使用let声明的变量，默认是只读的，数组也不例外。也就是说，默认情况下，数组是不可变的。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">    arr[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> |     <span class="keyword">let</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">  |         --- help: consider changing this to be mutable: `<span class="keyword">mut</span> arr`</span><br><span class="line"><span class="number">4</span> |     arr[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">  |     ^^^^^^^^^^ cannot assign</span><br><span class="line"></span><br><span class="line">error: aborting due to previous error</span><br><span class="line"></span><br><span class="line">error: could not compile `rust_proj`.</span><br><span class="line"></span><br><span class="line">To learn more, run the command again with --verbose.</span><br></pre></td></tr></table></figure>
+<p>数组的不可变，表现为两种形式：变量不可重新赋值为其它数组、数组的元素不可以修改。如果要让数组的元素可以修改，就需要添加mut关键字。例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br></pre></td></tr></table></figure>
+<p>我们将刚刚错误的代码修改如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> arr: [<span class="built_in">i32</span>; <span class="number">4</span>] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">    arr[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"&#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">10</span>, <span class="number">0</span>, <span class="number">30</span>, <span class="number">40</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="数组作为函数参数"><a href="#数组作为函数参数" class="headerlink" title="数组作为函数参数"></a>数组作为函数参数</h4><p>数组可以作为函数的参数。而传递方式有 传值传递 和 引用传递 两种方式。<br>传值传递 就是传递数组的一个副本给函数做参数，函数对副本的任何修改都不会影响到原来的数组。<br>引用传递 就是传递数组在内存上的位置给函数做参数，因此函数对数组的任何修改都会影响到原来的数组。</p>
+<h5 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>];</span><br><span class="line">    update(arr);<span class="comment">//值传递</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Inside main &#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">update</span></span>(<span class="keyword">mut</span> arr: [<span class="built_in">i32</span>; <span class="number">3</span>]) <span class="comment">//值传递</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">3</span> &#123;</span><br><span class="line">        arr[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Inside update &#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Inside update [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">Inside main [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>]</span><br></pre></td></tr></table></figure>
+<h5 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递"></a>引用传递</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>];</span><br><span class="line">    update(&amp;<span class="keyword">mut</span> arr);<span class="comment">//引用传递</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Inside main &#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">update</span></span>(arr: &amp;<span class="keyword">mut</span> [<span class="built_in">i32</span>; <span class="number">3</span>]) <span class="comment">//引用传递</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">3</span> &#123;</span><br><span class="line">        arr[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Inside update &#123;:?&#125;"</span>, arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Inside update [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">Inside main [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="数组声明和常量"><a href="#数组声明和常量" class="headerlink" title="数组声明和常量"></a>数组声明和常量</h4><p>数组(array)有一个唯一的弱点，它的长度必须在编译时就是固定的已知的。声明数组时长度必须指定为整数字面量或者整数常量。如果数组长度是一个变量，则会报编译错误。例如下面的代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> N: <span class="built_in">usize</span> = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">let</span> arr = [<span class="number">0</span>; N]; <span class="comment">//错误: non-constant used with constant</span></span><br><span class="line">    <span class="built_in">print!</span>(<span class="string">"&#123;&#125;"</span>, arr[<span class="number">10</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">error[E0435]: attempt to <span class="keyword">use</span> a non-constant value <span class="keyword">in</span> a constant</span><br><span class="line"> --&gt; src\main.rs:<span class="number">4</span>:<span class="number">19</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     <span class="keyword">let</span> arr = [<span class="number">0</span>; N]; <span class="comment">//错误: non-constant used with constant</span></span><br><span class="line">  |                   ^ non-constant value</span><br><span class="line"></span><br><span class="line">error: aborting due to previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0435`.</span><br><span class="line">error: could not compile `rust_proj`.</span><br><span class="line"></span><br><span class="line">To learn more, run the command again with --verbose.</span><br></pre></td></tr></table></figure>
+<p>报错的原因是：N不是一个常量。</p>
+<p>注意，虽然 N 默认是只读的，但它仍然是一个变量，只不过是一个只读变量而已，只读变量不是常量。因为变量的值是在运行时确定的，而常量的值是在编译器确定的。<br>变量不可用做数组的长度。如果我们将let关键字修改为const关键字，编译就能通过了。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> N: <span class="built_in">usize</span> = <span class="number">20</span>;</span><br><span class="line">    <span class="comment">// 固定大小</span></span><br><span class="line">    <span class="keyword">let</span> arr = [<span class="number">0</span>; N];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print!</span>(<span class="string">"&#123;&#125;"</span>, arr[<span class="number">10</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font face="楷体"> 编译执行结果: </font>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>注意：usize是一个指针所占用的大小。它的实际大小取决于你编译程序的cpu体系结构。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="嘿你的土豆"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">嘿你的土豆</p>
+  <div class="site-description" itemprop="description">我的征途是星辰大海</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kkonghao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;kkonghao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kkonghao@126.com" title="E-Mail &amp;rarr; mailto:kkonghao@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5644679669/profile?topnav=1&wvr=6&is_all=1" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;5644679669&#x2F;profile?topnav=1&amp;wvr=6&amp;is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/yourname" title="Google &amp;rarr; https:&#x2F;&#x2F;plus.google.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">嘿你的土豆</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">100k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:31</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.2
+  </div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'NFFFptScgpTiPhpy4cNPz8Ww-gzGzoHsz',
+    appKey: '9Az9HaiBHxvseEr35PuO2KaO',
+    placeholder: "ヾﾉ≧∀≦)o 来呀！快活呀！~",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '4' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -168,17 +168,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">5</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">22</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -297,7 +297,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>31k</span>
+              <span>30k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -323,76 +323,95 @@
 <p><strong>2.基类为什么需要虚析构函数？</strong></p>
 <p>大家知道，析构函数是为了在对象不被使用之后释放它的资源，虚函数是为了实现多态。那么把析构函数声明为vitual有什么作用呢？直接的讲，C++中基类采用virtual虚析构函数是为了防止内存泄漏。具体地说，如果派生类中申请了内存空间，并在其析构函数中对这些内存空间进行释放。假设基类中采用的是非虚析构函数，当删除基类指针指向的派生类对象时就不会触发动态绑定，因而只会调用基类的析构函数，而不会调用派生类的析构函数。那么在这种情况下，派生类中申请的空间就得不到释放从而产生内存泄漏。所以，为了防止这种情况的发生，C++中基类的析构函数应采用virtual虚析构函数。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Base() &#123;&#125;; <span class="comment">//Base的构造函数</span></span><br><span class="line">    ~Base() <span class="comment">//Base的析构函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Output from the destructor of class Base!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Do something in class Base!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Derived() &#123;&#125;; <span class="comment">//Derived的构造函数</span></span><br><span class="line">    ~Derived() <span class="comment">//Derived的析构函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Output from the destructor of class Derived!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Do something in class Derived!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Derived *pTest1 = <span class="keyword">new</span> Derived(); <span class="comment">//Derived类的指针</span></span><br><span class="line">    pTest1-&gt;DoSomething();</span><br><span class="line">    <span class="keyword">delete</span> pTest1;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Base *pTest2 = <span class="keyword">new</span> Derived(); <span class="comment">//Base类的指针</span></span><br><span class="line">    pTest2-&gt;DoSomething();</span><br><span class="line">    <span class="keyword">delete</span> pTest2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><font face="楷体"><strong>程序的输出结果:</strong></font><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191119160948.png" alt></p>
-<p><font face="楷体"><strong>程序的分析:</strong></font><br>可以正常释放pTest1的资源，而没有正常释放pTest2的资源，因为从结果看Derived类的析构函数并没有被调用。通常情况下类的析构函数里面都是释放内存资源，而析构函数不被调用的话就会造成内存泄漏。原因是指针pTest2是Base类型的指针，释放pTest2时只进行Base类的析构函数。在代码~Base析构函数前面加上virtual关键字后的运行结果如下：<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191119161104.png" alt></p>
-<p><font face="楷体"><strong>结论:</strong></font><br>此时释放指针pTest2时，由于Base的析构函数是virtual的，就会先找到并执行Derived类的析构函数，然后再执行Base类的析构函数，资源正常释放，避免了内存泄漏。因此，只有当一个类被用来作为基类的时候，才会把析构函数写成虚函数。</p>
-<p><strong>4.为什么构造函数不是虚函数?</strong></p>
-<p>1，从存储空间角度<br>虚函数对应一个vtable，这大家都知道，可是这个vtable其实是存储在对象的内存空间的。问题出来了，如果构造函数是虚的，就需要通过 vtable来调用，可是对象还没有实例化，也就是内存空间还没有，无法找到vtable，所以构造函数不能是虚函数。</p>
-<p>2，从使用角度<br>虚函数主要用于在信息不全的情况下，能使重载的函数得到对应的调用。构造函数本身就是要初始化实例，那使用虚函数也没有实际意义呀。所以构造函数没有必要是虚函数。虚函数的作用在于通过父类的指针或者引用来调用它的时候能够变成调用子类的那个成员函数。而构造函数是在创建对象时自动调用的，不可能通过父类的指针或者引用去调用，因此也就规定构造函数不能是虚函数。</p>
-<p>3、构造函数不需要是虚函数，也不允许是虚函数，因为创建一个对象时我们总是要明确指定对象的类型，尽管我们可能通过实验室的基类的指针或引用去访问它。但析构却不一定，我们往往通过基类的指针来销毁对象。这时候如果析构函数不是虚函数，就不能正确识别对象类型从而不能正确调用析构函数。</p>
-<p>4、从实现上看，vtable在构造函数调用后才建立，因而构造函数不可能成为虚函数<br>从实际含义上看，在调用构造函数时还不能确定对象的真实类型（因为子类会调父类的构造函数）；而且构造函数的作用是提供初始化，在对象生命期只执行一次，不是对象的动态行为，也没有太大的必要成为虚函数</p>
-<p>5、当一个构造函数被调用时，它做的首要的事情之一是初始化它的vptr。因此，它只能知道它是“当前”类的，而完全忽视这个对象后面是否还有继承者。当编译器为这个构造函数产生代码时，它是为这个类的构造函数产生代码—-既不是为基类，也不是为它的派生类（因为类不知道谁继承它）。</p>
-<p>所以它使用的vptr必须是对于这个类的vtable。而且，只要它是最后的构造函数调用，那么在这个对象的生命期内，vptr将保持被初始化为指向这个vtable, 但如果接着还有一个更晚派生的构造函数被调用，这个构造函数又将设置vptr指向它的vtable，等.直到最后的构造函数结束。vptr的状态是由被最后调用的构造函数确定的。这就是为什么构造函数调用是从基类到更加派生 类顺序的另一个理由。</p>
-<p>但是，当这一系列构造函数调用正发生时，每个构造函数都已经设置vptr指向它自己的vtable。如果函数调用使用虚机制，它将只产生通过它自己的vtable的调用，而不是最后的vtable（所有构造函数被调用后才会有最后的vtable）。</p>
-<p><strong>4.当i是一个整数的时候i++和++i那个更快？它们的区别是什么？</strong></p>
-<p>几乎一样。i++返回的是i的值，++i返回的是i+1的值，即++i是一个确定的值，是一个可以修改的左值。</p>
-<p>4.vector的reserve和capacity的区别？<br>reserve()用于让容器预留空间，避免再次分配内存；capacity()返回在重新进行分配以前所能容纳的元素数量。</p>
-<p>5.如何初始化const和static数据成员？<br>通常在类外申明static成员，但是static const的整型（bool，char，int，long）可以在类中声明且初始化，static const的其他类型必须在类外初始化（包括整型数组）。</p>
-<p>6.static 和const分别怎么用，类里面static和const可以同时修饰成员函数吗？<br>static的作用：</p>
-<p>对变量：</p>
-<p>1.局部变量：<br>在局部变量之前加上关键字static，局部变量就被定义成为一个局部静态变量。<br>1）内存中的位置：静态存储区<br>2）初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）<br>3）作用域：作用域仍为局部作用域，当定义它的函数或者语句块结束的时候，作用域随之结束。</p>
-<p> 注：当static用来修饰局部变量的时候，它就改变了局部变量的存储位置（从原来的栈中存放改为静态存储区）及其生命周期（局部静态变量在离开作用域之后，并没有被销毁，而是仍然驻留在内存当中，直到程序结束，只不过我们不能再对他进行访问），但未改变其作用域。</p>
-<p>2.全局变量</p>
-<p>在全局变量之前加上关键字static，全局变量就被定义成为一个全局静态变量。</p>
-<p> 1）内存中的位置：静态存储区（静态存储区在整个程序运行期间都存在）</p>
-<p> 2）初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）</p>
-<p> 3）作用域：全局静态变量在声明他的文件之外是不可见的。准确地讲从定义之处开始到文件结尾。</p>
-<p>注：static修饰全局变量，并未改变其存储位置及生命周期，而是改变了其作用域，使当前文件外的源文件无法访问该变量，好处如下：（1）不会被其他文件所访问，修改（2）其他文件中可以使用相同名字的变量，不会发生冲突。对全局函数也是有隐藏作用。而普通全局变量只要定义了，任何地方都能使用，使用前需要声明所有的.c文件，只能定义一次普通全局变量，但是可以声明多次（外部链接）。注意：全局变量的作用域是全局范围，但是在某个文件中使用时，必须先声明。</p>
-<p> 对类中的：</p>
-<p>　1.成员变量</p>
-<p>　　　用static修饰类的数据成员实际使其成为类的全局变量，会被类的所有对象共享，包括派生类的对象。因此，static成员必须在类外进行初始化(初始化格式： int base::var=10;)，而不能在构造函数内进行初始化，不过也可以用const修饰static数据成员在类内初始化 。因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-<pre><code>    特点：
+<font face="楷体">程序的输出结果:</font>
 
-     1.不要试图在头文件中定义(初始化)静态数据成员。在大多数的情况下，这样做会引起重复定义这样的错误。即使加上#ifndef #define #endif或者#pragma once也不行。 
+<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191119160948.png" alt></p>
+<font face="楷体">程序的分析:</font>
 
-     2.静态数据成员可以成为成员函数的可选参数，而普通数据成员则不可以。
+<p>可以正常释放pTest1的资源，而没有正常释放pTest2的资源，因为从结果看Derived类的析构函数并没有被调用。通常情况下类的析构函数里面都是释放内存资源，而析构函数不被调用的话就会造成内存泄漏。原因是指针pTest2是Base类型的指针，释放pTest2时只进行Base类的析构函数。在代码~Base析构函数前面加上virtual关键字后的运行结果如下：</p>
+<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191119161104.png" alt></p>
+<font face="楷体">结论:</font>
+此时释放指针pTest2时，由于Base的析构函数是virtual的，就会先找到并执行Derived类的析构函数，然后再执行Base类的析构函数，资源正常释放，避免了内存泄漏。因此，只有当一个类被用来作为基类的时候，才会把析构函数写成虚函数。<br>
 
-     3.静态数据成员的类型可以是所属类的类型，而普通数据成员则不可以。普通数据成员的只能声明为 所属类类型的指针或引用。
 
-2.成员函数
-</code></pre><p>用static修饰成员函数，使这个类只存在这一份函数，所有对象共享该函数，不含this指针。<br>静态成员是可以独立访问的，也就是说，无须创建任何对象实例就可以访问。base::func(5,3);当static成员函数在类外定义时不需要加static修饰符。<br>在静态成员函数的实现中不能直接引用类中说明的非静态成员，可以引用类中说明的静态成员。因为静态成员函数不含this指针。<br>不可以同时用const和static修饰成员函数。</p>
+
+**3.为什么构造函数不是虚函数?**
+1，从存储空间角度
+虚函数对应一个vtable，这大家都知道，可是这个vtable其实是存储在对象的内存空间的。问题出来了，如果构造函数是虚的，就需要通过 vtable来调用，可是对象还没有实例化，也就是内存空间还没有，无法找到vtable，所以构造函数不能是虚函数。<br>
+
+2，从使用角度
+虚函数主要用于在信息不全的情况下，能使重载的函数得到对应的调用。构造函数本身就是要初始化实例，那使用虚函数也没有实际意义呀。所以构造函数没有必要是虚函数。虚函数的作用在于通过父类的指针或者引用来调用它的时候能够变成调用子类的那个成员函数。而构造函数是在创建对象时自动调用的，不可能通过父类的指针或者引用去调用，因此也就规定构造函数不能是虚函数。
+
+3、构造函数不需要是虚函数，也不允许是虚函数，因为创建一个对象时我们总是要明确指定对象的类型，尽管我们可能通过实验室的基类的指针或引用去访问它。但析构却不一定，我们往往通过基类的指针来销毁对象。这时候如果析构函数不是虚函数，就不能正确识别对象类型从而不能正确调用析构函数。
+
+4、从实现上看，vtable在构造函数调用后才建立，因而构造函数不可能成为虚函数 
+从实际含义上看，在调用构造函数时还不能确定对象的真实类型（因为子类会调父类的构造函数）；而且构造函数的作用是提供初始化，在对象生命期只执行一次，不是对象的动态行为，也没有太大的必要成为虚函数
+
+5、当一个构造函数被调用时，它做的首要的事情之一是初始化它的vptr。因此，它只能知道它是“当前”类的，而完全忽视这个对象后面是否还有继承者。当编译器为这个构造函数产生代码时，它是为这个类的构造函数产生代码---既不是为基类，也不是为它的派生类（因为类不知道谁继承它）。
+
+所以它使用的vptr必须是对于这个类的vtable。而且，只要它是最后的构造函数调用，那么在这个对象的生命期内，vptr将保持被初始化为指向这个vtable, 但如果接着还有一个更晚派生的构造函数被调用，这个构造函数又将设置vptr指向它的vtable，等.直到最后的构造函数结束。vptr的状态是由被最后调用的构造函数确定的。这就是为什么构造函数调用是从基类到更加派生 类顺序的另一个理由。
+
+但是，当这一系列构造函数调用正发生时，每个构造函数都已经设置vptr指向它自己的vtable。如果函数调用使用虚机制，它将只产生通过它自己的vtable的调用，而不是最后的vtable（所有构造函数被调用后才会有最后的vtable）。
+
+**4.当i是一个整数的时候i++和++i那个更快？它们的区别是什么？**
+
+几乎一样。i++返回的是i的值，++i返回的是i+1的值，即++i是一个确定的值，是一个可以修改的左值。
+
+4.vector的reserve和capacity的区别？
+reserve()用于让容器预留空间，避免再次分配内存；capacity()返回在重新进行分配以前所能容纳的元素数量。
+
+5.如何初始化const和static数据成员？
+通常在类外申明static成员，但是static const的整型（bool，char，int，long）可以在类中声明且初始化，static const的其他类型必须在类外初始化（包括整型数组）。
+
+6.static 和const分别怎么用，类里面static和const可以同时修饰成员函数吗？
+static的作用：
+对变量：
+1.局部变量：
+在局部变量之前加上关键字static，局部变量就被定义成为一个局部静态变量。
+- 内存中的位置：静态存储区
+- 初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）
+- 作用域：作用域仍为局部作用域，当定义它的函数或者语句块结束的时候，作用域随之结束。
+
+<br> <font face="楷体">注：当static用来修饰局部变量的时候，它就改变了局部变量的存储位置（从原来的栈中存放改为静态存储区）及其生命周期（局部静态变量在离开作用域之后，并没有被销毁，而是仍然驻留在内存当中，直到程序结束，只不过我们不能再对他进行访问），但未改变其作用域。</font>
+
+<p>2.全局变量<br>在全局变量之前加上关键字static，全局变量就被定义成为一个全局静态变量。</p>
+<ul>
+<li>内存中的位置：静态存储区（静态存储区在整个程序运行期间都存在）</li>
+<li>初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）</li>
+<li>作用域：全局静态变量在声明他的文件之外是不可见的。准确地讲从定义之处开始到文件结尾。</li>
+</ul>
+<p>注：static修饰全局变量，并未改变其存储位置及生命周期，而是改变了其作用域，使当前文件外的源文件无法访问该变量，好处如下：（1）不会被其他文件所访问，修改（2）其他文件中可以使用相同名字的变量，不会发生冲突。对全局函数也是有隐藏作用。而普通全局变量只要定义了，任何地方都能使用，使用前需要声明所有的.c文件，只能定义一次普通全局变量，但是可以声明多次（外部链接）。<br>注意：全局变量的作用域是全局范围，但是在某个文件中使用时，必须先声明。</p>
+<p>  对类中的：<br>  1.成员变量<br>  用static修饰类的数据成员实际使其成为类的全局变量，会被类的所有对象共享，包括派生类的对象。因此，static成员必须在类外进行初始化(初始化格式： int base::var=10;)，而不能在构造函数内进行初始化，不过也可以用const修饰static数据成员在类内初始化 。因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+<ul>
+<li>不要试图在头文件中定义(初始化)静态数据成员。在大多数的情况下，这样做会引起重复定义这样的错误。即使加上#ifndef #define #endif或者#pragma once也不行。 </li>
+<li>静态数据成员可以成为成员函数的可选参数，而普通数据成员则不可以。</li>
+<li><p>静态数据成员的类型可以是所属类的类型，而普通数据成员则不可以。普通数据成员的只能声明为 所属类类型的指针或引用。</p>
+<p>2.成员函数</p>
+</li>
+<li>用static修饰成员函数，使这个类只存在这一份函数，所有对象共享该函数，不含this指针。</li>
+<li>静态成员是可以独立访问的，也就是说，无须创建任何对象实例就可以访问。base::func(5,3);当static成员函数在类外定义时不需要加static修饰符。</li>
+<li>在静态成员函数的实现中不能直接引用类中说明的非静态成员，可以引用类中说明的静态成员。因为静态成员函数不含this指针。 </li>
+<li>不可以同时用const和static修饰成员函数。</li>
+</ul>
 <p>C++编译器在实现const的成员函数的时候为了确保该函数不能修改类的实例的状态，会在函数中添加一个隐式的参数const this*。但当一个成员为static的时候，该函数是没有this指针的。也就是说此时const的用法和static是冲突的。</p>
 <p>我们也可以这样理解：两者的语意是矛盾的。static的作用是表示该函数只作用在类型的静态变量上，与类的实例没有关系；而const的作用是确保函数不能修改类的实例的状态，与类型的静态变量没有关系。因此不能同时用它们。</p>
 <p>const的作用：</p>
-<p>1.限定变量为不可修改。</p>
-<p>2.限定成员函数不可以修改任何数据成员。</p>
-<p>3.const与指针：</p>
-<p>const char *p 表示 指向的内容不能改变。</p>
-<p>char * const p，就是将P声明为常指针，它的地址不能改变，是固定的，但是它的内容可以改变。</p>
-<p>7.指针和引用的区别<br>本质上的区别是，指针是一个新的变量，只是这个变量存储的是另一个变量的地址，我们通过访问这个地址来修改变量。</p>
-<p>而引用只是一个别名，还是变量本身。对引用进行的任何操作就是对变量本身进行操作，因此以达到修改变量的目的。</p>
-<p>注：</p>
-<p>(1)指针：指针是一个变量，只不过这个变量存储的是一个地址，指向内存的一个存储单元；而引用跟原来的变量实质上是同一个东西，只不过是原变量的一个别名而已。如：<br>int a=1;int *p=&a;<br>int a=1;int &amp;b=a;<br>上面定义了一个整形变量和一个指针变量p，该指针变量指向a的存储单元，即p的值是a存储单元的地址。</p>
-<p>而下面2句定义了一个整形变量a和这个整形a的引用b，事实上a和b是同一个东西，在内存占有同一个存储单元。</p>
+<p>1.限定变量为不可修改。<br>2.限定成员函数不可以修改任何数据成员。<br>3.const与指针：</p>
+<ul>
+<li>const char *p 表示 指向的内容不能改变。</li>
+<li>char * const p，就是将P声明为常指针，它的地址不能改变，是固定的，但是它的内容可以改变。</li>
+</ul>
+<p>7.指针和引用的区别<br>本质上的区别是，指针是一个新的变量，只是这个变量存储的是另一个变量的地址，我们通过访问这个地址来修改变量。<br>而引用只是一个别名，还是变量本身。对引用进行的任何操作就是对变量本身进行操作，因此以达到修改变量的目的。</p>
+<p><font face="楷体"> 注意:</font><br>(1)指针：指针是一个变量，只不过这个变量存储的是一个地址，指向内存的一个存储单元；而引用跟原来的变量实质上是同一个东西，只不过是原变量的一个别名而已。如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;<span class="keyword">int</span> *p=&amp;a;</span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;<span class="keyword">int</span> &amp;b=a;</span><br></pre></td></tr></table></figure>
+<p>上面定义了一个整形变量和一个指针变量p，该指针变量指向a的存储单元，即p的值是a存储单元的地址。而下面2句定义了一个整形变量a和这个整形a的引用b，事实上a和b是同一个东西，在内存占有同一个存储单元。</p>
 <p>(2)可以有const指针，但是没有const引用（const引用可读不可改，与绑定对象是否为const无关）</p>
-<p>注：引用可以指向常量，也可以指向变量。例如int &amp;a=b，使引用a指向变量b。而为了让引用指向常量，必须使用常量引用，如const int &amp;a=1; 它代表的是引用a指向一个const int型，这个int型的值不能被改变，而不是引用a的指向不能被改变，因为引用的指向本来就是不可变的，无需加const声明。即指针存在常量指针int const <em>p和指针常量int </em>const p，而引用只存在常量引用int const &amp;a，不存在引用常量int&amp; const a。</p>
-<p>(3)指针可以有多级，但是引用只能是一级（int **p；合法 而 int &amp;&amp;a是不合法的）</p>
-<p>(4)指针的值可以为空，但是引用的值不能为NULL，并且引用在定义的时候必须初始化；</p>
-<p>(5)指针的值在初始化后可以改变，即指向其它的存储单元，而引用在进行初始化后就不会再改变了。</p>
-<p>(6)”sizeof引用”得到的是所指向的变量(对象)的大小，而”sizeof指针”得到的是指针本身的大小；</p>
-<p>(7)指针和引用的自增(++)运算意义不一样；</p>
-<p>(8)指针使用时需要解引用（*），引用则不需要；</p>
-<p>8.什么是多态？多态有什么用途？<br>C++ 多态有两种：静态多态（早绑定）、动态多态（晚绑定）。静态多态是通过函数重载实现的；动态多态是通过虚函数实现的。</p>
-<p>1.定义：“一个接口，多种方法”，程序在运行时才决定要调用的函数。</p>
-<p>2.实现：C++多态性主要是通过虚函数实现的，虚函数允许子类重写override(注意和overload的区别，overload是重载，是允许同名函数的表现，这些函数参数列表/类型不同）。</p>
-<p>注：多态与非多态的实质区别就是函数地址是静态绑定还是动态绑定。如果函数的调用在编译器编译期间就可以确定函数的调用地址，并产生代码，说明地址是静态绑定的；如果函数调用的地址是 需要在运行期间才确定，属于动态绑定。</p>
-<p>3.目的：接口重用。封装可以使得代码模块化，继承可以扩展已存在的代码，他们的目的都是为了代码重用。而多态的目的则是为了接口重用。</p>
-<p>4.用法：声明基类的指针，利用该指针指向任意一个子类对象，调用相应的虚函数，可以根据指向的子类的不同而实现不同的方法。</p>
-<p>用一句话概括：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数。</p>
+<p>注：引用可以指向常量，也可以指向变量。例如int &amp;a=b，使引用a指向变量b。而为了让引用指向常量，必须使用常量引用，如const int &amp;a=1; 它代表的是引用a指向一个const int型，这个int型的值不能被改变，而不是引用a的指向不能被改变，因为引用的指向本来就是不可变的，无需加const声明。即指针存在常量指针int const *p和指针常量int *const p，而引用只存在常量引用int const &amp;a，不存在引用常量int&amp; const a。</p>
+<p>(3)指针可以有多级，但是引用只能是一级（int **p；合法 而 int &amp;&amp;a是不合法的）<br>(4)指针的值可以为空，但是引用的值不能为NULL，并且引用在定义的时候必须初始化；<br>(5)指针的值在初始化后可以改变，即指向其它的存储单元，而引用在进行初始化后就不会再改变了。<br>(6)”sizeof引用”得到的是所指向的变量(对象)的大小，而”sizeof指针”得到的是指针本身的大小；<br>(7)指针和引用的自增(++)运算意义不一样；<br>(8)指针使用时需要解引用（*），引用则不需要；</p>
+<p>8.什么是多态？多态有什么用途？<br>C++多态有两种：静态多态（早绑定）、动态多态（晚绑定）。静态多态是通过函数重载实现的；动态多态是通过虚函数实现的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>定义：“一个接口，多种方法”，程序在运行时才决定要调用的函数。</span><br><span class="line"><span class="number">2.</span>实现：C++多态性主要是通过虚函数实现的，虚函数允许子类重写override(注意和overload的区别，overload是重载，是允许同名函数的表现，这些函数参数列表/类型不同）。</span><br><span class="line"></span><br><span class="line">注：多态与非多态的实质区别就是函数地址是静态绑定还是动态绑定。如果函数的调用在编译器编译期间就可以确定函数的调用地址，并产生代码，说明地址是静态绑定的；如果函数调用的地址是 需要在运行期间才确定，属于动态绑定。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>目的：接口重用。封装可以使得代码模块化，继承可以扩展已存在的代码，他们的目的都是为了代码重用。而多态的目的则是为了接口重用。</span><br><span class="line"><span class="number">4.</span>用法：声明基类的指针，利用该指针指向任意一个子类对象，调用相应的虚函数，可以根据指向的子类的不同而实现不同的方法。</span><br><span class="line">用一句话概括：在基类的函数前加上<span class="keyword">virtual</span>关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数。</span><br></pre></td></tr></table></figure>
 <p>9.关于重载、重写、隐藏的区别</p>
-<p>Overload(重载)：在C++程序中，可以将语义、功能相似的几个函数用同一个名字表示，但参数或返回值不同（包括类型、顺序不同），即函数重载。<br>（1）相同的范围（在同一个类中）；<br>（2）函数名字相同；<br>（3）参数不同；<br>（4）virtual 关键字可有可无。</p>
-<p>Override(覆盖或重写)：是指派生类函数覆盖基类函数，特征是：<br>（1）不同的范围（分别位于派生类与基类）；<br>（2）函数名字相同；<br>（3）参数相同；<br>（4）基类函数必须有virtual 关键字。<br>注：重写基类虚函数的时候，会自动转换这个函数为virtual函数，不管有没有加virtual，因此重写的时候不加virtual也是可以的，不过为了易读性，还是加上比较好。</p>
-<p>Overwrite(重写)：隐藏，是指派生类的函数屏蔽了与其同名的基类函数，规则如下：<br>（1）如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无virtual关键字，基类的函数将被隐藏（注意别与重载混淆）。<br>（2）如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Overload(重载)：在C++程序中，可以将语义、功能相似的几个函数用同一个名字表示，但参数或返回值不同（包括类型、顺序不同），即函数重载。</span><br><span class="line">（<span class="number">1</span>）相同的范围（在同一个类中）；</span><br><span class="line">（<span class="number">2</span>）函数名字相同；</span><br><span class="line">（<span class="number">3</span>）参数不同；</span><br><span class="line">（<span class="number">4</span>）<span class="keyword">virtual</span> 关键字可有可无。</span><br><span class="line"></span><br><span class="line">Override(覆盖或重写)：是指派生类函数覆盖基类函数，特征是：</span><br><span class="line">（<span class="number">1</span>）不同的范围（分别位于派生类与基类）；</span><br><span class="line">（<span class="number">2</span>）函数名字相同；</span><br><span class="line">（<span class="number">3</span>）参数相同；</span><br><span class="line">（<span class="number">4</span>）基类函数必须有<span class="keyword">virtual</span> 关键字。</span><br><span class="line">注：重写基类虚函数的时候，会自动转换这个函数为<span class="keyword">virtual</span>函数，不管有没有加<span class="keyword">virtual</span>，因此重写的时候不加<span class="keyword">virtual</span>也是可以的，不过为了易读性，还是加上比较好。</span><br><span class="line"></span><br><span class="line">Overwrite(重写)：隐藏，是指派生类的函数屏蔽了与其同名的基类函数，规则如下：</span><br><span class="line">（<span class="number">1</span>）如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无<span class="keyword">virtual</span>关键字，基类的函数将被隐藏（注意别与重载混淆）。</span><br><span class="line">（<span class="number">2</span>）如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有<span class="keyword">virtual</span>关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）。</span><br></pre></td></tr></table></figure>
 <p>10.虚函数表<br>详细解释可以参考博客：<a href="https://www.cnblogs.com/jin521/p/5602190.html" target="_blank" rel="noopener">https://www.cnblogs.com/jin521/p/5602190.html</a></p>
 <p>多态是由虚函数实现的，而虚函数主要是通过虚函数表（V-Table）来实现的。</p>
 <p>如果一个类中包含虚函数（virtual修饰的函数），那么这个类就会包含一张虚函数表，虚函数表存储的每一项是一个虚函数的地址。如下图：</p>
@@ -443,9 +462,9 @@
 <p>4.其他<br>在编译时， 编译器通常不为const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高。<br>宏替换只作替换，不做计算，不做表达式求解。</p>
 <p>17.悬空指针与野指针区别</p>
 <ul>
-<li>悬空指针：当所指向的对象被释放或者收回，但是没有让指针指向NULL；<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="keyword">char</span> *dp = <span class="literal">NULL</span>;</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">char</span> c;</span><br><span class="line">       dp = &amp;c;</span><br><span class="line">   &#125; </span><br><span class="line">  <span class="comment">//变量c释放，dp变成空悬指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>悬空指针：当所指向的对象被释放或者收回，但是没有让指针指向NULL；</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="keyword">char</span> *dp = <span class="literal">NULL</span>;</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">char</span> c;</span><br><span class="line">       dp = &amp;c;</span><br><span class="line">   &#125; </span><br><span class="line">  <span class="comment">//变量c释放，dp变成空悬指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *dp = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(A_CONST);</span><br><span class="line">    <span class="built_in">free</span>(dp);         <span class="comment">//dp变成一个空悬指针</span></span><br><span class="line">    dp = <span class="literal">NULL</span>;        <span class="comment">//dp不再是空悬指针</span></span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>野指针：那些未初始化的指针；</li>
@@ -454,29 +473,9 @@
 <p>18.struct与class的区别？<br>本质区别是访问的默认控制：默认的继承访问权限，class是private，struct是public；</p>
 <p>19.sizeof和strlen的区别？<br>功能不同：<br>sizeof是操作符，参数为任意类型，主要计算类型占用内存大小。<br>strlen（）是函数，其函数原型为：extern unsigned int strlen(char <em>s）;其参数为char</em>,strlen只能计算以”\0”结尾字符串的长度，计算结果不包括”\0”。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *ss = <span class="string">"0123456789"</span>;</span><br><span class="line"><span class="comment">//s1=4,ss为字符指针在内存中占用4个字节</span></span><br><span class="line"><span class="keyword">int</span> s1 = <span class="keyword">sizeof</span>(ss);</span><br><span class="line"><span class="comment">//s2=10,计算字符串ss的长度</span></span><br><span class="line"><span class="keyword">int</span> s2 = <span class="built_in">strlen</span>(ss);</span><br></pre></td></tr></table></figure>
-<p>参数不同：<br>当将字符数组作为sizeof（）的参数时，计算字符数组占用内存大小；当将字符数组作为strlen（)函数，字符数组转化为char<em>。因为sizeof的参数为任意类型，而strlen（）函数参数只能为char</em>，当参数不是char<em>必须转换为char</em>。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">"abced"</span>;</span><br><span class="line"><span class="comment">//a为6（1*6），字符数组str包含6个元素（a,b,c,d,e,\0)，每个元素占用1个字节</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="keyword">sizeof</span>(str);</span><br><span class="line"><span class="comment">//len为5，不包含"\0"，</span></span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line"><span class="comment">//str[0]是字符元素a，所以b=1</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="keyword">sizeof</span>(str[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure><br>20.32位，64位系统中，各种常用内置数据类型占用的字节数？<br>char ：1个字节(固定)</p>
-<p><em>(即指针变量): 4个字节(32位机的寻址空间是4个字节。同理64位编译器)(变化</em>)</p>
-<p>short int : 2个字节(固定)</p>
-<p>int： 4个字节(固定)</p>
-<p>unsigned int : 4个字节(固定)</p>
-<p>float: 4个字节(固定)</p>
-<p>double: 8个字节(固定)</p>
-<p>long: 4个字节</p>
-<p>unsigned long: 4个字节(变化*,其实就是寻址控件的地址长度数值)</p>
-<p>long long: 8个字节(固定)</p>
-<p>64位操作系统</p>
-<p>char ：1个字节(固定)</p>
-<p>*(即指针变量): 8个字节</p>
-<p>short int : 2个字节(固定)</p>
-<p>int： 4个字节(固定)</p>
-<p>unsigned int : 4个字节(固定)</p>
-<p>float: 4个字节(固定)</p>
-<p>double: 8个字节(固定)</p>
-<p>long: 8个字节</p>
-<p>unsigned long: 8个字节(变化*其实就是寻址控件的地址长度数值)</p>
-<p>long long: 8个字节(固定)</p>
-<p>除*与long 不同其余均相同。</p>
-<p>21.virtual, inline, decltype,volatile,static, const关键字的作用？使用场景？<br>inline：在c/c++中，为了解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题，特别的引入了inline修饰符，表示为内联函数。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">//函数定义为inline即:内联函数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> *<span class="title">dbtest</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (i % <span class="number">2</span> &gt; <span class="number">0</span>) ? <span class="string">"奇"</span> : <span class="string">"偶"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i:%d    奇偶性:%s /n"</span>, i, dbtest(i));</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="comment">//在for循环的每个dbtest(i)的地方替换成了 (i % 2 &gt; 0) ? "奇" : "偶"，避免了频繁调用函数，对栈内存的消耗</span></span><br></pre></td></tr></table></figure></p>
+<p>参数不同：<br>当将字符数组作为sizeof（）的参数时，计算字符数组占用内存大小；当将字符数组作为strlen（)函数，字符数组转化为char<em>。因为sizeof的参数为任意类型，而strlen（）函数参数只能为char</em>，当参数不是char<em>必须转换为char</em>。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">"abced"</span>;</span><br><span class="line"><span class="comment">//a为6（1*6），字符数组str包含6个元素（a,b,c,d,e,\0)，每个元素占用1个字节</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="keyword">sizeof</span>(str);</span><br><span class="line"><span class="comment">//len为5，不包含"\0"，</span></span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line"><span class="comment">//str[0]是字符元素a，所以b=1</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="keyword">sizeof</span>(str[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></p>
+<p>21.virtual, inline, decltype,volatile,static, const关键字的作用？使用场景？<br>inline：在c/c++中，为了解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题，特别的引入了inline修饰符，表示为内联函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">//函数定义为inline即:内联函数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> *<span class="title">dbtest</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (i % <span class="number">2</span> &gt; <span class="number">0</span>) ? <span class="string">"奇"</span> : <span class="string">"偶"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i:%d    奇偶性:%s /n"</span>, i, dbtest(i));</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="comment">//在for循环的每个dbtest(i)的地方替换成了 (i % 2 &gt; 0) ? "奇" : "偶"，避免了频繁调用函数，对栈内存的消耗</span></span><br></pre></td></tr></table></figure>
 <p>decltype:从表达式中推断出要定义变量的类型，但却不想用表达式的值去初始化变量。还有可能是函数的返回类型为某表达式的的值类型。</p>
 <p>volatile：volatile 关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素更改，比如：操作系统、硬件或者其它线程等。遇到这个关键字声明的变量，编译器对访问该变量的代码就不再进行优化，从而可以提供对特殊地址的稳定访问。</p>
 <p>static:<br>隐藏在变量和函数名前面如果未加static，则它们是全局可见的。加了static，就会对其它源文件隐藏，利用这一特性可以在不同的文件中定义同名函数和同名变量，而不必担心命名冲  突。static可以用作函数和变量的前缀，对于函数来讲，static的作用仅限于隐藏 。</p>
@@ -485,23 +484,17 @@
 <p>基于以上两点可以得出一个结论：把局部变量改变为静态变量后是改变了它的存储方式即改变了它的生存期。把全局变量改变为静态变量后是改变了它的作用域， 限制了它的使用范围。因此static 这个说明符在不同的地方所起的作用是不同的。</p>
 <p> 3.static的第三个作用是默认初始化为0（static变量）</p>
 <p>最后对static的三条作用做一句话总结。首先static的最主要功能是隐藏，其次因为static变量存放在静态存储区，所以它具备持久性和默认值0。</p>
-<p>　　4.static的第四个作用：C++中的类成员声明static（有些地方与以上作用重叠）</p>
+<p> 4.static的第四个作用：C++中的类成员声明static（有些地方与以上作用重叠）</p>
 <p> 在类中声明static变量或者函数时，初始化时使用作用域运算符来标明它所属类，因此，静态数据成员是类的成员，而不是对象的成员，这样就出现以下作用：</p>
-<p>(1)类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致 了它仅能访问类的静态数据和静态成员函数。      </p>
-<p>(2)不能将静态成员函数定义为虚函数。      </p>
-<p>(3)由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊 ，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。</p>
-<p>(4)由于静态成员函数没有this指针，所以就差不多等同于nonmember函数，结果就 产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X W indow系统结合，同时也成功的应用于线程函数身上。 （这条没遇见过）  </p>
-<p>(5)static并没有增加程序的时空开销，相反她还缩短了子类对父类静态成员的访问 时间，节省了子类的内存空间。      </p>
-<p>(6)静态数据成员在&lt;定义或说明&gt;时前面加关键字static。      </p>
-<p>(7)静态数据成员是静态存储的，所以必须对它进行初始化。 （程序员手动初始化，否则编译时一般不会报错，但是在Link时会报错误）     </p>
-<p>(8)静态成员初始化与一般数据成员初始化不同:</p>
-<p>初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>初始化时不加该成员的访问权限控制符private，public等；<br>初始化时使用作用域运算符来标明它所属类；<br>           所以我们得出静态数据成员初始化的格式：<br>&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;</p>
+<p>(1)类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致 了它仅能访问类的静态数据和静态成员函数。<br>(2)不能将静态成员函数定义为虚函数。<br>(3)由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊 ，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。<br>(4)由于静态成员函数没有this指针，所以就差不多等同于nonmember函数，结果就 产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X W indow系统结合，同时也成功的应用于线程函数身上。 （这条没遇见过）<br>(5)static并没有增加程序的时空开销，相反她还缩短了子类对父类静态成员的访问 时间，节省了子类的内存空间。<br>(6)静态数据成员在&lt;定义或说明&gt;时前面加关键字static。<br>(7)静态数据成员是静态存储的，所以必须对它进行初始化。 （程序员手动初始化，否则编译时一般不会报错，但是在Link时会报错误）<br>(8)静态成员初始化与一般数据成员初始化不同:</p>
+<p>初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>初始化时不加该成员的访问权限控制符private，public等；<br>初始化时使用作用域运算符来标明它所属类；<br>静态数据成员初始化的格式：&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;</p>
 <p>(9)为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。</p>
 <p>22.深拷贝与浅拷贝的区别？<br>1.什么时候用到拷贝函数？<br>  a.一个对象以值传递的方式传入函数体；<br>  b.一个对象以值传递的方式从函数返回；<br>  c.一个对象需要通过另外一个对象进行初始化。<br>  如果在类中没有显式地声明一个拷贝构造函数，那么，编译器将会自动生成一个默认的拷贝构造函数，该构造函数完成对象之间的位拷贝。位拷贝又称浅拷贝；</p>
 <p>2.是否应该自定义拷贝函数？<br> 自定义拷贝构造函数是一种良好的编程风格，它可以阻止编译器形成默认的拷贝构造函数，提高源码效率。</p>
 <p>3.什么叫深拷贝？什么是浅拷贝？两者异同？<br>  如果一个类拥有资源，当这个类的对象发生复制过程的时候，资源重新分配，这个过程就是深拷贝，反之，没有重新分配资源，就是浅拷贝。</p>
 <p>4.深拷贝好还是浅拷贝好？<br>如果实行位拷贝，也就是把对象里的值完全复制给另一个对象，如A=B。这时，如果B中有一个成员变量指针已经申请了内存，那A中的那个成员变量也指向同一块内存。这就出现了问题：当B把内存释放了（如：析构），这时A内的指针就是野指针了，出现运行错误。</p>
-<p>参考博客：<br>    <a href="https://blog.csdn.net/caoshangpa/article/details/79226270" target="_blank" rel="noopener">https://blog.csdn.net/caoshangpa/article/details/79226270</a><br>        <a href="http://www.cnblogs.com/BlueTzar/articles/1223313.html" target="_blank" rel="noopener">http://www.cnblogs.com/BlueTzar/articles/1223313.html</a><br>23.派生类中构造函数，析构函数调用顺序？<br>构造函数：“先基后派”；析构函数：“先派后基”。</p>
+<p>参考博客：<br>    <a href="https://blog.csdn.net/caoshangpa/article/details/79226270" target="_blank" rel="noopener">https://blog.csdn.net/caoshangpa/article/details/79226270</a><br>        <a href="http://www.cnblogs.com/BlueTzar/articles/1223313.html" target="_blank" rel="noopener">http://www.cnblogs.com/BlueTzar/articles/1223313.html</a></p>
+<p>23.派生类中构造函数，析构函数调用顺序？<br>构造函数：“先基后派”；析构函数：“先派后基”。</p>
 <p>24.C++类中数据成员初始化顺序？</p>
 <p>1.成员变量在使用初始化列表初始化时，与构造函数中初始化成员列表的顺序无关，只与定义成员变量的顺序有关。<br>2.如果不使用初始化列表初始化，在构造函数内初始化时，此时与成员变量在构造函数中的位置有关。<br>3.类中const成员常量必须在构造函数初始化列表中初始化。<br>4.类中static成员变量，只能在类内外初始化(同一类的所有实例共享静态成员变量)。</p>
 <p>初始化顺序：</p>
@@ -530,16 +523,14 @@
 <li>智能指针是在 <memory> 头文件中的std命名空间中定义的，该指针用于确保程序不存在内存和资源泄漏且是异常安全的。它们对RAII“获取资源即初始化”编程至关重要，RAII的主要原则是为将任何堆分配资源（如动态分配内存或系统对象句柄）的所有权提供给其析构函数包含用于删除或释放资源的代码以及任何相关清理代码的堆栈分配对象。大多数情况下，当初始化原始指针或资源句柄以指向实际资源时，会立即将指针传递给智能指针。</memory></li>
 <li>智能指针的设计思想：将基本类型指针封装为类对象指针（这个类肯定是个模板，以适应不同基本类型的需求），并在析构函数里编写delete语句删除指针指向的内存空间。</li>
 <li>unique_ptr只允许基础指针的一个所有者。unique_ptr小巧高效；大小等同于一个指针且支持右值引用，从而可实现快速插入和对STL集合的检索。</li>
-<li>shared_ptr采用引用计数的智能指针，主要用于要将一个原始指针分配给多个所有者（例如，从容器返回了指针副本又想保留原始指针时）的情况。当所有的shared_ptr所有者超出了范围或放弃所有权，才会删除原始指针。大小为两个指针；一个用于对象，另一个用于包含引用计数的共享控制块。最安全的分配和使用动态内存的方法是调用make_shared标准库函数，此函数在动态分配内存中分配一个对象并初始化它，返回对象的shared_ptr。<br>补充:<br>链接地址:<a href="https://www.cnblogs.com/lanxuezaipiao/p/4132096.html" target="_blank" rel="noopener">https://www.cnblogs.com/lanxuezaipiao/p/4132096.html</a></li>
+<li>shared_ptr采用引用计数的智能指针，主要用于要将一个原始指针分配给多个所有者（例如，从容器返回了指针副本又想保留原始指针时）的情况。当所有的shared_ptr所有者超出了范围或放弃所有权，才会删除原始指针。大小为两个指针；一个用于对象，另一个用于包含引用计数的共享控制块。最安全的分配和使用动态内存的方法是调用make_shared标准库函数，此函数在动态分配内存中分配一个对象并初始化它，返回对象的shared_ptr。</li>
 </ul>
-<p>28.计算类大小例子<br>class A {};: sizeof(A) = 1;<br>class A { virtual Fun(){} };: sizeof(A) = 4(32位机器)/8(64位机器);<br>class A { static int a; };: sizeof(A) = 1;<br>class A { int a; };: sizeof(A) = 4;<br>class A { static int a; int b; };: sizeof(A) = 4;</p>
-<p>类中用static声明的成员变量不计算入类的大小中，因为static data不是实例的一部分。static的属于全局的，他不会占用类的存储，他有专门的地方存储 （全局变量区）</p>
-<p>29.大端与小端的概念？各自的优势是什么？<br>大端与小端是用来描述多字节数据在内存中的存放顺序，即字节序。大端（Big Endian）指低地址端存放高位字节，小端（Little Endian）是指低地址端存放低位字节。<br>需要记住计算机是以字节为存储单位。<br>为了方便记忆可把大端和小端称作高尾端和低尾端，eg：如果是高尾端模式一个字符串“11223344”把尾部“44”放在地址的高位，如果是地尾端模式，把“44”放在地址的低位。<br>各自优势：</p>
+<p>补充:<br>链接地址:<a href="https://www.cnblogs.com/lanxuezaipiao/p/4132096.html" target="_blank" rel="noopener">https://www.cnblogs.com/lanxuezaipiao/p/4132096.html</a></p>
+<p>28.计算类大小例子<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span>&#125;;: <span class="keyword">sizeof</span>(A) = <span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="title">Fun</span><span class="params">()</span></span>&#123;&#125; &#125;;: <span class="keyword">sizeof</span>(A) = <span class="number">4</span>(<span class="number">32</span>位机器)/<span class="number">8</span>(<span class="number">64</span>位机器);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span> <span class="keyword">static</span> <span class="keyword">int</span> a; &#125;;: <span class="keyword">sizeof</span>(A) = <span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span> <span class="keyword">int</span> a; &#125;;: <span class="keyword">sizeof</span>(A) = <span class="number">4</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span> <span class="keyword">static</span> <span class="keyword">int</span> a; <span class="keyword">int</span> b; &#125;;: <span class="keyword">sizeof</span>(A) = <span class="number">4</span>;</span><br></pre></td></tr></table></figure><br>类中用static声明的成员变量不计算入类的大小中，因为static data不是实例的一部分。static的属于全局的，他不会占用类的存储，他有专门的地方存储 （全局变量区）</p>
+<p>29.大端与小端的概念？各自的优势是什么？<br>大端与小端是用来描述多字节数据在内存中的存放顺序，即字节序。大端（Big Endian）指低地址端存放高位字节，小端（Little Endian）是指低地址端存放低位字节。<br>需要记住计算机是以字节为存储单位。<br>为了方便记忆可把大端和小端称作高尾端和低尾端，eg：如果是高尾端模式一个字符串“11223344”把尾部“44”放在地址的高位，如果是地尾端模式，把“44”放在地址的低位。</p>
+<p>各自优势：</p>
 <p>Big Endian：符号位的判定固定为第一个字节，容易判断正负。<br>Little Endian：长度为1，2，4字节的数，排列方式都是一样的，数据类型转换非常方便。<br>举一个例子，比如数字0x12 34 56 78在内存中的表示形式为：</p>
-<p>1)大端模式：<br>低地址 ————————-&gt; 高地址<br>0x12 | 0x34 | 0x56 | 0x78</p>
-<p>2)小端模式：<br>低地址 —————————&gt; 高地址<br>0x78 | 0x56 | 0x34 | 0x12</p>
-<p>30.C++中<em>和&amp;同时使用是什么意思?<br>template <class t><br>void InsertFront(Node<T></T></class></em> &amp; head, T item)<br>上面一个函数的声明，其中第一个参数*和&amp;分别是什么意思？<br>head是个指针，前面为什么加个&amp;</p>
-<p>本来“<em> head”代表的是传指针的，但是只能改变head指向的内容，而“</em> &amp;head”意思是说head是传进来的指针的同名指针，就能既改变<em>head指向的内容，又能改变head这个指针。比如：main()有个Node<int></int></em> p,int t；当调用insertFront(p,t)是，如果template <class t> void InsertFront(Node<T>* &amp; head, T item)中有对head进行赋值改变时，main()中的p也会跟着改变，如果没有&amp;这个别名标识时，p则不会随着head的改变而改变。</T></class></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)大端模式：</span><br><span class="line">低地址 -----------------&gt; 高地址</span><br><span class="line"><span class="number">0x12</span> | <span class="number">0x34</span> | <span class="number">0x56</span> | <span class="number">0x78</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>)小端模式：</span><br><span class="line">低地址 ------------------&gt; 高地址</span><br><span class="line"><span class="number">0x78</span> | <span class="number">0x56</span> | <span class="number">0x34</span> | <span class="number">0x12</span></span><br></pre></td></tr></table></figure>
 <p>31.C++vector与list区别<br>链接地址:<br><a href="https://www.cnblogs.com/shijingjing07/p/5587719.html" target="_blank" rel="noopener">https://www.cnblogs.com/shijingjing07/p/5587719.html</a></p>
 <p>32.C语言中static关键字作用<br>在C语言中static的作用如下</p>
 <p>第一、在修饰变量的时候，static修饰的静态局部变量只执行一次，而且延长了局部变量的生命周期，直到程序运行结束以后才释放。<br>第二、static修饰全局变量的时候，这个全局变量只能在本文件中访问，不能在其它文件中访问，即便是extern外部声明也不可以。<br>第三、static修饰一个函数，则这个函数的只能在本文件中调用，不能被其他文件调用。Static修饰的局部变量存放在全局数据区的静态变量区。初始化的时候自动初始化为0；<br>（1）不想被释放的时候，可以使用static修饰。比如修饰函数中存放在栈空间的数组。如果不想让这个数组在函数调用结束释放可以使用static修饰<br>（2）考虑到数据安全性（当程想要使用全局变量的时候应该先考虑使用static）</p>
@@ -549,8 +540,7 @@
 <p>34.定义一个空类编译器做了哪些操作？<br>如果你只是声明一个空类，不做任何事情的话，编译器会自动为你生成一个默认构造函数、一个拷贝默认构造函数、一个默认拷贝赋值操作符和一个默认析构函数。这些函数只有在第一次被调用时，才会被编译器创建。所有这些函数都是inline和public的。</p>
 <p>定义一个空类例如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>一个空的class在C++编译器处理过后就不再为空，编译器会自动地为我们声明一些member function，一般编译过就相当于：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Empty();				<span class="comment">// 缺省构造函数//</span></span><br><span class="line">	Empty(<span class="keyword">const</span> Empty &amp;);			 <span class="comment">// 拷贝构造函数//</span></span><br><span class="line">	~Empty();				<span class="comment">// 析构函数//</span></span><br><span class="line">	Empty &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Empty &amp;);         <span class="comment">// 赋值运算符//</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>需要注意的是，只有当你需要用到这些函数的时候，编译器才会去定义它们。</p>
 <p>35.友元函数和友元类<br>链接地址:<a href="https://www.cnblogs.com/staring-hxs/p/3432161.html" target="_blank" rel="noopener">https://www.cnblogs.com/staring-hxs/p/3432161.html</a></p>
-<p>36.什么情况下，类的析构函数应该声明为虚函数？为什么？<br>基类指针可以指向派生类的对象（多态性），如果删除该指针delete []p；就会调用该指针指向的派生类析构函数，而派生类的析构函数又自动调用基类的析构函数，这样整个派生类的对象完全被释放。</p>
-<p>如果析构函数不被声明成虚函数，则编译器实施静态绑定，在删除基类指针时，只会调用基类的析构函数而不调用派生类析构函数，这样就会造成派生类对象析构不完全。</p>
+<p>36.什么情况下，类的析构函数应该声明为虚函数？为什么？<br>基类指针可以指向派生类的对象（多态性），如果删除该指针delete []p；就会调用该指针指向的派生类析构函数，而派生类的析构函数又自动调用基类的析构函数，这样整个派生类的对象完全被释放。<br>如果析构函数不被声明成虚函数，则编译器实施静态绑定，在删除基类指针时，只会调用基类的析构函数而不调用派生类析构函数，这样就会造成派生类对象析构不完全。</p>
 <p>37.哪些函数不能成为虚函数？<br>不能被继承的函数和不能被重写的函数。</p>
 <p>1）普通函数<br>普通函数不属于成员函数，是不能被继承的。普通函数只能被重载，不能被重写，因此声明为虚函数没有意义。因为编译器会在编译时绑定函数。<br>而多态体现在运行时绑定。通常通过基类指针指向子类对象实现多态。</p>
 <p>2）友元函数<br>友元函数不属于类的成员函数，不能被继承。对于没有继承特性的函数没有虚函数的说法。</p>
@@ -598,12 +588,7 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    base(<span class="keyword">int</span> _a): a(_a)    &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"构造函数"</span>&lt;&lt;<span class="built_in">endl</span>;&#125;</span><br><span class="line">    ~base()    &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"析构函数"</span>&lt;&lt;<span class="built_in">endl</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;base&gt; up1(<span class="keyword">new</span> base(<span class="number">2</span>));</span><br><span class="line">    <span class="comment">// unique_ptr&lt;base&gt; up2 = up1;   //编译器提示未定义</span></span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;base&gt; up2 = move(up1);  <span class="comment">//转移对象的所有权 </span></span><br><span class="line">    <span class="comment">// cout&lt;&lt;up1-&gt;a&lt;&lt;endl; //运行时错误 </span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;up2-&gt;a&lt;&lt;<span class="built_in">endl</span>; <span class="comment">//通过解引用运算符获取封装的原始指针 </span></span><br><span class="line">    up2.reset(); <span class="comment">// 显式释放内存 </span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;base&gt; sp1(<span class="keyword">new</span> base(<span class="number">3</span>));</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;base&gt; sp2 = sp1;  <span class="comment">//增加引用计数 </span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"共享智能指针的数量："</span>&lt;&lt;sp2.use_count()&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//2</span></span><br><span class="line">    sp1.reset();  <span class="comment">//</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"共享智能指针的数量："</span>&lt;&lt;sp2.use_count()&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//1</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;sp2-&gt;a&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">    <span class="keyword">auto</span> sp3 = make_shared&lt;base&gt;(<span class="number">4</span>);<span class="comment">//利用make_shared函数动态分配内存 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.智能指针的陷阱（循环引用等问题）<br>链接:<a href="https://blog.csdn.net/y1196645376/article/details/53023848" target="_blank" rel="noopener">https://blog.csdn.net/y1196645376/article/details/53023848</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">　　<span class="built_in">shared_ptr</span>&lt;B&gt; m_b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">　　<span class="built_in">shared_ptr</span>&lt;A&gt; m_a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　&#123;</span><br><span class="line">　　　　<span class="built_in">shared_ptr</span>&lt;A&gt; a(<span class="keyword">new</span> A);  <span class="comment">//new出来的A的引用计数此时为1</span></span><br><span class="line">　　　　<span class="built_in">shared_ptr</span>&lt;B&gt; b(<span class="keyword">new</span> B);  <span class="comment">//new出来的B的引用计数此时为1</span></span><br><span class="line">　　　　a-&gt;m_b = b;              <span class="comment">//B的引用计数增加为2</span></span><br><span class="line">　　　　b-&gt;m_a = a;              <span class="comment">//A的引用计数增加为2</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="comment">//b先出作用域，B的引用计数减少为1，不为0；</span></span><br><span class="line">　　<span class="comment">//所以堆上的B空间没有被释放，且B持有的A也没有机会被析构，A的引用计数也完全没减少</span></span><br><span class="line"></span><br><span class="line">　　<span class="comment">//a后出作用域，同理A的引用计数减少为1，不为0，所以堆上A的空间也没有被释放</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>循环引用”简单来说就是：两个对象互相使用一个shared_ptr成员变量指向对方会造成循环引用。<br>即A内部有指向B，B内部有指向A，这样对于A，B必定是在A析构后B才析构，对于B，A必定是在B析构后才析构A，这就是循环引用问题，违反常规，导致内存泄露。</p>
-<p>解决循环引用方法：</p>
-<ol>
-<li>当只剩下最后一个引用的时候需要手动打破循环引用释放对象。</li>
-<li>当A的生存期超过B的生存期的时候，B改为使用一个普通指针指向A。</li>
-<li>使用weak_ptr打破这种循环引用，因为weak_ptr不会修改计数器的大小，所以就不会产生两个对象互相使用一个shared_ptr成员变量指向对方的问题，从而不会引起引用循环。</li>
-</ol>
+<p>解决循环引用方法：<br>1.当只剩下最后一个引用的时候需要手动打破循环引用释放对象。<br>2.当A的生存期超过B的生存期的时候，B改为使用一个普通指针指向A。<br>3.使用weak_ptr打破这种循环引用，因为weak_ptr不会修改计数器的大小，所以就不会产生两个对象互相使用一个shared_ptr成员变量指向对方的问题，从而不会引起引用循环。</p>
 <p>42.vector扩容原理说明</p>
 <ul>
 <li>新增元素：Vector通过一个连续的数组存放元素，如果集合已满，在新增数据的时候，就要分配一块更大的内存，将原来的数据复制过来，释放之前的内存，在插入新增的元素；</li>
@@ -613,29 +598,22 @@
 </ul>
 <ol>
 <li>vector在push_back以成倍增长可以在均摊后达到O(1)的事件复杂度，相对于增长指定大小的O(n)时间复杂度更好。</li>
-<li>为了防止申请内存的浪费，现在使用较多的有2倍与1.5倍的增长方式，而1.5倍的增长方式可以更好的实现对内存的重复利用，因为更好。<br>参考链接：<a href="https://blog.csdn.net/yangshiziping/article/details/52550291" target="_blank" rel="noopener">https://blog.csdn.net/yangshiziping/article/details/52550291</a></li>
+<li>为了防止申请内存的浪费，现在使用较多的有2倍与1.5倍的增长方式，而1.5倍的增长方式可以更好的实现对内存的重复利用，因为更好。</li>
 </ol>
-<p>43.内联函数和宏定义的区别<br>1.宏定义不是函数，但是使用起来像函数。预处理器用复制宏代码的方式代替函数的调用，省去了函数压栈退栈过程，提高了效率。</p>
-<p>   内联函数本质上是一个函数，内联函数一般用于函数体的代码比较简单的函数，不能包含复杂的控制语句，while、switch，并且内联函数本身不能直接调用自身。如果内联函数的函数体过大，编译器会自动      的把这个内联函数变成普通函数。</p>
+<p>参考链接：<a href="https://blog.csdn.net/yangshiziping/article/details/52550291" target="_blank" rel="noopener">https://blog.csdn.net/yangshiziping/article/details/52550291</a></p>
+<p>43.内联函数和宏定义的区别<br>1.宏定义不是函数，但是使用起来像函数。预处理器用复制宏代码的方式代替函数的调用，省去了函数压栈退栈过程，提高了效率。<br>内联函数本质上是一个函数，内联函数一般用于函数体的代码比较简单的函数，不能包含复杂的控制语句，while、switch，并且内联函数本身不能直接调用自身。如果内联函数的函数体过大，编译器会自动      的把这个内联函数变成普通函数。</p>
 <ol>
-<li><p>宏定义是在预处理的时候把所有的宏名用宏体来替换，简单的说就是字符串替换</p>
-<p> 内联函数则是在编译的时候进行代码插入，编译器会在每处调用内联函数的地方直接把内联函数的内容展开，这样可以省去函数的调用的开销，提高效率</p>
+<li><p>宏定义是在预处理的时候把所有的宏名用宏体来替换，简单的说就是字符串替换<br>内联函数则是在编译的时候进行代码插入，编译器会在每处调用内联函数的地方直接把内联函数的内容展开，这样可以省去函数的调用的开销，提高效率</p>
+</li>
+<li><p>宏定义是没有类型检查的，无论对还是错都是直接替换<br>内联函数在编译的时候会进行类型的检查，内联函数满足函数的性质，比如有返回值、参数列表等</p>
 </li>
 </ol>
-<ol>
-<li><p>宏定义是没有类型检查的，无论对还是错都是直接替换</p>
-<p> 内联函数在编译的时候会进行类型的检查，内联函数满足函数的性质，比如有返回值、参数列表等</p>
-</li>
-</ol>
-<ol>
-<li>宏定义和内联函数使用的时候都是进行代码展开。不同的是宏定义是在预编译的时候把所有的宏名替换，内联函数则是在编译阶段把所有调用内联函数的地方把内联函数插入。这样可以省去函数压栈退栈，提高了效率</li>
-</ol>
+<p>4.宏定义和内联函数使用的时候都是进行代码展开。不同的是宏定义是在预编译的时候把所有的宏名替换，内联函数则是在编译阶段把所有调用内联函数的地方把内联函数插入。这样可以省去函数压栈退栈，提高了效率</p>
 <p>44.内联函数与普通函数的区别</p>
 <ol>
 <li><p>内联函数和普通函数的参数传递机制相同，但是编译器会在每处调用内联函数的地方将内联函数内容展开，这样既避免了函数调用的开销又没有宏机制的缺陷。</p>
 </li>
-<li><p>普通函数在被调用的时候，系统首先要到函数的入口地址去执行函数体，执行完成之后再回到函数调用的地方继续执行，函数始终只有一个复制。</p>
-<p> 内联函数不需要寻址，当执行到内联函数的时候，将此函数展开，如果程序中有N次调用了内联函数则会有N次展开函数代码。</p>
+<li><p>普通函数在被调用的时候，系统首先要到函数的入口地址去执行函数体，执行完成之后再回到函数调用的地方继续执行，函数始终只有一个复制。<br>内联函数不需要寻址，当执行到内联函数的时候，将此函数展开，如果程序中有N次调用了内联函数则会有N次展开函数代码。</p>
 </li>
 <li><p>内联函数有一定的限制，内联函数体要求代码简单，不能包含复杂的结构控制语句。如果内联函数函数体过于复杂，编译器将自动把内联函数当成普通函数来执行。</p>
 </li>
@@ -646,8 +624,7 @@
 <p>46.溢出，越界，泄漏<br>1.溢出</p>
 <p>要求分配的内存超出了系统能给你的，系统不能满足需求，于是产生溢出。</p>
 <p>1）栈溢出</p>
-<p>a.栈溢出是指函数中的局部变量造成的溢出（注：函数中形参和函数中的局部变量存放在栈上）</p>
-<p>栈的大小通常是1M-2M,所以栈溢出包含两种情况，一是分配的的大小超过栈的最大值，二是分配的大小没有超过最大值，但是接收的buff比新buff小（buff：缓冲区, 它本质上就是一段存储数据的内存）</p>
+<p>a.栈溢出是指函数中的局部变量造成的溢出（注：函数中形参和函数中的局部变量存放在栈上）<br>栈的大小通常是1M-2M,所以栈溢出包含两种情况，一是分配的的大小超过栈的最大值，二是分配的大小没有超过最大值，但是接收的buff比新buff小（buff：缓冲区, 它本质上就是一段存储数据的内存）</p>
 <p>例子1：（分配的的大小超过栈的最大值）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">&#123;</span><br><span class="line">    	<span class="keyword">char</span> a[<span class="number">99999999999999999</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>例子2：（接收的buff比新buff小）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">   	<span class="built_in">strcpy</span>(a, <span class="string">"abjjijjlljiojohihiihiiiiiiiiiiiiiiiiiiiiiiiiii"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：调试时栈溢出的异常要在函数调用结束后才会检测到，因为栈是在函数结束时才会开始进行出栈操作。如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="built_in">strcpy</span>(a, <span class="string">"abjjijjlljiojohihiihiiiiiiiiiiiiiiiiiiiiiiiiii"</span>);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>上面情况是检测不到栈溢出的，因为函数还没执行完就退出了<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="built_in">strcpy</span>(a, <span class="string">"abjjijjlljiojohihiihiiiiiiiiiiiiiiiiiiiiiiiiii"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fun();</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -783,20 +760,20 @@ calloc申请内存空间后，会自动初始化内存空间为 0，但是malloc
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -850,13 +827,13 @@ calloc申请内存空间后，会自动初始化内存空间为 0，但是malloc
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:31</span>
 </div>
 
 <!--
