@@ -51,25 +51,22 @@
   };
 </script>
 
-  <meta name="description" content="vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c&#x2F;c++多文件开发环境，搭建开发环境分为以下几步：">
-<meta name="keywords" content="杂项">
+  <meta name="description" content="硬件中的分页硬件中的分页主要由分页单元（Paging Unit）负责。其作用是把线性地址转换为物理地址。此外还有一个重要的任务就是线性地址的访问权限进行检查，看是否为非法访问。如果非法，则引起一个访问异常。关于分页有以下几个概念需要了解：">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="winows下vscode多文件编译运行配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE&#x2F;index.html">
+<meta property="og:title" content="内存中页机制">
+<meta property="og:url" content="http:&#x2F;&#x2F;tingyuxuan.com&#x2F;2019&#x2F;12&#x2F;14&#x2F;%E5%86%85%E5%AD%98%E4%B8%AD%E9%A1%B5%E6%9C%BA%E5%88%B6&#x2F;index.html">
 <meta property="og:site_name" content="土豆の博客">
-<meta property="og:description" content="vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c&#x2F;c++多文件开发环境，搭建开发环境分为以下几步：">
+<meta property="og:description" content="硬件中的分页硬件中的分页主要由分页单元（Paging Unit）负责。其作用是把线性地址转换为物理地址。此外还有一个重要的任务就是线性地址的访问权限进行检查，看是否为非法访问。如果非法，则引起一个访问异常。关于分页有以下几个概念需要了解：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114551.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114759.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108112230.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114707.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108111334.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114116.png">
-<meta property="og:updated_time" content="2019-11-08T03:29:05.000Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191227223954.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191227224038.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191227224158.png">
+<meta property="og:updated_time" content="2019-12-14T14:29:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191108114551.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;kankan-myblog.oss-cn-shenzhen.aliyuncs.com&#x2F;img&#x2F;20191227223954.png">
 
-<link rel="canonical" href="http://tingyuxuan.com/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/">
+<link rel="canonical" href="http://tingyuxuan.com/2019/12/14/%E5%86%85%E5%AD%98%E4%B8%AD%E9%A1%B5%E6%9C%BA%E5%88%B6/">
 
 
 <script id="page-configurations">
@@ -83,7 +80,7 @@
   };
 </script>
 
-  <title>winows下vscode多文件编译运行配置 | 土豆の博客</title>
+  <title>内存中页机制 | 土豆の博客</title>
   
 
 
@@ -231,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://tingyuxuan.com/2019/12/14/%E5%86%85%E5%AD%98%E4%B8%AD%E9%A1%B5%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -244,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          winows下vscode多文件编译运行配置
+          内存中页机制
         </h1>
 
         <div class="post-meta">
@@ -254,7 +251,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-08 11:29:05" itemprop="dateCreated datePublished" datetime="2019-11-08T11:29:05+08:00">2019-11-08</time>
+              <time title="创建时间：2019-12-14 22:29:55" itemprop="dateCreated datePublished" datetime="2019-12-14T22:29:55+08:00">2019-12-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,8 +259,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">杂项</span>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
             </span>
@@ -284,8 +281,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/08/winows%E4%B8%8Bvscode%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/12/14/%E5%86%85%E5%AD%98%E4%B8%AD%E9%A1%B5%E6%9C%BA%E5%88%B6/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/14/%E5%86%85%E5%AD%98%E4%B8%AD%E9%A1%B5%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -295,7 +292,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -314,12 +311,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>vscode编译器的好处在这里就不多赘述，现在开始搭建windows系统下使用cmake和Mingw64搭建完整的c/c++多文件开发环境，搭建开发环境分为以下几步：<br><a id="more"></a><br>第一步，下载文件mingw文件到本地，并将下载好的mingw文件夹下的bin目录作为环境变量配置在path路径下，本文下载mingw64版本并将其下载解压在C盘目录下。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114551.png" alt><br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114759.png" alt></p>
-<p>第二步，在任意硬盘或者桌面建立一个用于放置项目文件的文件夹，并在文件夹里建立以下几个文件。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108112230.png" alt></p>
-<p>第三步，下载cmake软件，在官方网站<a href="https://cmake.org/download/" target="_blank" rel="noopener">https://cmake.org/download/</a><br>目录下为自己的操作系统windows下载最新合适的cmake安装文件进行安装并为cmake配置环境变量。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114707.png" alt></p>
-<p>第四步，在.vscode文件中为vscode配置调试环境分别建立launch.json和c_cpp_properties.json文件，在launch.json文件中拷贝如下内容:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="string">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"Launch CMake-built program"</span>,</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">            <span class="string">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="string">"program"</span>: <span class="string">"$&#123;command:cmake.launchTargetPath&#125;"</span>,</span><br><span class="line">            <span class="string">"args"</span>: [],</span><br><span class="line">            <span class="string">"stopAtEntry"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">            <span class="string">"environment"</span>: [],</span><br><span class="line">            <span class="string">"externalConsole"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">			<span class="string">"miDebuggerPath"</span>: <span class="string">"C:\\mingw64\\bin\\gdb.exe"</span>,</span><br><span class="line"></span><br><span class="line">            <span class="string">"setupCommands"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                    <span class="string">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                    <span class="string">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在c_cpp_properties.json中拷贝如下内容:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"MinGW64"</span>,</span><br><span class="line">            <span class="string">"intelliSenseMode"</span>: <span class="string">"gcc-x64"</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="string">"includePath"</span>: [</span><br><span class="line">                <span class="string">"$&#123;workspaceFolder&#125;/Inc/"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">"browse"</span>: &#123;</span><br><span class="line">                <span class="string">"path"</span>: [</span><br><span class="line">                    <span class="string">"$&#123;workspaceFolder&#125;/Inc/"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"cStandard"</span>: <span class="string">"c11"</span>,</span><br><span class="line">            <span class="string">"cppStandard"</span>: <span class="string">"c++17"</span>,</span><br><span class="line">            <span class="string">"configurationProvider"</span>: <span class="string">"vector-of-bool.cmake-tools"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"version"</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第五步，准备插件：在vscode插件商店里下载Cmake Tools以及Cmake插件，<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108111334.png" alt><br>下载完成之后在第二步建立文件夹下的CMakeLists.txt文件中拷贝如下内容：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 最低CMake版本要求</span><br><span class="line">cmake_minimum_required(VERSION <span class="number">3.10</span><span class="number">.0</span>)</span><br><span class="line"></span><br><span class="line"># 项目名称</span><br><span class="line">project(cmake-test)</span><br><span class="line"></span><br><span class="line"># 设置C/C++开关</span><br><span class="line"><span class="built_in">set</span>(CMAKE_CXX_STANDARD_REQUIRED ON)</span><br><span class="line"></span><br><span class="line"># 头文件路径</span><br><span class="line">include_directories(<span class="string">"Inc"</span>)</span><br><span class="line"></span><br><span class="line"># 枚举头文件</span><br><span class="line">file(GLOB_RECURSE INCLUDES <span class="string">"Inc/*.h"</span> <span class="string">"Inc/*.hpp"</span> <span class="string">"Inc/*.cpp"</span> <span class="string">"Inc/*.c"</span> )</span><br><span class="line"></span><br><span class="line"># 枚举源文件</span><br><span class="line">aux_source_directory(<span class="string">"Src"</span> SOURCES )</span><br><span class="line"></span><br><span class="line"># 输出路径</span><br><span class="line"><span class="built_in">set</span>(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)</span><br><span class="line"></span><br><span class="line"># 生成可执行的文件</span><br><span class="line">add_executable($&#123;PROJECT_NAME&#125; $&#123;SOURCES&#125; $&#123;INCLUDES&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>第六步，在Inc文件夹中就可以编辑c/c++文件，在Src中建立main.c/main.cpp文件，按Ctrl+shift+p为该文件适配安装的cmake gcc版本，按F5完成文件的编译和运行。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191108114116.png" alt></p>
+        <h4 id="硬件中的分页"><a href="#硬件中的分页" class="headerlink" title="硬件中的分页"></a>硬件中的分页</h4><p>硬件中的分页主要由分页单元（Paging Unit）负责。其作用是把线性地址转换为物理地址。此外还有一个重要的任务就是线性地址的访问权限进行检查，看是否为非法访问。如果非法，则引起一个访问异常。关于分页有以下几个概念需要了解：</p>
+<a id="more"></a>
+<ul>
+<li>页(Page):是指线性地址按固定长度分为若干组，其中每个组就是一个页。简单理解就是程序中所认为的内存空间中的固定大小的一份。</li>
+<li>页帧（Page Frame）：也叫物理页，是物理内存按照固定长度分为若干组，每一个组就是一个页框或物理页。简单理解就是实际的物理内存中的固定大小的一份。</li>
+<li>页表（Page Table）：内核通过建立页表来实现线性地址和物理地址的映射。也就是内核通过页表把页和页帧一一对应。</li>
+</ul>
+<p><font face="楷体">注意:</font></p>
+<ol>
+<li>页帧和页是一一对应的，其大小应该是一样的，有分页单元负责为每一个页指定实际物理内存中的页帧。</li>
+<li>在一个进程中，连续的页不一定会对应着连续的页帧，而是由页表来指定每个页对应的页帧。原因是从进程本身的角度来看，整个内核中就只有它自己，它可以随心所欲的使用全部的内存。但是在真实的系统中，会存在很多个进程，需要这些进程共用物理内存。所以，在进程中的连续页可能是由物理内存中不同地方的页帧组合而来的，其组合方式由页表决定。</li>
+<li>从80386开始，所有的x86架构的处理器都支持分页，主要是由cr0寄存器中的PG标志位控制，该标志位置0时，分页功能就被启用了。</li>
+</ol>
+<h5 id="常规分页"><a href="#常规分页" class="headerlink" title="常规分页"></a>常规分页</h5><p>从80386开始，x86架构处理器一般页的大小为4K。如前所述，32位的线性地址分为三个部分：</p>
+<ul>
+<li>Directory（31~22）：页目录</li>
+<li>Table（21~12）：页表</li>
+<li>Offset（11~0）：页内偏移（这决定了页的大小，因为页内偏移有12位，所以，最大可寻址212=4096=4K大小的内存区域）</li>
+</ul>
+<p>这是最典型的二级分页机制的实现方式，其示意图如下所示：<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191227223954.png" alt></p>
+<p>使用多级分页的原因是：为了减少用来存储页表的内存的空间。如果使用单级页表，在4G空间中就需要有220个页表。而每个页表也是会占用内存空间，这么多的页表会浪费很大的内存空间的。</p>
+<p>在最新的linux内核中，采用的是四级分页机制，其原理与二级分页机制一样，只是增加了两级目录，从而可以寻址更大的内存空间。<br><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191227224038.png" alt></p>
+<h5 id="扩展分页"><a href="#扩展分页" class="headerlink" title="扩展分页"></a>扩展分页</h5><p>Linux内核中允许使用扩展分页，所谓扩展分页就是每页的大小不是4K，而是4M。这样做的目的同样也是减少页表的数量。并且可以省去页表，只需要也目录即可了。<br>在扩展分页中，线性地址只有两部分：</p>
+<ul>
+<li>页目录（Directory）[31~22]</li>
+<li>页内偏移（Offset）[21~0]</li>
+</ul>
+<p><img src="https://kankan-myblog.oss-cn-shenzhen.aliyuncs.com/img/20191227224158.png" alt></p>
+<p>扩展分页可以通过设置cr4寄存器中的PSE标志位与常规分页共存。</p>
+<h5 id="硬件保护方案"><a href="#硬件保护方案" class="headerlink" title="硬件保护方案"></a>硬件保护方案</h5><p>所谓硬件保护就是保护模式的意义所在。就是防止内存的越界访问。<br><strong>具体措施为：</strong><br>在页目录\页表结构中，User\Supervisor标志位为0时，只有CPL=0时，即在内核态时才能对本页寻址。User\Supervisor标志位为1时，无论CPL为何值，可对本页寻址。</p>
+<h5 id="常规分页举例"><a href="#常规分页举例" class="headerlink" title="常规分页举例"></a>常规分页举例</h5><p>因为线性地址中前10位（31~22）是页目录，其可存放为210=1024个页表地址，若进程只用了其中一部分，那么其他剩余部分将别设置为0。同样在页表（21 ~12）也为10位，所以，同样可以存放210=1024个页帧地址，若只用了其中一部分，那么其他剩余部分将别设置为0。这些被设置0的地方，其页目录/页表中的present标志位就是0，而这位为0，就表示该页内存不存在，如果访问，就会产生#14缺页异常</p>
+<h5 id="物理地址的扩展分页机制"><a href="#物理地址的扩展分页机制" class="headerlink" title="物理地址的扩展分页机制"></a>物理地址的扩展分页机制</h5><p>前面所述的分页机制，最大支持4GB的内存寻址，但是在一些大型的服务器等运行场景，需要有更大的内存支持。Intel在32位处理器上解决这个问题，把地址总线从32个管脚扩展到了36个。这样就可以寻址236=64G的内存空间。但是仅仅是硬件上的改变还不足以完成物理地址的扩展，所以在linux中就有了PAE（Physical Address Extension）机制。通过cr4寄存器中的PAE标志位控制PAE机制的开启和关闭。需要注意的是，PAE机制只是扩展了物理内存的容量。而每个进程还是只能访问最大为4GB的内存空间。只是在PAE机制下，可以允许更多的进程共存于系统中。</p>
+<h5 id="64位系统中的分页"><a href="#64位系统中的分页" class="headerlink" title="64位系统中的分页"></a>64位系统中的分页</h5><p>在64位系统中，线性地址有64位，一个标准页为4K，即需要页内偏移需要使用12位，那么还剩下64-12=52位，假使我们仅使用64位中的48位，那么依然还是剩下48-12=36位，如果这36我们平分给页目录和页表，在二级分页模式下，页目录和页表都可以容纳218=25600个项。那么从减少页表数量，节省页表所占内存空间的方面来说，这是不允许的。所以，需要使用更多级的分页机制。<br>linux为了适应不同的架构的分页机制，提供了一种通用的分页机制，可以完美兼容各个架构的分页机制。</p>
+<h5 id="硬件高速缓存（Hardware-cache-memory）"><a href="#硬件高速缓存（Hardware-cache-memory）" class="headerlink" title="硬件高速缓存（Hardware cache memory）"></a>硬件高速缓存（Hardware cache memory）</h5><p>现代处理器的频率已经达到了GHz级别，但是内存却依然在MHz级别。 这就造成了当CPU访问内存时的资源和时间的浪费。并且更加尴尬的是，CPU还需要频繁的访问内存。这就极大地影响到了系统的运行效率。是可忍孰不可忍！于是缓存就应运而生了，由静态存储芯片(SRAM)组成，速度接近处理器的速度，全称就是硬件高速缓存。</p>
+<p>硬件高速缓存位于分页单元和内存之间，由SRAM高速缓存和高速缓存控制器组成。</p>
+<p>高速缓存中分为很多行，每个行对应物理内存中的一个同样大小的区域，每个行里面存放的是最近最常调用的内存区域的内容。高速缓存控制器中存放的是一组表项，其中每个表项对应缓存中的一行。每个表项中有一个标签（tag）和一些状态标志位，这个标签是用来指示当前缓存行对应的内存行。</p>
+<h5 id="转换后援缓冲器"><a href="#转换后援缓冲器" class="headerlink" title="转换后援缓冲器"></a>转换后援缓冲器</h5><p>TLB的作用是加速线性地址到物理地址的转换。当一个线性地址第一次被使用时，是通过内存中存放页表来计算解析出物理地址的。如果使用了TLB，就会把解析出的物理地址放入到一个TLB的表项中。这样以后需要解析该线性地址时，就可以快速的从TLB中得到了。</p>
 
     </div>
 
@@ -330,24 +358,21 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag"><i class="fa fa-tag"></i> 杂项</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/07/gcc%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E7%BD%91%E7%AB%99/" rel="next" title="gcc版本下载资源网站">
-                  <i class="fa fa-chevron-left"></i> gcc版本下载资源网站
+                <a href="/2019/12/12/%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90%E5%92%8C%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" rel="next" title="段选择子和段描述符之间的关系">
+                  <i class="fa fa-chevron-left"></i> 段选择子和段描述符之间的关系
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/08/python%E6%A8%A1%E5%9D%97%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F/" rel="prev" title="python模块的安装方式">
-                  python模块的安装方式 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -387,6 +412,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分页"><span class="nav-number">1.</span> <span class="nav-text">硬件中的分页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常规分页"><span class="nav-number">1.1.</span> <span class="nav-text">常规分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展分页"><span class="nav-number">1.2.</span> <span class="nav-text">扩展分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#硬件保护方案"><span class="nav-number">1.3.</span> <span class="nav-text">硬件保护方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常规分页举例"><span class="nav-number">1.4.</span> <span class="nav-text">常规分页举例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#物理地址的扩展分页机制"><span class="nav-number">1.5.</span> <span class="nav-text">物理地址的扩展分页机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#64位系统中的分页"><span class="nav-number">1.6.</span> <span class="nav-text">64位系统中的分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#硬件高速缓存（Hardware-cache-memory）"><span class="nav-number">1.7.</span> <span class="nav-text">硬件高速缓存（Hardware cache memory）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转换后援缓冲器"><span class="nav-number">1.8.</span> <span class="nav-text">转换后援缓冲器</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
